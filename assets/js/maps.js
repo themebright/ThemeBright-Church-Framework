@@ -1,5 +1,6 @@
 jQuery(function($) {
 
+  // render a Google Map onto the selected jQuery element
   function render_map($el) {
 
     // var
@@ -20,9 +21,7 @@ jQuery(function($) {
 
     // add markers
     $markers.each(function() {
-
       add_marker($(this), map);
-
     });
 
     // center map
@@ -55,16 +54,13 @@ jQuery(function($) {
 
       // show info window when marker is clicked
       google.maps.event.addListener(marker, 'click', function() {
-
         infowindow.open(map, marker);
-
       });
     }
 
   }
 
   // center the map, showing all markers attached to this map
-
   function center_map(map) {
 
     // vars
@@ -72,11 +68,8 @@ jQuery(function($) {
 
     // loop through all markers and create bounds
     $.each(map.markers, function(i, marker){
-
       var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
-
       bounds.extend(latlng);
-
     });
 
     // only 1 marker?
@@ -91,14 +84,9 @@ jQuery(function($) {
 
   }
 
-  $(document).ready(function() {
-
-    $('.tbf-map').each(function() {
-
-      render_map($(this));
-
-    });
-
+  // render every map on page
+  $('.tbf-map').each(function() {
+    render_map($(this));
   });
 
 });

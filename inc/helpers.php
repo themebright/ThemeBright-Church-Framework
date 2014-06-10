@@ -20,6 +20,49 @@ function tbf_get_meta_data( $key = null, $post_id = null ) {
 
 }
 
+function tbf_phone_html( $number ) {
+
+  if ( empty( $number ) ) {
+    return null;
+  }
+
+  if ( $number ) {
+    $html  = '<a href="tel:+' . tbf_clean_phone( $number ) . '" class="event-phone phone">';
+    $html .= $number;
+    $html .= '</a>';
+
+    echo $html;
+  }
+
+}
+
+
+function tbf_map_html( $lat = null, $lng = null ) {
+
+  if ( empty( $lat ) || empty( $lng ) ) {
+    return null;
+  }
+
+  if ( $lat && $lng ) {
+    $html  = '<div class="tbf-map">';
+    $html .= '<div class="marker" data-lat="' . $lat . '" data-lng="' . $lng . '"></div>';
+    $html .= '</div>';
+
+    echo $html;
+  }
+
+}
+
+function tbf_address_html( $address ) {
+
+  if ( isset( $address ) ) {
+    $address = nl2br( $address );
+
+    echo $address;
+  }
+
+}
+
 function tbf_clean_phone( $number = null ) {
 
   if ( isset( $number ) ) {
@@ -30,12 +73,12 @@ function tbf_clean_phone( $number = null ) {
 
 }
 
-function tbf_strip_http_https( $input = null ) {
+function tbf_strip_http_https( $url = null ) {
 
-  if ( isset( $input ) ) {
-    $output = str_replace( array( 'http:', 'https:' ), '', $input );
+  if ( isset( $url ) ) {
+    $url = str_replace( array( 'http:', 'https:' ), '', $url );
 
-    return $output;
+    return $url;
   }
 
 }
