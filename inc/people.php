@@ -1,49 +1,55 @@
 <?php
+/**
+ * People Functions
+ *
+ * Contains functions used to display people and their meta data.
+ *
+ * @link https://bitbucket.org/themebright/themebright-framework
+ * @since 1.0.0
+ *
+ * @package ThemeBright_Framework
+ * @subpackage Functions
+ */
 
+/**
+ * Get person meta.
+ *
+ * Gets the person meta using tbf_get_meta without need for prefix.
+ *
+ * @param string $key Meta key for the data to retrive.
+ * @param int $post_id Post ID to get data for; null for current post.
+ * @return mixed The data if it exists; false if not.
+ */
 function tbf_get_person_meta( $key = null, $post_id = null ) {
 
   if ( isset( $key ) ) {
-    $data = tbf_get_meta_data( '_ctc_person_' . $key, $post_id );
+    $data = tbf_get_meta( '_ctc_person_' . $key, $post_id );
 
     return $data;
   }
 
 }
 
-function tbf_person_phone_html( $post_id = null ) {
-
-  $number = tbf_get_person_meta( 'phone', $post_id );
-
-  if ( empty( $number ) ) {
-    return null;
-  }
-
-  if ( $number ) {
-    $html  = '<a href="tel:+' . tbf_clean_phone( $number ) . '" class="person-phone phone">';
-    $html .= $number;
-    $html .= '</a>';
-
-    echo $html;
-  }
-
-}
-
+/**
+ * Person URLs HTML.
+ *
+ * Displays the person's URLs in an unordered list.
+ *
+ * @param int $post_id Post ID to get data for; null for current post.
+ * @return string Person's URLs in an unordered list.
+ */
 function tbf_person_urls_html( $post_id = null ) {
 
   $urls = tbf_get_person_meta( 'urls', $post_id );
-
-  if ( empty( $urls ) ) {
-    return null;
-  }
 
   if ( $urls ) {
     $urls = explode( PHP_EOL, $urls );
     $urls = array_map( 'trim', $urls );
 
-    $html = '<ul class="person-social-link social-links">';
+    $html = '<ul class="urls person-urls">';
 
     foreach ( $urls as $url ) {
-      $html .= "<li class='" . tbf_person_url_class($url) . "'><a href='$url'>$url</a></li>";
+      $html .= "<li class='" . tbf_url_class( $url ) . "'><a href='$url'>$url</a></li>";
     }
 
     $html .= '</ul>';
@@ -53,20 +59,28 @@ function tbf_person_urls_html( $post_id = null ) {
 
 }
 
-function tbf_person_url_class( $url ) {
+/**
+ * Person groups HTML.
+ *
+ * Display a person's groups in an unordered list.
+ *
+ * @param int $post_id Post ID to get data for; null for current post.
+ * @return string Person's groups in an unordered list.
+ */
+function tbf_person_groups_html( $post_id = null ) {
 
-  if ( strpos( $url, 'twitter.com' ) !== false ) {
-    return 'twitter';
-  } elseif ( strpos( $url, 'facebook.com' ) !== false ) {
-    return 'facebook';
-  } elseif ( strpos( $url, 'flickr.com' ) !== false ) {
-    return 'flickr';
-  } elseif ( strpos( $url, 'youtube.com' ) !== false ) {
-    return 'youtube';
-  } elseif ( strpos( $url, 'vimeo.com' ) !== false ) {
-    return 'vimeo';
-  } else {
-    return 'default';
+  $groups = tbf_get_terms( 'ctc_person_group', $post_id );
+
+  if ( $groups ) {
+    $html = '<ul class="person-groups">';
+
+    foreach ($groups as $group) {
+      $html .= "<li><a href='" . get_term_link( $group ) . "'>$group->name</a></li>";
+    }
+
+    $html .= '</ul>';
+
+    echo $html;
   }
 
 }

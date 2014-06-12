@@ -1,6 +1,22 @@
 <?php
+/**
+ * Church Themes Content
+ *
+ * Handles all neccesary Church Themes Content integrations and customizations.
+ *
+ * @link https://bitbucket.org/themebright/themebright-framework
+ * @since 1.0.0
+ *
+ * @package ThemeBright_Framework
+ * @subpackage Functions
+ */
 
-add_action( 'after_setup_theme', 'tbf_ctc_support' );
+/**
+ * Church Themes Content support.
+ *
+ * Enables the desired Church Themes Content post types and taxonomies. Also
+ * handles field overrides where needed.
+ */
 function tbf_ctc_support() {
 
   add_theme_support( 'church-theme-content' );
@@ -14,7 +30,6 @@ function tbf_ctc_support() {
       'ctc_sermon_tag'
      ),
     'fields' => array(
-      '_ctc_sermon_has_full_text',
       '_ctc_sermon_video',
       '_ctc_sermon_audio',
       '_ctc_sermon_pdf'
@@ -32,11 +47,8 @@ function tbf_ctc_support() {
       '_ctc_event_recurrence_end_date',
       '_ctc_event_venue',
       '_ctc_event_address',
-      // '_ctc_event_show_directions_link',
       '_ctc_event_map_lat',
-      '_ctc_event_map_lng',
-      // '_ctc_event_map_type',
-      // '_ctc_event_map_zoom'
+      '_ctc_event_map_lng'
      ),
     'field_overrides' => array()
   ) );
@@ -62,11 +74,8 @@ function tbf_ctc_support() {
     'taxonomies' => array(),
     'fields' => array(
       '_ctc_location_address',
-      // '_ctc_location_show_directions_link',
       '_ctc_location_map_lat',
       '_ctc_location_map_lng',
-      // '_ctc_location_map_type',
-      // '_ctc_location_map_zoom',
       '_ctc_location_phone',
       '_ctc_location_times'
       ),
@@ -74,3 +83,4 @@ function tbf_ctc_support() {
    ) );
 
 }
+add_action( 'after_setup_theme', 'tbf_ctc_support' );
