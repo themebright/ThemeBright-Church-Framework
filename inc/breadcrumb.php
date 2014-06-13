@@ -22,11 +22,8 @@
  */
 function tbf_breadcrumb( $sep = '&rsaquo;' ) {
 
-  // we're gonna need these
-  global $post, $wp;
-
-  // store the current URL
-  $current_url = home_url( add_query_arg( array(), trailingslashit( $wp->request ) ) );
+  // we're gonna need this
+  global $post;
 
   // store the current post type
   $post_type = get_post_type();
@@ -72,6 +69,12 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
     $html .= '<a href="' . home_url( '/' ) . '">' . get_the_title( $home_page ) . '</a>';
   } else {
     $html .= '<a href="' . home_url( '/' ) . '">' . __( 'Home', 'tb_framework' ) . '</a>';
+  }
+
+  // if posts page is set and we're there, display link
+  if ( $posts_page > 0 && is_home() ) {
+    $html .= $sep;
+    $html .= '<span>' . get_the_title( $posts_page ) . '</span>';
   }
 
   // only continue if it's not a 404
