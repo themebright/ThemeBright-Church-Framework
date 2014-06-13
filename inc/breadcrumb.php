@@ -22,7 +22,7 @@
  */
 function tbf_breadcrumb( $sep = '&rsaquo;' ) {
 
-  // we're gonna need $post
+  // we're gonna need these
   global $post, $wp;
 
   // store the current URL
@@ -77,10 +77,10 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
   // only continue if it's not a 404
   if ( ! is_404() ) {
 
-    // are we on an archive page?
+    // it's an archives page
     if ( is_archive() ) {
 
-      // are we on an archive for a CTC taxonomy?
+      // it's an archive for one of the CTC taxonomies
       if ( is_tax( $ctc_post_taxonomies ) ) {
 
         // display link to post type archive
@@ -93,10 +93,39 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
         $html .= '<a href="' . get_permalink( $posts_page ) . '">' . get_the_title( $posts_page ) . '</a>';
       }
 
-      // display a link to the archive
-      $html .= $sep;
-      $html .= "<a href='" . get_term_link( $queried_object ) . "'>$queried_object->name</a>";
+      // it's an author archive
+      if ( is_author() ) {
 
+        $html .= $sep;
+        $html .= "<span class='end'>$queried_object->user_nicename</span>";
+
+      // it's a date archive
+      } elseif ( is_date() ) {
+
+        $html .= $sep;
+
+        if ( is_day() ) {
+          $html .= '<span class="end">' . get_the_date() . '</span>';
+        } elseif ( is_month() ) {
+          $html .= '<span class="end">' . get_the_date( 'F Y' ) . '</span>';
+        } elseif ( is_year() ) {
+          $html .= '<span class="end">' . get_the_date( 'Y' ) . '</span>';
+        }
+
+      // it's another type of archive
+      } else {
+
+        $html .= $sep;
+        $html .= "<span class='end'>$queried_object->name</span>";
+
+      }
+
+    }
+
+    // it's a search results page
+    if ( is_search() ) {
+      $html .= $sep;
+      $html .= '<span class="end">' . get_search_query() . '</span>';
     }
 
     // prefixes for single posts
@@ -138,7 +167,7 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
 
       // display link to post/page
       $html .= $sep;
-      $html .= '<a href="' . get_permalink( $post->ID ) . '">' . get_the_title( $post->ID ) . '</a>';
+      $html .= '<span class="end">' . get_the_title( $post->ID ) . '</span>';
 
     }
 
@@ -147,7 +176,7 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
 
     // display a 404 link
     $html .= $sep;
-    $html .= "<a href='$current_url'>404</a>";
+    $html .= "<span class='end'>404</span>";
 
   }
 
