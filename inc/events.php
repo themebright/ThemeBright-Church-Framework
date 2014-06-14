@@ -52,3 +52,19 @@ function tbf_has_event_map( $post_id = null ) {
   return false;
 
 }
+
+/**
+ * Event map.
+ *
+ * Displays event map if sufficient meta exists.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return string Event map HTML.
+ */
+function tbf_event_map( $post_id = null ) {
+
+  if ( tbf_has_event_map( $post_id ) ) {
+    tbf_map_html( tbf_get_event_meta( 'map_lat', $post_id ), tbf_get_event_meta( 'map_lng', $post_id ) );
+  }
+
+}
