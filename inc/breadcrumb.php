@@ -66,15 +66,15 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
 
   // display home link
   if ( get_option( 'show_on_front' ) == 'page' ) {
-    $html .= '<a href="' . home_url( '/' ) . '">' . get_the_title( $home_page ) . '</a>';
+    $html .= '<a href="' . home_url( '/' ) . '" class="crumb first">' . get_the_title( $home_page ) . '</a>';
   } else {
-    $html .= '<a href="' . home_url( '/' ) . '">' . __( 'Home', 'tb_framework' ) . '</a>';
+    $html .= '<a href="' . home_url( '/' ) . '" class="crumb first">' . __( 'Home', 'tb_framework' ) . '</a>';
   }
 
   // if posts page is set and we're there, display link
   if ( $posts_page > 0 && is_home() ) {
     $html .= $sep;
-    $html .= '<span>' . get_the_title( $posts_page ) . '</span>';
+    $html .= '<span class="crumb">' . get_the_title( $posts_page ) . '</span>';
   }
 
   // only continue if it's not a 404
@@ -88,19 +88,19 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
 
         // display link to post type archive
         $html .= $sep;
-        $html .= "<a href='" . get_post_type_archive_link( $post_type ) . "'>$post_type_obj->label</a>";
+        $html .= "<a href='" . get_post_type_archive_link( $post_type ) . "' class='crumb'>$post_type_obj->label</a>";
 
       // display posts page link for standard posts
       } elseif ( $posts_page ) {
         $html .= $sep;
-        $html .= '<a href="' . get_permalink( $posts_page ) . '">' . get_the_title( $posts_page ) . '</a>';
+        $html .= '<a href="' . get_permalink( $posts_page ) . '" class="crumb">' . get_the_title( $posts_page ) . '</a>';
       }
 
       // it's an author archive
       if ( is_author() ) {
 
         $html .= $sep;
-        $html .= "<span class='end'>$queried_object->user_nicename</span>";
+        $html .= "<span class='crumb last'>$queried_object->user_nicename</span>";
 
       // it's a date archive
       } elseif ( is_date() ) {
@@ -108,18 +108,18 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
         $html .= $sep;
 
         if ( is_day() ) {
-          $html .= '<span class="end">' . get_the_date() . '</span>';
+          $html .= '<span class="crumb last">' . get_the_date() . '</span>';
         } elseif ( is_month() ) {
-          $html .= '<span class="end">' . get_the_date( 'F Y' ) . '</span>';
+          $html .= '<span class="crumb last">' . get_the_date( 'F Y' ) . '</span>';
         } elseif ( is_year() ) {
-          $html .= '<span class="end">' . get_the_date( 'Y' ) . '</span>';
+          $html .= '<span class="crumb last">' . get_the_date( 'Y' ) . '</span>';
         }
 
       // it's another type of archive
       } else {
 
         $html .= $sep;
-        $html .= "<span class='end'>$queried_object->name</span>";
+        $html .= "<span class='crumb last'>$queried_object->name</span>";
 
       }
 
@@ -128,7 +128,7 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
     // it's a search results page
     if ( is_search() ) {
       $html .= $sep;
-      $html .= '<span class="end">' . get_search_query() . '</span>';
+      $html .= '<span class="crumb last">' . get_search_query() . '</span>';
     }
 
     // prefixes for single posts
@@ -140,7 +140,7 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
         // if a posts page is setup, include it in the breacrumb
         if ( $posts_page ) {
           $html .= $sep;
-          $html .= '<a href="' . get_permalink( $posts_page ) . '">' . get_the_title( $posts_page ) . '</a>';
+          $html .= '<a href="' . get_permalink( $posts_page ) . '" class="crumb">' . get_the_title( $posts_page ) . '</a>';
         }
 
       // or one of the Church Themes Content post types?
@@ -148,7 +148,7 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
 
         // display link to post type archive in the breadcrumb
         $html .= $sep;
-        $html .= "<a href='" . get_post_type_archive_link( $post_type ) . "'>$post_type_obj->label</a>";
+        $html .= "<a href='" . get_post_type_archive_link( $post_type ) . "' class='crumb'>$post_type_obj->label</a>";
 
       }
 
@@ -164,13 +164,13 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
       if ( $parents ) {
         foreach ( $parents as $parent ) {
           $html .= $sep;
-          $html .= '<a href="' . get_permalink( $parent ) . '">' . get_the_title( $parent ) . '</a>';
+          $html .= '<a href="' . get_permalink( $parent ) . '" class="crumb">' . get_the_title( $parent ) . '</a>';
         }
       }
 
       // display link to post/page
       $html .= $sep;
-      $html .= '<span class="end">' . get_the_title( $post->ID ) . '</span>';
+      $html .= '<span class="crumb last">' . get_the_title( $post->ID ) . '</span>';
 
     }
 
@@ -179,7 +179,7 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
 
     // display a 404 link
     $html .= $sep;
-    $html .= "<span class='end'>404</span>";
+    $html .= "<span class='crumb last'>404</span>";
 
   }
 
