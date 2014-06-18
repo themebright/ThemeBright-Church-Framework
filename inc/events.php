@@ -68,3 +68,42 @@ function tbf_event_map( $post_id = null ) {
   }
 
 }
+
+/**
+ * Event date.
+ *
+ * Displays the event start date, and if it exists, the end date additionally.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return string Event start and possibly end date.
+ */
+function tbf_event_date( $post_id = null ) {
+
+  $start_date = tbf_get_event_meta( 'start_date', $post_id );
+  $end_date = tbf_get_event_meta( 'end_date', $post_id );
+
+  $html = $start_date;
+
+  if ( $end_date ) {
+    $html .= ' &ndash; ' . $end_date;
+  }
+
+  echo $html;
+
+}
+
+/**
+ * Event time.
+ *
+ * Displays the event time.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return string Event time.
+ */
+function tbf_event_time( $post_id = null ) {
+
+  $time = tbf_get_event_meta( 'time', $post_id );
+
+  echo $time;
+
+}
