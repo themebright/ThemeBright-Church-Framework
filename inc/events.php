@@ -22,7 +22,7 @@
  */
 function tbf_get_event_meta( $key = null, $post_id = null ) {
 
-  if ( isset( $key ) ) {
+  if ( $key ) {
     $data = tbf_get_meta( '_ctc_event_' . $key, $post_id );
 
     return $data;
@@ -33,38 +33,22 @@ function tbf_get_event_meta( $key = null, $post_id = null ) {
 }
 
 /**
- * Has event map.
+ * Event map.
  *
- * Checks to see if the necessary meta exists to display a map.
+ * Displays an event map if neccesary data exists, returns false if not.
  *
  * @param int $post_id Post ID to get data for; null for current post.
- * @return bool True if map_lat and map_lng exist; false if not.
+ * @return mixed Map HTML if necessary data exists, false if not.
  */
-function tbf_has_event_map( $post_id = null ) {
+function tbf_event_map( $post_id = null ) {
 
   $lat = tbf_get_event_meta( 'map_lat', $post_id );
   $lng = tbf_get_event_meta( 'map_lng', $post_id );
 
-  if ( isset( $lat ) && isset( $lng ) ) {
-    return true;
-  }
-
-  return false;
-
-}
-
-/**
- * Event map.
- *
- * Displays event map if sufficient meta exists.
- *
- * @param type $post_id Post ID to get data for; null for current post.
- * @return string Event map HTML.
- */
-function tbf_event_map( $post_id = null ) {
-
-  if ( tbf_has_event_map( $post_id ) ) {
-    tbf_map_html( tbf_get_event_meta( 'map_lat', $post_id ), tbf_get_event_meta( 'map_lng', $post_id ) );
+  if ( $lat && $lng ) {
+    tbf_map_html( $lat, $lgn );
+  } else {
+    return false;
   }
 
 }
@@ -72,38 +56,46 @@ function tbf_event_map( $post_id = null ) {
 /**
  * Event date.
  *
- * Displays the event start date, and if it exists, the end date additionally.
+ * Displays the event date if it exists, returns false if not.
  *
  * @param type $post_id Post ID to get data for; null for current post.
- * @return string Event start and possibly end date.
+ * @return mixed Event date if it exists, false if not.
  */
 function tbf_event_date( $post_id = null ) {
 
   $start_date = tbf_get_event_meta( 'start_date', $post_id );
   $end_date = tbf_get_event_meta( 'end_date', $post_id );
 
-  $html = $start_date;
+  if ( $start_date ) {
+    $html = $start_date;
 
-  if ( $end_date ) {
-    $html .= ' &ndash; ' . $end_date;
+    if ( $end_date ) {
+      $html .= ' &ndash; ' . $end_date;
+    }
+
+    echo $html;
+  } else {
+    return false;
   }
-
-  echo $html;
 
 }
 
 /**
  * Event time.
  *
- * Displays the event time.
+ * Displays the event time if it exists, returns false if not.
  *
  * @param type $post_id Post ID to get data for; null for current post.
- * @return string Event time.
+ * @return mixed Event time if it exists, false if not.
  */
 function tbf_event_time( $post_id = null ) {
 
   $time = tbf_get_event_meta( 'time', $post_id );
 
-  echo $time;
+  if ( $time ) {
+    echo $time;
+  } else {
+    return false;
+  }
 
 }
