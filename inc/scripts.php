@@ -23,4 +23,4 @@ function tbf_scripts() {
   wp_enqueue_script( 'tbf-maps', tbf_strip_protocol( get_template_directory_uri() . '/' . TBF_JS_DIR . '/maps.js' ), array( 'jquery', 'tbf-google-maps' ), TBF_VERSION );
 
 }
-add_action('wp_enqueue_scripts', 'tbf_scripts');
+add_action( 'wp_enqueue_scripts', 'tbf_scripts' );

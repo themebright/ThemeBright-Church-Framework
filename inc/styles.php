@@ -19,4 +19,4 @@ function tbf_styles() {
   wp_enqueue_style( 'tbf', tbf_strip_protocol( get_template_directory_uri() . '/' . TBF_CSS_DIR . '/tbf.css' ), false, TBF_VERSION );
 
 }
-add_action('wp_enqueue_scripts', 'tbf_styles');
+add_action( 'wp_enqueue_scripts', 'tbf_styles' );
