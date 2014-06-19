@@ -25,7 +25,7 @@ add_action( 'init', 'tbf_register_shortcodes' );
 /**
  * Events shortcode.
  *
- * Displays events as specified by parameters.
+ * Displays a list of events as specified by parameters.
  *
  * @param array $atts Shortcode attributes.
  * @return string A list of events.
