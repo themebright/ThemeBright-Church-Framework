@@ -22,16 +22,12 @@
  */
 function tbf_get_meta( $key = null, $post_id = null ) {
 
-  if ( ! isset( $post_id ) ) {
+  if ( ! $post_id ) {
     $post_id = get_the_ID();
   }
 
-  if ( isset( $key ) && $post_id ) {
+  if ( $key && $post_id ) {
     $data = get_post_meta( $post_id, $key, true );
-
-    if ( empty( $data ) ) {
-      return false;
-    }
 
     return $data;
   }

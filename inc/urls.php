@@ -21,7 +21,7 @@
  */
 function tbf_strip_protocol( $url = null ) {
 
-  if ( isset( $url ) ) {
+  if ( $url ) {
     $url = str_replace( array( 'http:', 'https:' ), '', $url );
 
     return $url;
@@ -30,9 +30,12 @@ function tbf_strip_protocol( $url = null ) {
 }
 
 /**
- * Description
- * @param type $url
- * @return type
+ * URL class.
+ *
+ * Checks to see if URL is one of the predetermined sites; returns class if it is.
+ *
+ * @param string $url URL to check.
+ * @return string URL class if the URL is one of the predtermined sites.
  */
 function tbf_url_class( $url ) {
 

@@ -18,7 +18,9 @@
  * @return type
  */
 function tbf_register_shortcodes() {
+
   add_shortcode( 'events', 'tbf_shortcode_events' );
+
 }
 add_action( 'init', 'tbf_register_shortcodes' );
 
