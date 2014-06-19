@@ -12,14 +12,14 @@
  */
 
 /**
- * Address HTML
+ * Address.
  *
  * Displays address in <address> tag with line breaks.
  *
  * @param string $address Address to process.
  * @return string Address in <address> tag with line breaks.
  */
-function tbf_address_html( $address = null ) {
+function tbf_address( $address = null ) {
 
   if ( $address ) {
     $address = nl2br( $address );

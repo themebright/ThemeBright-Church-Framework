@@ -44,7 +44,7 @@ function tbf_event_map( $post_id = null ) {
   $lng = tbf_get_event_meta( 'map_lng', $post_id );
 
   if ( $lat && $lng ) {
-    tbf_map_html( $lat, $lgn );
+    tbf_map( $lat, $lgn );
   } else {
     return false;
   }

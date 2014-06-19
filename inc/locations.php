@@ -75,7 +75,7 @@ function tbf_location_map( $post_id = null ) {
   $lng = tbf_get_locaation_meta( 'map_lng', $post_id );
 
   if ( $lat && $lng ) {
-    tbf_map_html( $lat, $lgn );
+    tbf_map( $lat, $lgn );
   } else {
     return false;
   }

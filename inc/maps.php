@@ -12,7 +12,7 @@
  */
 
 /**
- * Map HTML
+ * Map.
  *
  * Creates neccessary HTML to render a map with the Google Maps API.
  *
@@ -20,7 +20,7 @@
  * @param string $lng Map longitude.
  * @return string HTML requred to render map.
  */
-function tbf_map_html( $lat = null, $lng = null ) {
+function tbf_map( $lat = null, $lng = null ) {
 
   if ( empty( $lat ) || empty( $lng ) ) {
     return null;
