@@ -33,10 +33,10 @@ function tbf_get_event_meta( $key = null, $post_id = null ) {
 /**
  * Event map.
  *
- * Displays an event map if neccesary data exists, returns false if not.
+ * Displays an event map if neccesary data exists; returns false if not.
  *
  * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Map HTML if necessary data exists, false if not.
+ * @return mixed Map HTML if necessary data exists; false if not.
  */
 function tbf_event_map( $post_id = null ) {
 
@@ -54,10 +54,10 @@ function tbf_event_map( $post_id = null ) {
 /**
  * Event date.
  *
- * Displays the event date if it exists, returns false if not.
+ * Displays the event date if it exists; returns false if not.
  *
  * @param type $post_id Post ID to get data for; null for current post.
- * @return mixed Event date if it exists, false if not.
+ * @return mixed Event date if it exists; false if not.
  */
 function tbf_event_date( $post_id = null ) {
 
@@ -81,10 +81,10 @@ function tbf_event_date( $post_id = null ) {
 /**
  * Event time.
  *
- * Displays the event time if it exists, returns false if not.
+ * Displays the event time if it exists; returns false if not.
  *
  * @param type $post_id Post ID to get data for; null for current post.
- * @return mixed Event time if it exists, false if not.
+ * @return mixed Event time if it exists; false if not.
  */
 function tbf_event_time( $post_id = null ) {
 

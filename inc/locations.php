@@ -33,10 +33,10 @@ function tbf_get_location_meta( $key = null, $post_id = null ) {
 /**
  * Location times.
  *
- * Displays location times in unordered list if they exists, returns false if not.
+ * Displays location times in unordered list if they exists; returns false if not.
  *
  * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Location times if they exist, false if not.
+ * @return mixed Location times if they exist; false if not.
  */
 function tbf_location_times( $post_id = null ) {
 
@@ -64,10 +64,10 @@ function tbf_location_times( $post_id = null ) {
 /**
  * Location map.
  *
- * Displays a location map if neccesary data exists, returns false if not.
+ * Displays a location map if neccesary data exists; returns false if not.
  *
  * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Map HTML if necessary data exists, false if not.
+ * @return mixed Map HTML if necessary data exists; false if not.
  */
 function tbf_location_map( $post_id = null ) {
 
