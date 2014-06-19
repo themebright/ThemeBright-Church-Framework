@@ -22,7 +22,7 @@
  */
 function tbf_get_location_meta( $key = null, $post_id = null ) {
 
-  if ( isset( $key ) ) {
+  if ( $key ) {
     $data = tbf_get_meta( '_ctc_location_' . $key, $post_id );
 
     return $data;
@@ -33,12 +33,12 @@ function tbf_get_location_meta( $key = null, $post_id = null ) {
 /**
  * Location times HTML.
  *
- * Displays the location's times in an unordered list.
+ * Displays location times in unordered list if they exists, returns false if not.
  *
  * @param int $post_id Post ID to get data for; null for current post.
- * @return string Location times in unordered list.
+ * @return mixed Location times if they exist, false if not.
  */
-function tbf_location_times_html( $post_id = null ) {
+function tbf_location_times( $post_id = null ) {
 
   $times = tbf_get_location_meta( 'times', $post_id );
 
@@ -55,27 +55,29 @@ function tbf_location_times_html( $post_id = null ) {
     $html .= '</ul>';
 
     echo $html;
+  } else {
+    return false;
   }
 
 }
 
 /**
- * Has location map.
+ * Location map.
  *
- * Checks to see if the necessary meta exists to display a map.
+ * Displays a location map if neccesary data exists, returns false if not.
  *
  * @param int $post_id Post ID to get data for; null for current post.
- * @return bool True if map_lat and map_lng exist; false if not.
+ * @return mixed Map HTML if necessary data exists, false if not.
  */
-function tbf_has_location_map( $post_id = null ) {
+function tbf_location_map( $post_id = null ) {
 
-  $lat = tbf_get_event_meta( 'map_lat', $post_id );
-  $lng = tbf_get_event_meta( 'map_lng', $post_id );
+  $lat = tbf_get_locaation_meta( 'map_lat', $post_id );
+  $lng = tbf_get_locaation_meta( 'map_lng', $post_id );
 
-  if ( isset( $lat ) && isset( $lng ) ) {
-    return true;
+  if ( $lat && $lng ) {
+    tbf_map_html( $lat, $lgn );
+  } else {
+    return false;
   }
-
-  return false;
 
 }
