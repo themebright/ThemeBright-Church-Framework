@@ -28,8 +28,6 @@ function tbf_get_event_meta( $key = null, $post_id = null ) {
     return $data;
   }
 
-  return false;
-
 }
 
 /**
