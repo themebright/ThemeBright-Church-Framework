@@ -56,7 +56,7 @@ function tbf_ctc_support() {
   add_theme_support( 'ctc-people', array(
     'taxonomies' => array(
       'ctc_person_group',
-       ),
+    ),
     'fields' => array(
       '_ctc_person_position',
       '_ctc_person_phone',
