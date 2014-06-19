@@ -46,7 +46,7 @@ function tbf_event_date( $post_id = null ) {
   if ( $start_date ) {
     $html = $start_date;
 
-    if ( $end_date ) {
+    if ( $end_date && $end_date != $start_date ) {
       $html .= ' &ndash; ' . $end_date;
     }
 
