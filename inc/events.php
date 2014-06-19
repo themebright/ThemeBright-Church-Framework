@@ -31,27 +31,6 @@ function tbf_get_event_meta( $key = null, $post_id = null ) {
 }
 
 /**
- * Event map.
- *
- * Displays an event map if neccesary data exists; returns false if not.
- *
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Map HTML if necessary data exists; false if not.
- */
-function tbf_event_map( $post_id = null ) {
-
-  $lat = tbf_get_event_meta( 'map_lat', $post_id );
-  $lng = tbf_get_event_meta( 'map_lng', $post_id );
-
-  if ( $lat && $lng ) {
-    tbf_map( $lat, $lng );
-  } else {
-    return false;
-  }
-
-}
-
-/**
  * Event date.
  *
  * Displays the event date if it exists; returns false if not.
@@ -92,6 +71,67 @@ function tbf_event_time( $post_id = null ) {
 
   if ( $time ) {
     echo $time;
+  } else {
+    return false;
+  }
+
+}
+
+/**
+ * Event venue.
+ *
+ * Displays the event venue if it exists; returns false if not.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return mixed Event venue if it exists; false if not.
+ */
+function tbf_event_venue( $post_id = null ) {
+
+  $venue = tbf_get_event_meta( 'vanue', $post_id );
+
+  if ( $venue ) {
+    echo $venue;
+  } else {
+    return false;
+  }
+
+}
+
+/**
+ * Event address.
+ *
+ * Displays the event address if it exists; returns false if not.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return mixed Event address if it exists; false if not.
+ */
+function tbf_event_address( $post_id = null ) {
+
+  $address = tbf_get_event_meta( 'address', $post_id );
+
+  if ( $venue ) {
+    tbf_address( $address );
+  } else {
+    return false;
+  }
+
+}
+
+/**
+ * Event map.
+ *
+ * Displays an event map if neccesary data exists; returns false if not.
+ *
+ * @param int $post_id Post ID to get data for; null for current post.
+ * @return mixed Map HTML if necessary data exists; false if not.
+ */
+function tbf_event_map( $post_id = null ) {
+
+  $lat = tbf_get_event_meta( 'map_lat', $post_id );
+  $lng = tbf_get_event_meta( 'map_lng', $post_id );
+
+  if ( $lat && $lng ) {
+    tbf_map( $lat, $lng );
   } else {
     return false;
   }
