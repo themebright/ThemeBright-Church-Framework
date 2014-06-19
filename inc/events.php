@@ -109,7 +109,7 @@ function tbf_event_address( $post_id = null ) {
 
   $address = tbf_get_event_meta( 'address', $post_id );
 
-  if ( $venue ) {
+  if ( $address ) {
     tbf_address( $address );
   } else {
     return false;
