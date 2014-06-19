@@ -14,8 +14,7 @@
 /**
  * Breadcrumb.
  *
- * Builds and displays a breadcrumb based on the current page/post/archive
- * being displayed.
+ * Builds and displays a breadcrumb based on the current page/post/archive being displayed.
  *
  * @param string $sep Character to use a divider between crumbs.
  * @return string Breadcrumb HTML.
