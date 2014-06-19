@@ -22,7 +22,7 @@
  */
 function tbf_get_person_meta( $key = null, $post_id = null ) {
 
-  if ( isset( $key ) ) {
+  if ( $key ) {
     $data = tbf_get_meta( '_ctc_person_' . $key, $post_id );
 
     return $data;
@@ -31,14 +31,14 @@ function tbf_get_person_meta( $key = null, $post_id = null ) {
 }
 
 /**
- * Person URLs HTML.
+ * Person URLs.
  *
- * Displays the person's URLs in an unordered list.
+ * Displays the person's URLs in an unordered list if they exist; returns false if not.
  *
  * @param int $post_id Post ID to get data for; null for current post.
- * @return string Person's URLs in an unordered list.
+ * @return mixed Person's URLs if they exist; false if not.
  */
-function tbf_person_urls_html( $post_id = null ) {
+function tbf_person_urls( $post_id = null ) {
 
   $urls = tbf_get_person_meta( 'urls', $post_id );
 
@@ -55,19 +55,21 @@ function tbf_person_urls_html( $post_id = null ) {
     $html .= '</ul>';
 
     echo $html;
+  } else {
+    return false;
   }
 
 }
 
 /**
- * Person groups HTML.
+ * Person groups.
  *
- * Display a person's groups in an unordered list.
+ * Display a person's groups in an unordered list if they exist; returns false if not.
  *
  * @param int $post_id Post ID to get data for; null for current post.
- * @return string Person's groups in an unordered list.
+ * @return mixed Groups if they exist; false if not.
  */
-function tbf_person_groups_html( $post_id = null ) {
+function tbf_person_groups( $post_id = null ) {
 
   $groups = tbf_get_terms( 'ctc_person_group', $post_id );
 
@@ -81,6 +83,8 @@ function tbf_person_groups_html( $post_id = null ) {
     $html .= '</ul>';
 
     echo $html;
+  } else {
+    return false;
   }
 
 }
