@@ -69,6 +69,7 @@ $tbf_includes = array(
     TBF_INC_DIR . '/breadcrumb.php',
     TBF_INC_DIR . '/ctc.php',
     TBF_INC_DIR . '/events.php',
+    TBF_INC_DIR . '/head.php',
     TBF_INC_DIR . '/helpers.php',
     TBF_INC_DIR . '/locations.php',
     TBF_INC_DIR . '/maps.php',
