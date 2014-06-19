@@ -19,14 +19,14 @@
  * @param string $address Address to process.
  * @return string Address in <address> tag with line breaks.
  */
-function tbf_address_html( $address ) {
+function tbf_address_html( $address = null ) {
 
-  if ( isset( $address ) ) {
+  if ( $address ) {
     $address = nl2br( $address );
 
     $html  = '<address>';
     $html .= $address;
-    $html .= '<address>';
+    $html .= '</address>';
 
     echo $html;
   }
