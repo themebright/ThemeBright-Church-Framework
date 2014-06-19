@@ -31,7 +31,7 @@ function tbf_get_location_meta( $key = null, $post_id = null ) {
 }
 
 /**
- * Location times HTML.
+ * Location times.
  *
  * Displays location times in unordered list if they exists, returns false if not.
  *
