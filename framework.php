@@ -78,6 +78,7 @@ $tbf_includes = array(
     TBF_INC_DIR . '/people.php',
     TBF_INC_DIR . '/phone.php',
     TBF_INC_DIR . '/scripts.php',
+    TBF_INC_DIR . '/sermons.php',
     TBF_INC_DIR . '/shortcodes.php',
     TBF_INC_DIR . '/styles.php',
     TBF_INC_DIR . '/terms.php',

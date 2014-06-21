@@ -136,7 +136,7 @@ function tbf_person_groups( $post_id = null ) {
   if ( $groups ) {
     $html = '<ul class="person-groups">';
 
-    foreach ($groups as $group) {
+    foreach ( $groups as $group ) {
       $html .= "<li><a href='" . get_term_link( $group ) . "'>$group->name</a></li>";
     }
 
