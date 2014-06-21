@@ -31,6 +31,46 @@ function tbf_get_location_meta( $key = null, $post_id = null ) {
 }
 
 /**
+ * Location address.
+ *
+ * Displays the location address if it exists; returns false if not.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return mixed Location address if it exists; false if not.
+ */
+function tbf_location_address( $post_id = null ) {
+
+  $address = tbf_get_location_meta( 'address', $post_id );
+
+  if ( $address ) {
+    tbf_address( $address );
+  } else {
+    return false;
+  }
+
+}
+
+/**
+ * Location phone.
+ *
+ * Displays the location phone if it exists; returns false if not.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return mixed Location phone if it exists; false if not.
+ */
+function tbf_location_phone( $post_id = null ) {
+
+  $phone = tbf_get_location_meta( 'phone', $post_id );
+
+  if ( $phone ) {
+    tbf_phone_link( $phone );
+  } else {
+    return false;
+  }
+
+}
+
+/**
  * Location times.
  *
  * Displays location times in unordered list if they exists; returns false if not.
@@ -71,13 +111,14 @@ function tbf_location_times( $post_id = null ) {
  */
 function tbf_location_map( $post_id = null ) {
 
-  $lat = tbf_get_locaation_meta( 'map_lat', $post_id );
-  $lng = tbf_get_locaation_meta( 'map_lng', $post_id );
+  $lat = tbf_get_location_meta( 'map_lat', $post_id );
+  $lng = tbf_get_location_meta( 'map_lng', $post_id );
 
   if ( $lat && $lng ) {
-    tbf_map( $lat, $lgn );
+    tbf_map( $lat, $lng );
   } else {
     return false;
   }
 
 }
+

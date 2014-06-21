@@ -55,17 +55,17 @@ function tbf_ctc_support() {
 
   add_theme_support( 'ctc-people', array(
     'taxonomies' => array(
-      'ctc_person_group',
+      'ctc_person_group'
     ),
     'fields' => array(
       '_ctc_person_position',
       '_ctc_person_phone',
       '_ctc_person_email',
       '_ctc_person_urls'
-     ),
+    ),
     'field_overrides' => array(
       '_ctc_person_urls' => array(
-        'desc' => __( 'Enter one URL per line.', 'tbf' )
+        'desc' => __( 'Enter one per line.', 'tbf' )
        )
      )
     ) );
@@ -78,8 +78,12 @@ function tbf_ctc_support() {
       '_ctc_location_map_lng',
       '_ctc_location_phone',
       '_ctc_location_times'
-      ),
-    'field_overrides' => array()
+    ),
+    'field_overrides' => array(
+      '_ctc_location_times' => array(
+        'desc' => __( 'Enter one per line.', 'tbf' )
+      )
+    )
    ) );
 
 }
