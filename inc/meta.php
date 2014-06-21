@@ -29,7 +29,7 @@ function tbf_get_meta( $key = null, $post_id = null ) {
   if ( $key && $post_id ) {
     $data = get_post_meta( $post_id, $key, true );
 
-    return $data;
+    return trim( $data );
   }
 
   return false;

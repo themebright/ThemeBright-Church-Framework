@@ -121,4 +121,3 @@ function tbf_location_map( $post_id = null ) {
   }
 
 }
-

@@ -31,6 +31,66 @@ function tbf_get_person_meta( $key = null, $post_id = null ) {
 }
 
 /**
+ * Person position.
+ *
+ * Displays the person's position.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return mixed Position if it exists; false if not.
+ */
+function tbf_person_position( $post_id = null ) {
+
+  $position = tbf_get_person_meta( 'position', $post_id );
+
+  if ( $position ) {
+    echo $position;
+  } else {
+    return false;
+  }
+
+}
+
+/**
+ * Person phone.
+ *
+ * Displays the person's phone if it exists; returns false if not.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return mixed Person's phone if it exists; false if not.
+ */
+function tbf_person_phone( $post_id = null ) {
+
+  $phone = tbf_get_person_meta( 'phone', $post_id );
+
+  if ( $phone ) {
+    tbf_phone_link( $phone );
+  } else {
+    return false;
+  }
+
+}
+
+/**
+ * Person email.
+ *
+ * Displays the person's email if it exists; returns false if not.
+ *
+ * @param type $post_id Post ID to get data for; null for current post.
+ * @return mixed Person's email if it exists; false if not.
+ */
+function tbf_person_email( $post_id = null ) {
+
+  $email = tbf_get_person_meta( 'email', $post_id );
+
+  if ( $email ) {
+    tbf_email_link( $email );
+  } else {
+    return false;
+  }
+
+}
+
+/**
  * Person URLs.
  *
  * Displays the person's URLs in an unordered list if they exist; returns false if not.
