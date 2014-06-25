@@ -35,7 +35,7 @@ if ( ! defined( 'TBF_THEME_CHILD_URL' ) )     define( 'TBF_THEME_CHILD_URL',    
  *
  * Theme and framework structures mirror each other.
  */
-if ( ! defined( 'TBF_THEME_INC_DIR' ) )       define( 'TBF_THEME_INC_DIR',      'inc' );                                // includes directory
+if ( ! defined( 'TBF_THEME_INC_DIR' ) )       define( 'TBF_THEME_INC_DIR',      'includes' );                           // includes directory
 if ( ! defined( 'TBF_THEME_PAGE_TPL_DIR' ) )  define( 'TBF_THEME_PAGE_TPL_DIR', 'page-templates' );                     // page templates directory
 if ( ! defined( 'TBF_THEME_ASSETS_DIR' ) )    define( 'TBF_THEME_ASSETS_DIR',   'assets' );                             // framework stylesheets directory
 if ( ! defined( 'TBF_THEME_CSS_DIR' ) )       define( 'TBF_THEME_CSS_DIR',      TBF_THEME_ASSETS_DIR . '/css' );        // framework stylesheets directory
@@ -49,7 +49,7 @@ if ( ! defined( 'TBF_THEME_LANG_DIR' ) )      define( 'TBF_THEME_LANG_DIR',     
  * Note use of theme constants. Theme & framework structures mirror each other.
  */
 if ( ! defined( 'TBF_DIR' ) )                 define( 'TBF_DIR',                basename( dirname( __FILE__) ) );       // framework directory (where this file is)
-if ( ! defined( 'TBF_INC_DIR' ) )             define( 'TBF_INC_DIR',            TBF_DIR . '/inc' );                     // framework includes directory
+if ( ! defined( 'TBF_INC_DIR' ) )             define( 'TBF_INC_DIR',            TBF_DIR . '/includes' );                // framework includes directory
 if ( ! defined( 'TBF_LIB_DIR' ) )             define( 'TBF_LIB_DIR',            TBF_DIR . '/lib' );                     // framework libraries directory
 if ( ! defined( 'TBF_ASSETS_DIR' ) )          define( 'TBF_ASSETS_DIR',         TBF_DIR . '/assets' );                  // framework stylesheets directory
 if ( ! defined( 'TBF_CSS_DIR' ) )             define( 'TBF_CSS_DIR',            TBF_ASSETS_DIR . '/css' );              // framework stylesheets directory
