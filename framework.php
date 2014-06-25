@@ -82,7 +82,8 @@ $tbf_includes = array(
     TBF_INC_DIR . '/shortcodes.php',
     TBF_INC_DIR . '/styles.php',
     TBF_INC_DIR . '/terms.php',
-    TBF_INC_DIR . '/urls.php'
+    TBF_INC_DIR . '/urls.php',
+    TBF_INC_DIR . '/widgets.php'
   ),
   'admin' => array(),
   'frontend' => array()
