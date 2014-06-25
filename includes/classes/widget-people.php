@@ -1,6 +1,6 @@
 <?php
 /**
- * Locations Widget
+ * People Widget
  *
  * @link https://bitbucket.org/themebright/themebright-framework
  * @since 1.0.0
@@ -10,20 +10,20 @@
  */
 
 /**
- * Locations widget class.
+ * People widget class.
  */
-class TBF_Widget_Locations extends WP_Widget {
+class TBF_Widget_People extends WP_Widget {
 
   public function __construct() {
 
     $widget_options = array(
-      'classname' => 'tbf_widget tbf_widget_locations',
-      'description' => __( 'Locations.', 'themebright-framework' )
+      'classname' => 'tbf_widget tbf_widget_people',
+      'description' => __( 'People.', 'themebright-framework' )
     );
 
     parent::__construct(
-      'locations',
-      __( 'Locations', 'themebright-framework' ),
+      'people',
+      __( 'People', 'themebright-framework' ),
       $widget_options
     );
 
@@ -35,27 +35,27 @@ class TBF_Widget_Locations extends WP_Widget {
       $args['widget_id'] = $this->id;
     }
 
-    $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Locations', 'themebright-framework' );
+    $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'People', 'themebright-framework' );
     $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
     $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
 
     $query_args = array(
-      'post_type' => 'ctc_location',
+      'post_type' => 'ctc_person',
       'posts_per_page' => -1,
       'orderby' => 'menu_order'
     );
 
-    $locations = new WP_Query( apply_filters( 'tbf_widget_locations_args', $query_args ) );
+    $people = new WP_Query( apply_filters( 'tbf_widget_people_args', $query_args ) );
 
-    if ( $locations->have_posts() ) :
+    if ( $people->have_posts() ) :
 
 ?>
 
       <?php echo $args['before_widget']; ?>
         <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
 
-        <?php while ( $locations->have_posts() ) : $locations->the_post(); ?>
+        <?php while ( $people->have_posts() ) : $people->the_post(); ?>
           <?php the_title(); ?>
           <br>
         <?php endwhile; ?>
