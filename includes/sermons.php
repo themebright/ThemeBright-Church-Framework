@@ -43,10 +43,10 @@ function tbf_sermon_video( $post_id = null ) {
   $video = tbf_get_sermon_meta( 'video', $post_id );
 
   if ( $video ) {
-    echo $video;
-  } else {
-    return false;
+    return $video;
   }
+
+  return false;
 
 }
 
@@ -63,7 +63,7 @@ function tbf_sermon_audio( $post_id = null ) {
   $audio = tbf_get_sermon_meta( 'audio', $post_id );
 
   if ( $audio ) {
-    echo $audio;
+    return $audio;
   } else {
     return false;
   }
@@ -83,7 +83,7 @@ function tbf_sermon_pdf( $post_id = null ) {
   $pdf = tbf_get_sermon_meta( 'pdf', $post_id );
 
   if ( $pdf ) {
-    echo $pdf;
+    return $pdf;
   } else {
     return false;
   }
@@ -111,7 +111,7 @@ function tbf_sermon_topics( $post_id = null ) {
 
     $html .= '</ul>';
 
-    echo $html;
+    return $html;
   } else {
     return false;
   }
@@ -139,7 +139,7 @@ function tbf_sermon_books( $post_id = null ) {
 
     $html .= '</ul>';
 
-    echo $html;
+    return $html;
   } else {
     return false;
   }
@@ -167,7 +167,7 @@ function tbf_sermon_series( $post_id = null ) {
 
     $html .= '</ul>';
 
-    echo $html;
+    return $html;
   } else {
     return false;
   }
@@ -195,7 +195,7 @@ function tbf_sermon_speakers( $post_id = null ) {
 
     $html .= '</ul>';
 
-    echo $html;
+    return $html;
   } else {
     return false;
   }
@@ -223,7 +223,7 @@ function tbf_sermon_tags( $post_id = null ) {
 
     $html .= '</ul>';
 
-    echo $html;
+    return $html;
   } else {
     return false;
   }

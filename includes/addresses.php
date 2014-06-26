@@ -28,7 +28,7 @@ function tbf_address( $address = null ) {
     $html .= $address;
     $html .= '</address>';
 
-    echo $html;
+    return $html;
   }
 
 }

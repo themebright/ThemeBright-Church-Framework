@@ -43,10 +43,10 @@ function tbf_person_position( $post_id = null ) {
   $position = tbf_get_person_meta( 'position', $post_id );
 
   if ( $position ) {
-    echo $position;
-  } else {
-    return false;
+    return $position;
   }
+
+  return false;
 
 }
 
@@ -64,9 +64,9 @@ function tbf_person_phone( $post_id = null ) {
 
   if ( $phone ) {
     tbf_phone_link( $phone );
-  } else {
-    return false;
   }
+
+  return false;
 
 }
 
@@ -83,10 +83,10 @@ function tbf_person_email( $post_id = null ) {
   $email = tbf_get_person_meta( 'email', $post_id );
 
   if ( $email ) {
-    tbf_email_link( $email );
-  } else {
-    return false;
+    return tbf_email_link( $email );
   }
+
+  return false;
 
 }
 
@@ -114,10 +114,10 @@ function tbf_person_urls( $post_id = null ) {
 
     $html .= '</ul>';
 
-    echo $html;
-  } else {
-    return false;
+    return $html;
   }
+
+  return false;
 
 }
 
@@ -142,9 +142,9 @@ function tbf_person_groups( $post_id = null ) {
 
     $html .= '</ul>';
 
-    echo $html;
-  } else {
-    return false;
+    return $html;
   }
+
+  return false;
 
 }

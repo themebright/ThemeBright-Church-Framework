@@ -26,7 +26,7 @@ function tbf_phone_link( $number = null ) {
     $html .= $number;
     $html .= '</a>';
 
-    echo $html;
+    return $html;
   }
 
 }

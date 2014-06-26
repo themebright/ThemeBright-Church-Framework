@@ -43,10 +43,10 @@ function tbf_location_address( $post_id = null ) {
   $address = tbf_get_location_meta( 'address', $post_id );
 
   if ( $address ) {
-    tbf_address( $address );
-  } else {
-    return false;
+    return tbf_address( $address );
   }
+
+  return false;
 
 }
 
@@ -64,9 +64,9 @@ function tbf_location_phone( $post_id = null ) {
 
   if ( $phone ) {
     tbf_phone_link( $phone );
-  } else {
-    return false;
   }
+
+  return false;
 
 }
 
@@ -94,10 +94,10 @@ function tbf_location_times( $post_id = null ) {
 
     $html .= '</ul>';
 
-    echo $html;
-  } else {
-    return false;
+    return $html;
   }
+
+  return false;
 
 }
 
@@ -115,9 +115,9 @@ function tbf_location_map( $post_id = null ) {
   $lng = tbf_get_location_meta( 'map_lng', $post_id );
 
   if ( $lat && $lng ) {
-    tbf_map( $lat, $lng );
-  } else {
-    return false;
+    return tbf_map( $lat, $lng );
   }
+
+  return false;
 
 }

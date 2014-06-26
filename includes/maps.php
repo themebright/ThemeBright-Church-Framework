@@ -28,9 +28,9 @@ function tbf_map( $lat = null, $lng = null ) {
     $html .= '<div class="marker" data-lat="' . $lat . '" data-lng="' . $lng . '"></div>';
     $html .= '</div>';
 
-    echo $html;
-  } else {
-    return false;
+    return $html;
   }
+
+  return false;
 
 }

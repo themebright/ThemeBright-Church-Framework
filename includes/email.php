@@ -26,7 +26,7 @@ function tbf_email_link( $email = null ) {
     $html .= $email;
     $html .= '</a>';
 
-    echo $html;
+    return $html;
   }
 
 }

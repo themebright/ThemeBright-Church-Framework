@@ -22,6 +22,7 @@
  * @return string The filtered title.
  */
 function tbf_wp_title( $title, $sep ) {
+
   if ( is_feed() ) {
     return $title;
   }
@@ -43,5 +44,6 @@ function tbf_wp_title( $title, $sep ) {
   }
 
   return $title;
+
 }
 add_filter( 'wp_title', 'tbf_wp_title', 10, 2 );

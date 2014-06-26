@@ -50,10 +50,10 @@ function tbf_event_date( $post_id = null ) {
       $html .= ' &ndash; ' . $end_date;
     }
 
-    echo $html;
-  } else {
-    return false;
+    return $html;
   }
+
+  return false;
 
 }
 
@@ -70,10 +70,10 @@ function tbf_event_time( $post_id = null ) {
   $time = tbf_get_event_meta( 'time', $post_id );
 
   if ( $time ) {
-    echo $time;
-  } else {
-    return false;
+    return $time;
   }
+
+  return false;
 
 }
 
@@ -90,10 +90,10 @@ function tbf_event_venue( $post_id = null ) {
   $venue = tbf_get_event_meta( 'vanue', $post_id );
 
   if ( $venue ) {
-    echo $venue;
-  } else {
-    return false;
+    return $venue;
   }
+
+  return false;
 
 }
 
@@ -110,10 +110,10 @@ function tbf_event_address( $post_id = null ) {
   $address = tbf_get_event_meta( 'address', $post_id );
 
   if ( $address ) {
-    tbf_address( $address );
-  } else {
-    return false;
+    return tbf_address( $address );
   }
+
+  return false;
 
 }
 
@@ -131,9 +131,9 @@ function tbf_event_map( $post_id = null ) {
   $lng = tbf_get_event_meta( 'map_lng', $post_id );
 
   if ( $lat && $lng ) {
-    tbf_map( $lat, $lng );
-  } else {
-    return false;
+    return tbf_map( $lat, $lng );
   }
+
+  return false;
 
 }
