@@ -56,7 +56,7 @@ class TBF_Widget_Sermons extends WP_Widget {
         <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
 
         <ul>
-          <?php while ( $events->have_posts() ) : $events->the_post(); ?>
+          <?php while ( $sermons->have_posts() ) : $sermons->the_post(); ?>
             <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
           <?php endwhile; ?>
         </ul>
