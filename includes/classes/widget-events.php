@@ -54,11 +54,11 @@ class TBF_Widget_Events extends WP_Widget {
 
       <?php echo $args['before_widget']; ?>
         <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
-
-        <?php while ( $events->have_posts() ) : $events->the_post(); ?>
-          <?php the_title(); ?>
-          <br>
-        <?php endwhile; ?>
+        <ul>
+          <?php while ( $events->have_posts() ) : $events->the_post(); ?>
+            <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+          <?php endwhile; ?>
+        </ul>
       <?php echo $args['after_widget']; ?>
 
 <?php
