@@ -63,7 +63,7 @@ function tbf_location_phone( $post_id = null ) {
   $phone = tbf_get_location_meta( 'phone', $post_id );
 
   if ( $phone ) {
-    tbf_phone_link( $phone );
+    return tbf_phone_link( $phone );
   }
 
   return false;
