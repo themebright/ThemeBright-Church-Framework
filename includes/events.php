@@ -87,7 +87,7 @@ function tbf_event_time( $post_id = null ) {
  */
 function tbf_event_venue( $post_id = null ) {
 
-  $venue = tbf_get_event_meta( 'vanue', $post_id );
+  $venue = tbf_get_event_meta( 'venue', $post_id );
 
   if ( $venue ) {
     return $venue;
