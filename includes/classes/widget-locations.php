@@ -17,7 +17,7 @@ class TBF_Widget_Locations extends WP_Widget {
   public function __construct() {
 
     $widget_options = array(
-      'classname' => 'tbf_widget tbf_widget_locations',
+      'classname' => 'tbf-widget tbf-widget-locations',
       'description' => __( 'Locations.', 'themebright-framework' )
     );
 
@@ -55,9 +55,30 @@ class TBF_Widget_Locations extends WP_Widget {
       <?php echo $args['before_widget']; ?>
         <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
 
-        <ul>
+        <ul class="tbf-widget-locations-list">
           <?php while ( $locations->have_posts() ) : $locations->the_post(); ?>
-            <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+            <li class="tbf-widget-item tbf-widget-locations-item">
+
+              <?php if ( has_post_thumbnail() ) : ?>
+                <div class="tbf-widget-item-thumbnail tbf-widget-locations-item-thumbnail">
+                  <?php the_post_thumbnail( 'small' ); ?>
+                </div>
+              <?php endif; ?>
+
+              <h4 class="tbf-widget-item-title tbf-widget-locations-item-title">
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+              </h4>
+
+              <div class="tbf-widget-item-content tbf-widget-locations-item-content">
+                <?php echo tbf_location_times(); ?>
+
+                <?php echo tbf_location_address(); ?>
+
+                <?php if ( tbf_location_phone() ) : ?>
+                  <p class="tbf-widget-location-phone"><?php echo tbf_location_phone(); ?></p>
+                <?php endif; ?>
+              </div>
+            </li>
           <?php endwhile; ?>
         </ul>
       <?php echo $args['after_widget']; ?>
