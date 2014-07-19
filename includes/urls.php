@@ -28,36 +28,3 @@ function tbf_strip_protocol( $url = null ) {
   }
 
 }
-
-/**
- * URL class.
- *
- * Checks to see if URL is one of the predetermined sites; returns class if it is.
- *
- * @param string $url URL to check.
- * @return string URL class if the URL is one of the predtermined sites.
- */
-function tbf_url_class( $url ) {
-
-  $networks = array(
-    'blogspot.com' => 'blogger',
-    'facebook.com' => 'facebook',
-    'flickr.com' => 'flickr',
-    'instagram.com' => 'instagram',
-    'pinterest.com' => 'pinterest',
-    'plus.google.com' => 'gplus',
-    'soundcloud.com' => 'soundcloud',
-    'tumblr.com' => 'tumblr',
-    'twitter.com' => 'twitter',
-    'vimeo.com' => 'vimeo',
-    'wordpress.com' => 'wordpress',
-    'youtube.com' => 'youtube'
-  );
-
-  foreach ( $networks as $network => $class ) {
-    if ( stripos( $url, $network ) !== false ) {
-      return $class;
-    }
-  }
-
-}

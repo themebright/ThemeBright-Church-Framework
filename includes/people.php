@@ -109,7 +109,7 @@ function tbf_person_urls( $post_id = null ) {
     $html = '<ul class="urls person-urls">';
 
     foreach ( $urls as $url ) {
-      $html .= "<li class='" . tbf_url_class( $url ) . "'><a href='$url'>$url</a></li>";
+      $html .= "<li><a href='$url'>$url</a></li>";
     }
 
     $html .= '</ul>';
