@@ -17,7 +17,7 @@ class TBF_Widget_Locations extends WP_Widget {
   public function __construct() {
 
     $widget_options = array(
-      'classname' => 'tbf-widget tbf-widget-locations',
+      'classname'   => 'tbf-widget tbf-widget-locations',
       'description' => __( 'Locations.', 'themebright-framework' )
     );
 
@@ -41,9 +41,10 @@ class TBF_Widget_Locations extends WP_Widget {
     $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
 
     $query_args = array(
-      'post_type' => 'ctc_location',
+      'post_type'      => 'ctc_location',
       'posts_per_page' => -1,
-      'orderby' => 'menu_order'
+      'orderby'        => 'menu_order',
+      'order'          => 'ASC'
     );
 
     $locations = new WP_Query( apply_filters( 'tbf_widget_locations_args', $query_args ) );
@@ -57,19 +58,19 @@ class TBF_Widget_Locations extends WP_Widget {
 
         <ul class="tbf-widget-locations-list">
           <?php while ( $locations->have_posts() ) : $locations->the_post(); ?>
-            <li class="tbf-widget-item tbf-widget-locations-item">
+            <li class="tbf-widget-entry tbf-widget-locations-entry">
 
               <?php if ( has_post_thumbnail() ) : ?>
-                <div class="tbf-widget-item-thumbnail tbf-widget-locations-item-thumbnail">
-                  <?php the_post_thumbnail( 'small' ); ?>
+                <div class="tbf-widget-entry-thumbnail tbf-widget-locations-entry-thumbnail">
+                  <?php the_post_thumbnail( 'medium' ); ?>
                 </div>
               <?php endif; ?>
 
-              <h4 class="tbf-widget-item-title tbf-widget-locations-item-title">
+              <h4 class="tbf-widget-entry-title tbf-widget-locations-entry-title">
                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
               </h4>
 
-              <div class="tbf-widget-item-content tbf-widget-locations-item-content">
+              <div class="tbf-widget-entry-content tbf-widget-locations-entry-content">
                 <?php echo tbf_location_times(); ?>
 
                 <?php echo tbf_location_address(); ?>
