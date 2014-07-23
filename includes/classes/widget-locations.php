@@ -21,7 +21,7 @@ class TBF_Widget_Locations extends WP_Widget {
       'classname'   => 'tbf-widget tbf-widget-locations'
     );
 
-    parent::WP_Widget( 'locations', __( 'Locations', 'themebright-framework' ), $widget_options );
+    parent::WP_Widget( 'tbf-locations', __( 'Locations', 'themebright-framework' ), $widget_options );
 
   }
 
