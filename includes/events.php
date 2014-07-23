@@ -70,6 +70,8 @@ function tbf_event_time( $post_id = null ) {
   $time = tbf_get_event_meta( 'time', $post_id );
 
   if ( $time ) {
+    $time = str_replace( '-', '&ndash;', $time );
+
     return $time;
   }
 

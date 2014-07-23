@@ -41,9 +41,10 @@ class TBF_Widget_People extends WP_Widget {
     $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
 
     $query_args = array(
-      'post_type' => 'ctc_person',
+      'post_type'      => 'ctc_person',
       'posts_per_page' => -1,
-      'orderby' => 'menu_order'
+      'orderby'        => 'menu_order',
+      'order'          => 'ASC'
     );
 
     $people = new WP_Query( apply_filters( 'tbf_widget_people_args', $query_args ) );
@@ -55,9 +56,36 @@ class TBF_Widget_People extends WP_Widget {
       <?php echo $args['before_widget']; ?>
         <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
 
-        <ul>
+        <ul class="tbf-widget-people-list">
           <?php while ( $people->have_posts() ) : $people->the_post(); ?>
-            <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+            <li class="tbf-widget-entry tbf-widget-people-entry">
+
+              <?php if ( has_post_thumbnail() ) : ?>
+                <div class="tbf-widget-entry-thumbnail tbf-widget-people-entry-thumbnail">
+                  <?php the_post_thumbnail( 'medium' ); ?>
+                </div>
+              <?php endif; ?>
+
+              <h4 class="tbf-widget-entry-title tbf-widget-people-entry-title">
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+              </h4>
+
+              <div class="tbf-widget-entry-content tbf-widget-people-entry-content">
+                <?php if ( tbf_person_position() ) : ?>
+                  <p class="tbf-widget-person-position"><?php echo tbf_person_position(); ?></p>
+                <?php endif; ?>
+
+                <?php if ( tbf_person_phone() ) : ?>
+                  <p class="tbf-widget-person-phone"><?php echo tbf_person_phone(); ?></p>
+                <?php endif; ?>
+
+                <?php if ( tbf_person_email() ) : ?>
+                  <p class="tbf-widget-person-email"><?php echo tbf_person_email(); ?></p>
+                <?php endif; ?>
+
+                <?php echo tbf_person_urls(); ?>
+              </div>
+            </li>
           <?php endwhile; ?>
         </ul>
       <?php echo $args['after_widget']; ?>

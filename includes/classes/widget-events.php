@@ -41,9 +41,7 @@ class TBF_Widget_Events extends WP_Widget {
     $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
 
     $query_args = array(
-      'post_type' => 'ctc_event',
-      'posts_per_page' => -1,
-      'orderby' => 'menu_order'
+      'post_type'      => 'ctc_event'
     );
 
     $events = new WP_Query( apply_filters( 'tbf_widget_events_args', $query_args ) );
@@ -54,9 +52,37 @@ class TBF_Widget_Events extends WP_Widget {
 
       <?php echo $args['before_widget']; ?>
         <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
-        <ul>
+
+        <ul class="tbf-widget-events-list">
           <?php while ( $events->have_posts() ) : $events->the_post(); ?>
-            <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+            <li class="tbf-widget-entry tbf-widget-events-entry">
+
+              <?php if ( has_post_thumbnail() ) : ?>
+                <div class="tbf-widget-entry-thumbnail tbf-widget-events-entry-thumbnail">
+                  <?php the_post_thumbnail( 'medium' ); ?>
+                </div>
+              <?php endif; ?>
+
+              <h4 class="tbf-widget-entry-title tbf-widget-events-entry-title">
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+              </h4>
+
+              <div class="tbf-widget-entry-content tbf-widget-events-entry-content">
+                <?php if ( tbf_event_date() ) : ?>
+                  <p class="tbf-widget-event-date"><?php echo tbf_event_date(); ?></p>
+                <?php endif; ?>
+
+                <?php if ( tbf_event_time() ) : ?>
+                  <p class="tbf-widget-event-time"><?php echo tbf_event_time(); ?></p>
+                <?php endif; ?>
+
+                <?php if ( tbf_event_venue() ) : ?>
+                  <p class="tbf-widget-event-venue"><?php echo tbf_event_venue(); ?></p>
+                <?php endif; ?>
+
+                <?php echo tbf_event_address(); ?></p>
+              </div>
+            </li>
           <?php endwhile; ?>
         </ul>
       <?php echo $args['after_widget']; ?>
