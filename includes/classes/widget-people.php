@@ -62,7 +62,7 @@ class TBF_Widget_People extends WP_Widget {
 
               <?php if ( has_post_thumbnail() ) : ?>
                 <div class="tbf-widget-entry-thumbnail tbf-widget-people-entry-thumbnail">
-                  <?php the_post_thumbnail( 'medium' ); ?>
+                  <?php the_post_thumbnail( 'thumbnail' ); ?>
                 </div>
               <?php endif; ?>
 
@@ -71,6 +71,8 @@ class TBF_Widget_People extends WP_Widget {
               </h4>
 
               <div class="tbf-widget-entry-content tbf-widget-people-entry-content">
+                <?php the_excerpt(); ?>
+
                 <?php if ( tbf_person_position() ) : ?>
                   <p class="tbf-widget-person-position"><?php echo tbf_person_position(); ?></p>
                 <?php endif; ?>
