@@ -28,17 +28,20 @@ class TBF_Widget_Events extends WP_Widget {
   public function widget( $args, $instance ) {
 
     $title          = apply_filters( 'widget_title', $instance['title'] );
-
-    $show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail'] : false;
-    $show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']   : false;
-    $show_date      = isset( $instance['show_date'] )      ? $instance['show_date']      : false;
-    $show_time      = isset( $instance['show_time'] )      ? $instance['show_time']      : false;
-    $show_venue     = isset( $instance['show_venue'] )     ? $instance['show_venue']     : false;
-    $show_address   = isset( $instance['show_address'] )   ? $instance['show_address']   : false;
-    $show_map       = isset( $instance['show_map'] )       ? $instance['show_map']       : false;
+    $number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
+    $show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : false;
+    $show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']     : false;
+    $show_date      = isset( $instance['show_date'] )      ? $instance['show_date']        : false;
+    $show_time      = isset( $instance['show_time'] )      ? $instance['show_time']        : false;
+    $show_venue     = isset( $instance['show_venue'] )     ? $instance['show_venue']       : false;
+    $show_address   = isset( $instance['show_address'] )   ? $instance['show_address']     : false;
+    $show_map       = isset( $instance['show_map'] )       ? $instance['show_map']         : false;
 
     $query_args = array(
-      'post_type'      => 'ctc_event'
+      'posts_per_page'      => $number,
+      'ignore_sticky_posts' => true,
+      'post_status'         => 'publish',
+      'post_type'           => 'ctc_event'
     );
 
     $events = new WP_Query( apply_filters( 'tbf_widget_events_args', $query_args ) );
@@ -103,7 +106,7 @@ class TBF_Widget_Events extends WP_Widget {
     $instance = $old_instance;
 
     $instance['title']          = strip_tags( $new_instance['title'] );
-
+    $instance['number']         = (int) $new_instance['number'];
     $instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
     $instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
     $instance['show_date']      = isset( $new_instance['show_date'] )      ? (bool) $new_instance['show_date']      : false;
@@ -118,8 +121,8 @@ class TBF_Widget_Events extends WP_Widget {
 
   public function form( $instance ) {
 
-    $title          = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
-
+    $title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
+    $number         = isset( $instance['number'] )         ? absint( $instance['number'] )      : 5;
     $show_thumbnail = isset( $instance['show_thumbnail'] ) ? (bool) $instance['show_thumbnail'] : false;
     $show_excerpt   = isset( $instance['show_excerpt'] )   ? (bool) $instance['show_excerpt']   : false;
     $show_date      = isset( $instance['show_date'] )      ? (bool) $instance['show_date']      : true;
@@ -133,6 +136,11 @@ class TBF_Widget_Events extends WP_Widget {
     <p>
       <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
       <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+    </p>
+
+    <p>
+      <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of events to show:', 'themebright-framework' ); ?></label>
+      <input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" size="3" />
     </p>
 
     <p>
