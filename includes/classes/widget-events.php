@@ -38,14 +38,13 @@ class TBF_Widget_Events extends WP_Widget {
     $show_map       = isset( $instance['show_map'] )       ? $instance['show_map']         : false;
 
     $query_args = array(
-      'post_type'           => 'ctc_event',
-      'post_status'         => 'publish',
-      'posts_per_page'      => $number,
-      'ignore_sticky_posts' => true,
-      'order'               => 'ASC',
-      'orderby'             => 'meta_value',
-      'meta_key'            => '_ctc_event_start_date',
-      'meta_query'          => array(
+      'post_type'      => 'ctc_event',
+      'post_status'    => 'publish',
+      'posts_per_page' => $number,
+      'order'          => 'ASC',
+      'orderby'        => 'meta_value',
+      'meta_key'       => '_ctc_event_start_date',
+      'meta_query'     => array(
         array(
           'key'     => '_ctc_event_end_date',
           'value'   => date_i18n( 'Y-m-d' ),

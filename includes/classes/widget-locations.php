@@ -28,7 +28,6 @@ class TBF_Widget_Locations extends WP_Widget {
   function widget( $args, $instance ) {
 
     $title          = apply_filters( 'widget_title', $instance['title'] );
-
     $show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail'] : false;
     $show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']   : false;
     $show_address   = isset( $instance['show_address'] )   ? $instance['show_address']   : false;
@@ -37,9 +36,10 @@ class TBF_Widget_Locations extends WP_Widget {
 
     $query_args = array(
       'post_type'      => 'ctc_location',
+      'post_status'    => 'publish',
       'posts_per_page' => -1,
-      'orderby'        => 'menu_order',
-      'order'          => 'ASC'
+      'order'          => 'ASC',
+      'orderby'        => 'menu_order'
     );
 
     $locations = new WP_Query( apply_filters( 'tbf_widget_locations_args', $query_args ) );
@@ -96,7 +96,6 @@ class TBF_Widget_Locations extends WP_Widget {
     $instance = $old_instance;
 
     $instance['title']          = strip_tags( $new_instance['title'] );
-
     $instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
     $instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
     $instance['show_address']   = isset( $new_instance['show_address'] )   ? (bool) $new_instance['show_address']   : false;
@@ -109,8 +108,7 @@ class TBF_Widget_Locations extends WP_Widget {
 
   function form( $instance ) {
 
-    $title          = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
-
+    $title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
     $show_thumbnail = isset( $instance['show_thumbnail'] ) ? (bool) $instance['show_thumbnail'] : true;
     $show_excerpt   = isset( $instance['show_excerpt'] )   ? (bool) $instance['show_excerpt']   : false;
     $show_address   = isset( $instance['show_address'] )   ? (bool) $instance['show_address']   : true;
