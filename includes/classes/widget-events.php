@@ -38,10 +38,10 @@ class TBF_Widget_Events extends WP_Widget {
     $show_map       = isset( $instance['show_map'] )       ? $instance['show_map']         : false;
 
     $query_args = array(
-      'posts_per_page'      => $number,
-      'ignore_sticky_posts' => true,
+      'post_type'           => 'ctc_event',
       'post_status'         => 'publish',
-      'post_type'           => 'ctc_event'
+      'posts_per_page'      => $number,
+      'ignore_sticky_posts' => true
     );
 
     $events = new WP_Query( apply_filters( 'tbf_widget_events_args', $query_args ) );
