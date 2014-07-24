@@ -41,7 +41,18 @@ class TBF_Widget_Events extends WP_Widget {
       'post_type'           => 'ctc_event',
       'post_status'         => 'publish',
       'posts_per_page'      => $number,
-      'ignore_sticky_posts' => true
+      'ignore_sticky_posts' => true,
+      'order'               => 'ASC',
+      'orderby'             => 'meta_value',
+      'meta_key'            => '_ctc_event_start_date',
+      'meta_query'          => array(
+        array(
+          'key'     => '_ctc_event_end_date',
+          'value'   => date_i18n( 'Y-m-d' ),
+          'compare' => '>=',
+          'type'    => 'DATE'
+        )
+      )
     );
 
     $events = new WP_Query( apply_filters( 'tbf_widget_events_args', $query_args ) );
