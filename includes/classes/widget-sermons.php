@@ -77,19 +77,25 @@ class TBF_Widget_Sermons extends WP_Widget {
                   <div class="tbf-widget-sermon-media">
                     <?php if ( tbf_sermon_video() ) : ?>
                       <p class="tbf-widget-sermon-video">
-                        <a href="<?php echo tbf_sermon_video(); ?>"><?php _e( 'Video', 'themebright-framework' ); ?></a>
+                        <a href="<?php echo tbf_sermon_video(); ?>">
+                          <span><?php _e( 'Video', 'themebright-framework' ); ?></span>
+                        </a>
                       </p>
                     <?php endif; ?>
 
                     <?php if ( tbf_sermon_audio() ) : ?>
                       <p class="tbf-widget-sermon-audio">
-                        <a href="<?php echo tbf_sermon_audio(); ?>"><?php _e( 'Audio', 'themebright-framework' ); ?></a>
+                        <a href="<?php echo tbf_sermon_audio(); ?>">
+                          <span><?php _e( 'Audio', 'themebright-framework' ); ?></span>
+                        </a>
                       </p>
                     <?php endif; ?>
 
                     <?php if ( tbf_sermon_pdf() ) : ?>
                       <p class="tbf-widget-sermon-pdf">
-                        <a href="<?php echo tbf_sermon_pdf(); ?>"><?php _e( 'PDF', 'themebright-framework' ); ?></a>
+                        <a href="<?php echo tbf_sermon_pdf(); ?>">
+                          <span><?php _e( 'Transcript', 'themebright-framework' ); ?></span>
+                        </a>
                       </p>
                     <?php endif; ?>
                   </div>
