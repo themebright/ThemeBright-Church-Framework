@@ -67,30 +67,32 @@ class TBF_Widget_Sermons extends WP_Widget {
               <div class="tbf-widget-entry-content tbf-widget-sermons-entry-content">
                 <?php if ( $show_excerpt ) the_excerpt(); ?>
 
+                <?php if ( $show_date ) : ?>
+                  <p class="tbf-widget-sermon-date">
+                    <?php the_time() ?>
+                  </p>
+                <?php endif; ?>
+
                 <?php if ( $show_media ) : ?>
-                  <?php if ( $show_date ) : ?>
-                    <p class="tbf-widget-sermon-date">
-                      <?php the_time() ?>
-                    </p>
-                  <?php endif; ?>
+                  <div class="tbf-wdget-sermon-media">
+                    <?php if ( tbf_sermon_video() ) : ?>
+                      <p class="tbf-widget-sermon-video">
+                        <a href="<?php echo tbf_sermon_video(); ?>"><?php _e( 'Video', 'themebright-framework' ); ?></a>
+                      </p>
+                    <?php endif; ?>
 
-                  <?php if ( tbf_sermon_video() ) : ?>
-                    <p class="tbf-widget-sermon-video">
-                      <a href="<?php echo tbf_sermon_video(); ?>"><?php _e( 'Video', 'themebright-framework' ); ?></a>
-                    </p>
-                  <?php endif; ?>
+                    <?php if ( tbf_sermon_audio() ) : ?>
+                      <p class="tbf-widget-sermon-audio">
+                        <a href="<?php echo tbf_sermon_audio(); ?>"><?php _e( 'Audio', 'themebright-framework' ); ?></a>
+                      </p>
+                    <?php endif; ?>
 
-                  <?php if ( tbf_sermon_audio() ) : ?>
-                    <p class="tbf-widget-sermon-audio">
-                      <a href="<?php echo tbf_sermon_audio(); ?>"><?php _e( 'Audio', 'themebright-framework' ); ?></a>
-                    </p>
-                  <?php endif; ?>
-
-                  <?php if ( tbf_sermon_pdf() ) : ?>
-                    <p class="tbf-widget-sermon-pdf">
-                      <a href="<?php echo tbf_sermon_pdf(); ?>"><?php _e( 'PDF', 'themebright-framework' ); ?></a>
-                    </p>
-                  <?php endif; ?>
+                    <?php if ( tbf_sermon_pdf() ) : ?>
+                      <p class="tbf-widget-sermon-pdf">
+                        <a href="<?php echo tbf_sermon_pdf(); ?>"><?php _e( 'PDF', 'themebright-framework' ); ?></a>
+                      </p>
+                    <?php endif; ?>
+                  </div>
                 <?php endif; ?>
               </div>
             </li>
