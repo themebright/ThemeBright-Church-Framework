@@ -18,7 +18,7 @@ class TBF_Widget_People extends WP_Widget {
 
     $widget_options = array(
       'description' => __( 'A customizable list of people.', 'themebright-framework' ),
-      'classname'   => 'tbf_widget tbf_widget_people'
+      'classname'   => 'tbf-widget tbf-widget-people'
     );
 
     parent::WP_Widget( 'tbf-people', __( 'People', 'themebright-framework' ), $widget_options );
@@ -27,8 +27,8 @@ class TBF_Widget_People extends WP_Widget {
 
   function widget( $args, $instance ) {
 
-    $title          = apply_filters( 'widget_title', $instance['title'] );
-//  $group          = isset( $instance['group'] )          ? absint( $instance['group'] )  : 5;
+    $title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'People', 'themebright-framework' ) : $instance['title'] );
+    $group          = isset( $instance['group'] )          ? $instance['group']            : 'all';
     $number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
     $show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : false;
     $show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']     : false;
@@ -38,11 +38,12 @@ class TBF_Widget_People extends WP_Widget {
     $show_urls      = isset( $instance['show_urls'] )      ? $instance['show_urls']        : false;
 
     $query_args = array(
-      'post_type'      => 'ctc_person',
-      'post_status'    => 'publish',
-      'posts_per_page' => $number,
-      'order'          => 'ASC',
-      'orderby'        => 'menu_order'
+      'post_type'        => 'ctc_person',
+      'ctc_person_group' => ( $group == 'all' ? '' : $group ),
+      'post_status'      => 'publish',
+      'posts_per_page'   => $number,
+      'order'            => 'ASC',
+      'orderby'          => 'menu_order'
     );
 
     $people = new WP_Query( apply_filters( 'tbf_widget_people_args', $query_args ) );
@@ -105,7 +106,7 @@ class TBF_Widget_People extends WP_Widget {
     $instance = $old_instance;
 
     $instance['title']          = strip_tags( $new_instance['title'] );
-//  $instance['group']          = (int) $new_instance['number'];
+    $instance['group']          = esc_attr( $new_instance['group'] );
     $instance['number']         = (int) $new_instance['number'];
     $instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
     $instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
@@ -118,11 +119,11 @@ class TBF_Widget_People extends WP_Widget {
 
   }
 
-  public function form( $instance ) {
+  function form( $instance ) {
 
     $title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
+    $group          = isset( $instance['group'] )          ? $instance['group']                 : 'all';
     $number         = isset( $instance['number'] )         ? absint( $instance['number'] )      : 5;
-//  $group          = isset( $instance['group'] )          ? absint( $instance['group'] )       : 5;
     $show_thumbnail = isset( $instance['show_thumbnail'] ) ? (bool) $instance['show_thumbnail'] : true;
     $show_excerpt   = isset( $instance['show_excerpt'] )   ? (bool) $instance['show_excerpt']   : false;
     $show_position  = isset( $instance['show_position'] )  ? (bool) $instance['show_position']  : true;
@@ -134,12 +135,32 @@ class TBF_Widget_People extends WP_Widget {
 
     <p>
       <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+      <input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+    </p>
+
+    <p>
+      <label for="<?php echo $this->get_field_id( 'group' ); ?>"><?php _e( 'Group to show:', 'themebright-framework' ); ?></label>
+      <select id="<?php echo $this->get_field_id( 'group' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'group' ); ?>">
+        <option value="all" <?php if ( $group ) echo 'selected="selected"'; ?>><?php _e( 'All Groups', 'journey' ); ?></option>
+        <?php
+
+        $args = array(
+          'orderby' => 'menu_order'
+        );
+
+        $groups = get_terms( 'ctc_person_group', $args );
+
+        foreach ( $groups as $option ) {
+          echo "<option value='" . esc_attr( $option->slug ) . "' " . ( $group == $option->slug ? 'selected="selected"' : '' ) . ">$option->name</option>";
+        }
+
+        ?>
+      </select>
     </p>
 
     <p>
       <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of people to show:', 'themebright-framework' ); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="1" />
+      <input id="<?php echo $this->get_field_id( 'number' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="1" />
     </p>
 
     <p>

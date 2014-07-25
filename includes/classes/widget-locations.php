@@ -27,7 +27,7 @@ class TBF_Widget_Locations extends WP_Widget {
 
   function widget( $args, $instance ) {
 
-    $title          = apply_filters( 'widget_title', $instance['title'] );
+    $title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Locations', 'themebright-framework' ) : $instance['title'] );
     $show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail'] : false;
     $show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']   : false;
     $show_address   = isset( $instance['show_address'] )   ? $instance['show_address']   : false;
@@ -119,7 +119,7 @@ class TBF_Widget_Locations extends WP_Widget {
 
     <p>
       <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+      <input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
     </p>
 
     <p>

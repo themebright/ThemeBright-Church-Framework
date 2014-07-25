@@ -25,9 +25,9 @@ class TBF_Widget_Events extends WP_Widget {
 
   }
 
-  public function widget( $args, $instance ) {
+  function widget( $args, $instance ) {
 
-    $title          = apply_filters( 'widget_title', $instance['title'] );
+    $title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Events', 'themebright-framework' ) : $instance['title'] );
     $number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
     $show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : false;
     $show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']     : false;
@@ -129,7 +129,7 @@ class TBF_Widget_Events extends WP_Widget {
 
   }
 
-  public function form( $instance ) {
+  function form( $instance ) {
 
     $title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
     $number         = isset( $instance['number'] )         ? absint( $instance['number'] )      : 5;
@@ -145,12 +145,12 @@ class TBF_Widget_Events extends WP_Widget {
 
     <p>
       <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+      <input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
     </p>
 
     <p>
       <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of events to show:', 'themebright-framework' ); ?></label>
-      <input class="widefat" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="1" />
+      <input id="<?php echo $this->get_field_id( 'number' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="1" />
     </p>
 
     <p>
