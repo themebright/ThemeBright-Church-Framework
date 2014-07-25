@@ -14,37 +14,35 @@
  */
 class TBF_Widget_People extends WP_Widget {
 
-  public function __construct() {
+  function TBF_Widget_People() {
 
     $widget_options = array(
-      'classname' => 'tbf_widget tbf_widget_people',
-      'description' => __( 'People.', 'themebright-framework' )
+      'description' => __( 'A customizable list of people.', 'themebright-framework' ),
+      'classname'   => 'tbf_widget tbf_widget_people'
     );
 
-    parent::__construct(
-      'people',
-      __( 'People', 'themebright-framework' ),
-      $widget_options
-    );
+    parent::WP_Widget( 'tbf-people', __( 'People', 'themebright-framework' ), $widget_options );
 
   }
 
-  public function widget( $args, $instance ) {
+  function widget( $args, $instance ) {
 
-    if ( ! isset( $args['widget_id'] ) ) {
-      $args['widget_id'] = $this->id;
-    }
-
-    $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'People', 'themebright-framework' );
-    $title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
-
-    $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
+    $title          = apply_filters( 'widget_title', $instance['title'] );
+//  $group          = isset( $instance['group'] )          ? absint( $instance['group'] )  : 5;
+    $number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
+    $show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : false;
+    $show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']     : false;
+    $show_position  = isset( $instance['show_position'] )  ? $instance['show_position']    : false;
+    $show_phone     = isset( $instance['show_phone'] )     ? $instance['show_phone']       : false;
+    $show_email     = isset( $instance['show_email'] )     ? $instance['show_email']       : false;
+    $show_urls      = isset( $instance['show_urls'] )      ? $instance['show_urls']        : false;
 
     $query_args = array(
       'post_type'      => 'ctc_person',
-      'posts_per_page' => -1,
-      'orderby'        => 'menu_order',
-      'order'          => 'ASC'
+      'post_status'    => 'publish',
+      'posts_per_page' => $number,
+      'order'          => 'ASC',
+      'orderby'        => 'menu_order'
     );
 
     $people = new WP_Query( apply_filters( 'tbf_widget_people_args', $query_args ) );
@@ -54,13 +52,14 @@ class TBF_Widget_People extends WP_Widget {
 ?>
 
       <?php echo $args['before_widget']; ?>
+
         <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
 
         <ul class="tbf-widget-people-list">
           <?php while ( $people->have_posts() ) : $people->the_post(); ?>
             <li class="tbf-widget-entry tbf-widget-people-entry">
 
-              <?php if ( has_post_thumbnail() ) : ?>
+              <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
                 <div class="tbf-widget-entry-thumbnail tbf-widget-people-entry-thumbnail">
                   <?php the_post_thumbnail( 'thumbnail' ); ?>
                 </div>
@@ -71,25 +70,26 @@ class TBF_Widget_People extends WP_Widget {
               </h4>
 
               <div class="tbf-widget-entry-content tbf-widget-people-entry-content">
-                <?php the_excerpt(); ?>
+                <?php if ( $show_excerpt ) the_excerpt(); ?>
 
-                <?php if ( tbf_person_position() ) : ?>
+                <?php if ( $show_position && tbf_person_position() ) : ?>
                   <p class="tbf-widget-person-position"><?php echo tbf_person_position(); ?></p>
                 <?php endif; ?>
 
-                <?php if ( tbf_person_phone() ) : ?>
+                <?php if ( $show_phone && tbf_person_phone() ) : ?>
                   <p class="tbf-widget-person-phone"><?php echo tbf_person_phone(); ?></p>
                 <?php endif; ?>
 
-                <?php if ( tbf_person_email() ) : ?>
+                <?php if ( $show_email && tbf_person_email() ) : ?>
                   <p class="tbf-widget-person-email"><?php echo tbf_person_email(); ?></p>
                 <?php endif; ?>
 
-                <?php echo tbf_person_urls(); ?>
+                <?php if ( $show_urls ) echo tbf_person_urls(); ?>
               </div>
             </li>
           <?php endwhile; ?>
         </ul>
+
       <?php echo $args['after_widget']; ?>
 
 <?php
@@ -100,12 +100,19 @@ class TBF_Widget_People extends WP_Widget {
 
   }
 
-  public function update( $new_instance, $old_instance ) {
+  function update( $new_instance, $old_instance ) {
 
     $instance = $old_instance;
 
-    $instance['title'] = strip_tags( $new_instance['title'] );
-    $instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
+    $instance['title']          = strip_tags( $new_instance['title'] );
+//  $instance['group']          = (int) $new_instance['number'];
+    $instance['number']         = (int) $new_instance['number'];
+    $instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
+    $instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
+    $instance['show_position']  = isset( $new_instance['show_position'] )  ? (bool) $new_instance['show_position']  : false;
+    $instance['show_phone']     = isset( $new_instance['show_phone'] )     ? (bool) $new_instance['show_phone']     : false;
+    $instance['show_email']     = isset( $new_instance['show_email'] )     ? (bool) $new_instance['show_email']     : false;
+    $instance['show_urls']      = isset( $new_instance['show_urls'] )      ? (bool) $new_instance['show_urls']      : false;
 
     return $instance;
 
@@ -113,16 +120,57 @@ class TBF_Widget_People extends WP_Widget {
 
   public function form( $instance ) {
 
-    $title = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
-    $show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
+    $title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
+    $number         = isset( $instance['number'] )         ? absint( $instance['number'] )      : 5;
+//  $group          = isset( $instance['group'] )          ? absint( $instance['group'] )       : 5;
+    $show_thumbnail = isset( $instance['show_thumbnail'] ) ? (bool) $instance['show_thumbnail'] : true;
+    $show_excerpt   = isset( $instance['show_excerpt'] )   ? (bool) $instance['show_excerpt']   : false;
+    $show_position  = isset( $instance['show_position'] )  ? (bool) $instance['show_position']  : true;
+    $show_phone     = isset( $instance['show_phone'] )     ? (bool) $instance['show_phone']     : false;
+    $show_email     = isset( $instance['show_email'] )     ? (bool) $instance['show_email']     : true;
+    $show_urls      = isset( $instance['show_urls'] )      ? (bool) $instance['show_urls']      : false;
 
 ?>
 
-    <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
-    <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
+    <p>
+      <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
+      <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+    </p>
 
-    <p><input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-    <label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?', 'themebright-framework' ); ?></label></p>
+    <p>
+      <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of people to show:', 'themebright-framework' ); ?></label>
+      <input class="widefat" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="1" />
+    </p>
+
+    <p>
+      <input class="checkbox" type="checkbox" <?php checked( $show_thumbnail ); ?> id="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>" name="<?php echo $this->get_field_name( 'show_thumbnail' ); ?>" />
+      <label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php _e( 'Show thumbnail', 'themebright-framework' ); ?></label>
+    </p>
+
+    <p>
+      <input class="checkbox" type="checkbox" <?php checked( $show_excerpt ); ?> id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" />
+      <label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php _e( 'Show excerpt', 'themebright-framework' ); ?></label>
+    </p>
+
+    <p>
+      <input class="checkbox" type="checkbox" <?php checked( $show_position ); ?> id="<?php echo $this->get_field_id( 'show_position' ); ?>" name="<?php echo $this->get_field_name( 'show_position' ); ?>" />
+      <label for="<?php echo $this->get_field_id( 'show_position' ); ?>"><?php _e( 'Show position', 'themebright-framework' ); ?></label>
+    </p>
+
+    <p>
+      <input class="checkbox" type="checkbox" <?php checked( $show_phone ); ?> id="<?php echo $this->get_field_id( 'show_phone' ); ?>" name="<?php echo $this->get_field_name( 'show_phone' ); ?>" />
+      <label for="<?php echo $this->get_field_id( 'show_phone' ); ?>"><?php _e( 'Show phone', 'themebright-framework' ); ?></label>
+    </p>
+
+    <p>
+      <input class="checkbox" type="checkbox" <?php checked( $show_email ); ?> id="<?php echo $this->get_field_id( 'show_email' ); ?>" name="<?php echo $this->get_field_name( 'show_email' ); ?>" />
+      <label for="<?php echo $this->get_field_id( 'show_email' ); ?>"><?php _e( 'Show email', 'themebright-framework' ); ?></label>
+    </p>
+
+    <p>
+      <input class="checkbox" type="checkbox" <?php checked( $show_urls ); ?> id="<?php echo $this->get_field_id( 'show_urls' ); ?>" name="<?php echo $this->get_field_name( 'show_urls' ); ?>" />
+      <label for="<?php echo $this->get_field_id( 'show_urls' ); ?>"><?php _e( 'Show URLs', 'themebright-framework' ); ?></label>
+    </p>
 
 <?php
 
