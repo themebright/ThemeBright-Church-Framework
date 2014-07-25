@@ -74,7 +74,7 @@ class TBF_Widget_Sermons extends WP_Widget {
                 <?php endif; ?>
 
                 <?php if ( $show_media ) : ?>
-                  <div class="tbf-wdget-sermon-media">
+                  <div class="tbf-widget-sermon-media">
                     <?php if ( tbf_sermon_video() ) : ?>
                       <p class="tbf-widget-sermon-video">
                         <a href="<?php echo tbf_sermon_video(); ?>"><?php _e( 'Video', 'themebright-framework' ); ?></a>
