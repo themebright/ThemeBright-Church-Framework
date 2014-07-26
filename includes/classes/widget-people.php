@@ -71,11 +71,11 @@ class TBF_Widget_People extends WP_Widget {
               </h4>
 
               <div class="tbf-widget-entry-content tbf-widget-people-entry-content">
-                <?php if ( $show_excerpt ) the_excerpt(); ?>
-
                 <?php if ( $show_position && tbf_person_position() ) : ?>
                   <p class="tbf-widget-person-position"><?php echo tbf_person_position(); ?></p>
                 <?php endif; ?>
+
+                <?php if ( $show_excerpt ) the_excerpt(); ?>
 
                 <?php if ( $show_phone && tbf_person_phone() ) : ?>
                   <p class="tbf-widget-person-phone"><?php echo tbf_person_phone(); ?></p>
