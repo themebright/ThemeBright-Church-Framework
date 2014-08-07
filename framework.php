@@ -16,7 +16,7 @@ if ( ! defined( 'TBF_VERSION' ) )             define( 'TBF_VERSION',            
  * Framework directory constants.
  */
 if ( ! defined( 'TBF_DIR' ) )                 define( 'TBF_DIR',                trailingslashit( basename( dirname( __FILE__ ) ) ) ); // framework directory (where this file is)
-if ( ! defined( 'TBF_INC_DIR' ) )             define( 'TBF_INC_DIR',            TBF_DIR . 'includes/' );                              // framework includes directory
+if ( ! defined( 'TBF_INC_DIR' ) )             define( 'TBF_INC_DIR',            'includes/' );                                        // framework includes directory
 if ( ! defined( 'TBF_ADMIN_DIR' ) )           define( 'TBF_ADMIN_DIR',          TBF_INC_DIR . 'admin/' );                             // framework admin directory
 if ( ! defined( 'TBF_CLASS_DIR' ) )           define( 'TBF_CLASS_DIR',          TBF_INC_DIR . 'classes/' );                           // framework classes directory
 if ( ! defined( 'TBF_LIB_DIR' ) )             define( 'TBF_LIB_DIR',            TBF_INC_DIR . 'library/' );                           // framework libraries directory
@@ -52,23 +52,23 @@ if ( ! defined( 'TBF_THEME_LANG_DIR' ) )      define( 'TBF_THEME_LANG_DIR',     
 /**
  * Load includes.
  */
-require_once TBF_INC_DIR . '/addresses.php';
-require_once TBF_INC_DIR . '/breadcrumb.php';
-require_once TBF_INC_DIR . '/ctc.php';
-require_once TBF_INC_DIR . '/dates.php';
-require_once TBF_INC_DIR . '/email.php';
-require_once TBF_INC_DIR . '/events.php';
-require_once TBF_INC_DIR . '/head.php';
-require_once TBF_INC_DIR . '/helpers.php';
-require_once TBF_INC_DIR . '/locations.php';
-require_once TBF_INC_DIR . '/maps.php';
-require_once TBF_INC_DIR . '/meta.php';
-require_once TBF_INC_DIR . '/people.php';
-require_once TBF_INC_DIR . '/phone.php';
-require_once TBF_INC_DIR . '/scripts.php';
-require_once TBF_INC_DIR . '/sermons.php';
-require_once TBF_INC_DIR . '/shortcodes.php';
-require_once TBF_INC_DIR . '/styles.php';
-require_once TBF_INC_DIR . '/terms.php';
-require_once TBF_INC_DIR . '/urls.php';
-require_once TBF_INC_DIR . '/widgets.php';
+require_once TBF_INC_DIR . 'addresses.php';
+require_once TBF_INC_DIR . 'breadcrumb.php';
+require_once TBF_INC_DIR . 'ctc.php';
+require_once TBF_INC_DIR . 'dates.php';
+require_once TBF_INC_DIR . 'email.php';
+require_once TBF_INC_DIR . 'events.php';
+require_once TBF_INC_DIR . 'head.php';
+require_once TBF_INC_DIR . 'helpers.php';
+require_once TBF_INC_DIR . 'locations.php';
+require_once TBF_INC_DIR . 'maps.php';
+require_once TBF_INC_DIR . 'meta.php';
+require_once TBF_INC_DIR . 'people.php';
+require_once TBF_INC_DIR . 'phone.php';
+require_once TBF_INC_DIR . 'scripts.php';
+require_once TBF_INC_DIR . 'sermons.php';
+require_once TBF_INC_DIR . 'shortcodes.php';
+require_once TBF_INC_DIR . 'styles.php';
+require_once TBF_INC_DIR . 'terms.php';
+require_once TBF_INC_DIR . 'urls.php';
+require_once TBF_INC_DIR . 'widgets.php';
