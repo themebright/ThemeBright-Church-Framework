@@ -50,75 +50,25 @@ if ( ! defined( 'TBF_THEME_IMG_DIR' ) )       define( 'TBF_THEME_IMG_DIR',      
 if ( ! defined( 'TBF_THEME_LANG_DIR' ) )      define( 'TBF_THEME_LANG_DIR',     'languages/' );                                       // languages directory
 
 /**
- * Includes to load.
- */
-$tbf_includes = array(
-  'always' => array(
-    TBF_INC_DIR . '/addresses.php',
-    TBF_INC_DIR . '/breadcrumb.php',
-    TBF_INC_DIR . '/ctc.php',
-    TBF_INC_DIR . '/dates.php',
-    TBF_INC_DIR . '/email.php',
-    TBF_INC_DIR . '/events.php',
-    TBF_INC_DIR . '/head.php',
-    TBF_INC_DIR . '/helpers.php',
-    TBF_INC_DIR . '/locations.php',
-    TBF_INC_DIR . '/maps.php',
-    TBF_INC_DIR . '/meta.php',
-    TBF_INC_DIR . '/people.php',
-    TBF_INC_DIR . '/phone.php',
-    TBF_INC_DIR . '/scripts.php',
-    TBF_INC_DIR . '/sermons.php',
-    TBF_INC_DIR . '/shortcodes.php',
-    TBF_INC_DIR . '/styles.php',
-    TBF_INC_DIR . '/terms.php',
-    TBF_INC_DIR . '/urls.php',
-    TBF_INC_DIR . '/widgets.php'
-  ),
-  'admin' => array(),
-  'frontend' => array()
-);
-
-/**
  * Load includes.
  */
-tbf_load_includes( $tbf_includes );
-
-/**
- * Include loader.
- *
- * Used by framework above and functions.php for theme-specific includes. If
- * include exists in child theme, it will be used. Otherwise, parent theme
- * file is used.
- */
-function tbf_load_includes( $includes ) {
-
-  foreach ( $includes as $condition => $files ) {
-
-    $do_includes = false;
-
-    switch( $condition ) {
-      case 'admin':
-        if ( is_admin() )
-          $do_includes = true;
-        break;
-
-      case 'frontend':
-        if ( ! is_admin() )
-          $do_includes = true;
-        break;
-
-      default:
-        $do_includes = true;
-        break;
-    }
-
-    if ( $do_includes ) {
-      foreach ( $files as $file ) {
-        locate_template( $file, true );
-      }
-    }
-
-  }
-
-}
+require_once TBF_INC_DIR . '/addresses.php';
+require_once TBF_INC_DIR . '/breadcrumb.php';
+require_once TBF_INC_DIR . '/ctc.php';
+require_once TBF_INC_DIR . '/dates.php';
+require_once TBF_INC_DIR . '/email.php';
+require_once TBF_INC_DIR . '/events.php';
+require_once TBF_INC_DIR . '/head.php';
+require_once TBF_INC_DIR . '/helpers.php';
+require_once TBF_INC_DIR . '/locations.php';
+require_once TBF_INC_DIR . '/maps.php';
+require_once TBF_INC_DIR . '/meta.php';
+require_once TBF_INC_DIR . '/people.php';
+require_once TBF_INC_DIR . '/phone.php';
+require_once TBF_INC_DIR . '/scripts.php';
+require_once TBF_INC_DIR . '/sermons.php';
+require_once TBF_INC_DIR . '/shortcodes.php';
+require_once TBF_INC_DIR . '/styles.php';
+require_once TBF_INC_DIR . '/terms.php';
+require_once TBF_INC_DIR . '/urls.php';
+require_once TBF_INC_DIR . '/widgets.php';
