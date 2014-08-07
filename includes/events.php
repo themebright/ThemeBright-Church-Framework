@@ -42,16 +42,16 @@ function tbf_get_event_meta( $key = null, $post_id = null ) {
 function tbf_event_date( $format = null, $post_id = null ) {
 
   $start_date = tbf_get_event_meta( 'start_date', $post_id );
-  $start_date = tbf_format_date( $start_date, $format );
+  $start_date_formatted = tbf_format_date( $start_date, $format );
 
   $end_date = tbf_get_event_meta( 'end_date', $post_id );
-  $end_date = tbf_format_date( $end_date, $format );
+  $end_date_formatted = tbf_format_date( $end_date, $format );
 
   if ( $start_date ) {
-    $html = $start_date;
+    $html = $start_date_formatted;
 
     if ( $end_date && $end_date != $start_date ) {
-      $html .= ' &ndash; ' . $end_date;
+      $html .= ' &ndash; ' . $end_date_formatted;
     }
 
     return $html;
