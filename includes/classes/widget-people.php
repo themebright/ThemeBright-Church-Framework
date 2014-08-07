@@ -50,6 +50,14 @@ class TBF_Widget_People extends WP_Widget {
 
     if ( $people->have_posts() ) :
 
+      $override = locate_template( TBF_THEME_WIDGETS_DIR . 'widget-people.php' );
+
+      if ( $override ) :
+
+        include( $override );
+
+      else :
+
 ?>
 
       <?php echo $args['before_widget']; ?>
@@ -95,7 +103,9 @@ class TBF_Widget_People extends WP_Widget {
 
 <?php
 
-    wp_reset_postdata();
+        wp_reset_postdata();
+
+      endif;
 
     endif;
 

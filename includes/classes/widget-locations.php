@@ -46,6 +46,14 @@ class TBF_Widget_Locations extends WP_Widget {
 
     if ( $locations->have_posts() ) :
 
+      $override = locate_template( TBF_THEME_WIDGETS_DIR . 'widget-locations.php' );
+
+      if ( $override ) :
+
+        include( $override );
+
+      else :
+
 ?>
 
       <?php echo $args['before_widget']; ?>
@@ -85,7 +93,9 @@ class TBF_Widget_Locations extends WP_Widget {
 
 <?php
 
-    wp_reset_postdata();
+        wp_reset_postdata();
+
+      endif;
 
     endif;
 

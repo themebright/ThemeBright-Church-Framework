@@ -42,6 +42,7 @@ if ( ! defined( 'TBF_THEME_CHILD_URL' ) )     define( 'TBF_THEME_CHILD_URL',    
  */
 if ( ! defined( 'TBF_THEME_INC_DIR' ) )       define( 'TBF_THEME_INC_DIR',      'includes/' );                                        // includes directory
 if ( ! defined( 'TBF_THEME_PAGE_TPL_DIR' ) )  define( 'TBF_THEME_PAGE_TPL_DIR', 'page-templates/' );                                  // page templates directory
+if ( ! defined( 'TBF_THEME_WIDGETS_DIR' ) )   define( 'TBF_THEME_WIDGETS_DIR',  'widgets/' );                                         // includes directory
 if ( ! defined( 'TBF_THEME_ASSETS_DIR' ) )    define( 'TBF_THEME_ASSETS_DIR',   'assets/' );                                          // framework assets directory
 if ( ! defined( 'TBF_THEME_CSS_DIR' ) )       define( 'TBF_THEME_CSS_DIR',      TBF_THEME_ASSETS_DIR . 'css/' );                      // framework CSS directory
 if ( ! defined( 'TBF_THEME_JS_DIR' ) )        define( 'TBF_THEME_JS_DIR',       TBF_THEME_ASSETS_DIR . 'js/' );                       // framework JavaScript directory
