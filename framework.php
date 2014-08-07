@@ -57,6 +57,7 @@ $tbf_includes = array(
     TBF_INC_DIR . '/addresses.php',
     TBF_INC_DIR . '/breadcrumb.php',
     TBF_INC_DIR . '/ctc.php',
+    TBF_INC_DIR . '/dates.php',
     TBF_INC_DIR . '/email.php',
     TBF_INC_DIR . '/events.php',
     TBF_INC_DIR . '/head.php',

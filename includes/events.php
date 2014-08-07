@@ -35,13 +35,17 @@ function tbf_get_event_meta( $key = null, $post_id = null ) {
  *
  * Displays the event date if it exists; returns false if not.
  *
- * @param type $post_id Post ID to get data for; null for current post.
+ * @param string $format PHP date format string to be displayed.
+ * @param int $post_id Post ID to get data for; null for current post.
  * @return mixed Event date if it exists; false if not.
  */
-function tbf_event_date( $post_id = null ) {
+function tbf_event_date( $format = null, $post_id = null ) {
 
   $start_date = tbf_get_event_meta( 'start_date', $post_id );
+  $start_date = tbf_format_date( $start_date, $format );
+
   $end_date = tbf_get_event_meta( 'end_date', $post_id );
+  $end_date = tbf_format_date( $end_date, $format );
 
   if ( $start_date ) {
     $html = $start_date;
