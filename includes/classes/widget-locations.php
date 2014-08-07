@@ -125,37 +125,52 @@ class TBF_Widget_Locations extends WP_Widget {
     $show_phone     = isset( $instance['show_phone'] )     ? (bool) $instance['show_phone']     : true;
     $show_times     = isset( $instance['show_times'] )     ? (bool) $instance['show_times']     : true;
 
+    $theme_support = get_theme_support( 'tbf-widget-locations' );
+    $theme_support = $theme_support[0];
+
 ?>
 
-    <p>
-      <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
-      <input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
-    </p>
+    <?php if ( $theme_support['options']['title'] ) : ?>
+      <p>
+        <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
+        <input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+      </p>
+    <?php endif; ?>
 
-    <p>
-      <input class="checkbox" type="checkbox" <?php checked( $show_thumbnail ); ?> id="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>" name="<?php echo $this->get_field_name( 'show_thumbnail' ); ?>" />
-      <label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php _e( 'Show thumbnail', 'themebright-framework' ); ?></label>
-    </p>
+    <?php if ( $theme_support['options']['thumbnail'] ) : ?>
+      <p>
+        <input class="checkbox" type="checkbox" <?php checked( $show_thumbnail ); ?> id="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>" name="<?php echo $this->get_field_name( 'show_thumbnail' ); ?>" />
+        <label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php _e( 'Show thumbnail', 'themebright-framework' ); ?></label>
+      </p>
+    <?php endif; ?>
 
-    <p>
-      <input class="checkbox" type="checkbox" <?php checked( $show_excerpt ); ?> id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" />
-      <label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php _e( 'Show excerpt', 'themebright-framework' ); ?></label>
-    </p>
+    <?php if ( $theme_support['options']['excerpt'] ) : ?>
+      <p>
+        <input class="checkbox" type="checkbox" <?php checked( $show_excerpt ); ?> id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" />
+        <label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php _e( 'Show excerpt', 'themebright-framework' ); ?></label>
+      </p>
+    <?php endif; ?>
 
-    <p>
-      <input class="checkbox" type="checkbox" <?php checked( $show_address ); ?> id="<?php echo $this->get_field_id( 'show_address' ); ?>" name="<?php echo $this->get_field_name( 'show_address' ); ?>" />
-      <label for="<?php echo $this->get_field_id( 'show_address' ); ?>"><?php _e( 'Show address', 'themebright-framework' ); ?></label>
-    </p>
+    <?php if ( $theme_support['options']['address'] ) : ?>
+      <p>
+        <input class="checkbox" type="checkbox" <?php checked( $show_address ); ?> id="<?php echo $this->get_field_id( 'show_address' ); ?>" name="<?php echo $this->get_field_name( 'show_address' ); ?>" />
+        <label for="<?php echo $this->get_field_id( 'show_address' ); ?>"><?php _e( 'Show address', 'themebright-framework' ); ?></label>
+      </p>
+    <?php endif; ?>
 
-    <p>
-      <input class="checkbox" type="checkbox" <?php checked( $show_phone ); ?> id="<?php echo $this->get_field_id( 'show_phone' ); ?>" name="<?php echo $this->get_field_name( 'show_phone' ); ?>" />
-      <label for="<?php echo $this->get_field_id( 'show_phone' ); ?>"><?php _e( 'Show phone', 'themebright-framework' ); ?></label>
-    </p>
+    <?php if ( $theme_support['options']['phone'] ) : ?>
+      <p>
+        <input class="checkbox" type="checkbox" <?php checked( $show_phone ); ?> id="<?php echo $this->get_field_id( 'show_phone' ); ?>" name="<?php echo $this->get_field_name( 'show_phone' ); ?>" />
+        <label for="<?php echo $this->get_field_id( 'show_phone' ); ?>"><?php _e( 'Show phone', 'themebright-framework' ); ?></label>
+      </p>
+    <?php endif; ?>
 
-    <p>
-      <input class="checkbox" type="checkbox" <?php checked( $show_times ); ?> id="<?php echo $this->get_field_id( 'show_times' ); ?>" name="<?php echo $this->get_field_name( 'show_times' ); ?>" />
-      <label for="<?php echo $this->get_field_id( 'show_times' ); ?>"><?php _e( 'Show times', 'themebright-framework' ); ?></label>
-    </p>
+    <?php if ( $theme_support['options']['times'] ) : ?>
+      <p>
+        <input class="checkbox" type="checkbox" <?php checked( $show_times ); ?> id="<?php echo $this->get_field_id( 'show_times' ); ?>" name="<?php echo $this->get_field_name( 'show_times' ); ?>" />
+        <label for="<?php echo $this->get_field_id( 'show_times' ); ?>"><?php _e( 'Show times', 'themebright-framework' ); ?></label>
+      </p>
+    <?php endif; ?>
 
 <?php
 
