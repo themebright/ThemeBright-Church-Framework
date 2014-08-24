@@ -20,23 +20,23 @@ if ( ! defined( 'TBF_THEME_VERSION' ) ) define( 'TBF_THEME_VERSION', $theme_data
 /**
  * Load includes.
  */
-require_once 'includes/addresses.php';
-require_once 'includes/breadcrumb.php';
-require_once 'includes/ctc.php';
-require_once 'includes/dates.php';
-require_once 'includes/email.php';
-require_once 'includes/events.php';
-require_once 'includes/head.php';
-require_once 'includes/helpers.php';
-require_once 'includes/locations.php';
-require_once 'includes/maps.php';
-require_once 'includes/meta.php';
-require_once 'includes/people.php';
-require_once 'includes/phone.php';
-require_once 'includes/scripts.php';
-require_once 'includes/sermons.php';
-require_once 'includes/shortcodes.php';
-require_once 'includes/styles.php';
-require_once 'includes/terms.php';
-require_once 'includes/urls.php';
-require_once 'includes/widgets.php';
+locate_template( TBF_DIR . '/includes/addresses.php', true );
+locate_template( TBF_DIR . '/includes/breadcrumb.php', true );
+locate_template( TBF_DIR . '/includes/ctc.php', true );
+locate_template( TBF_DIR . '/includes/dates.php', true );
+locate_template( TBF_DIR . '/includes/email.php', true );
+locate_template( TBF_DIR . '/includes/events.php', true );
+locate_template( TBF_DIR . '/includes/head.php', true );
+locate_template( TBF_DIR . '/includes/helpers.php', true );
+locate_template( TBF_DIR . '/includes/locations.php', true );
+locate_template( TBF_DIR . '/includes/maps.php', true );
+locate_template( TBF_DIR . '/includes/meta.php', true );
+locate_template( TBF_DIR . '/includes/people.php', true );
+locate_template( TBF_DIR . '/includes/phone.php', true );
+locate_template( TBF_DIR . '/includes/scripts.php', true );
+locate_template( TBF_DIR . '/includes/sermons.php', true );
+locate_template( TBF_DIR . '/includes/shortcodes.php', true );
+locate_template( TBF_DIR . '/includes/styles.php', true );
+locate_template( TBF_DIR . '/includes/terms.php', true );
+locate_template( TBF_DIR . '/includes/urls.php', true );
+locate_template( TBF_DIR . '/includes/widgets.php', true );

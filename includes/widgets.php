@@ -1,9 +1,9 @@
 <?php
 
-require_once 'classes/widget-events.php';
-require_once 'classes/widget-locations.php';
-require_once 'classes/widget-people.php';
-require_once 'classes/widget-sermons.php';
+locate_template( TBF_DIR . '/includes/classes/widget-events.php', true );
+locate_template( TBF_DIR . '/includes/classes/widget-locations.php', true );
+locate_template( TBF_DIR . '/includes/classes/widget-people.php', true );
+locate_template( TBF_DIR . '/includes/classes/widget-sermons.php', true );
 
 function tbf_register_widgets() {
 
