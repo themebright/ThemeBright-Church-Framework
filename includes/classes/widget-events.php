@@ -58,7 +58,7 @@ class TBF_Widget_Events extends WP_Widget {
 
     if ( $events->have_posts() ) :
 
-      $override = locate_template( TBF_THEME_WIDGETS_DIR . 'widget-events.php' );
+      $override = locate_template( 'widgets/widget-events.php' );
 
       if ( $override ) :
 

@@ -16,7 +16,7 @@
  */
 function tbf_styles() {
 
-  wp_enqueue_style( 'tbf', tbf_template_url() . TBF_CSS_DIR . 'tbf.css', false, TBF_VERSION );
+  wp_enqueue_style( 'tbf', tbf_template_url() . TBF_DIR . '/assets/css/tbf.css', false, TBF_VERSION );
 
 }
 add_action( 'wp_enqueue_scripts', 'tbf_styles' );

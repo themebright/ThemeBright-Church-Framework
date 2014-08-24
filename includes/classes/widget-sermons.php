@@ -44,7 +44,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
     if ( $sermons->have_posts() ) :
 
-      $override = locate_template( TBF_THEME_WIDGETS_DIR . 'widget-sermons.php' );
+      $override = locate_template( 'widgets/widget-sermons.php' );
 
       if ( $override ) :
 

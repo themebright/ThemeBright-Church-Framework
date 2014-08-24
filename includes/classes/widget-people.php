@@ -50,7 +50,7 @@ class TBF_Widget_People extends WP_Widget {
 
     if ( $people->have_posts() ) :
 
-      $override = locate_template( TBF_THEME_WIDGETS_DIR . 'widget-people.php' );
+      $override = locate_template( 'widgets/widget-people.php' );
 
       if ( $override ) :
 
