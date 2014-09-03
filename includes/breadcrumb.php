@@ -61,7 +61,7 @@ function tbf_breadcrumb( $sep = '&rsaquo;' ) {
   $sep = "<span class='sep'>$sep</span>";
 
   // open the breadcrumbs div
-  $html  = '<div class="breadcrumb">';
+  $html  = '<div class="tbf-breadcrumb">';
 
   // display home link
   if ( get_option( 'show_on_front' ) == 'page' ) {
