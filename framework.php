@@ -1,6 +1,6 @@
 <?php
 /**
- * ThemeBright Framework.
+ * ThemeBright Framework
  */
 
 /**
@@ -20,23 +20,29 @@ if ( ! defined( 'TBF_THEME_VERSION' ) ) define( 'TBF_THEME_VERSION', $theme_data
 /**
  * Load includes.
  */
-locate_template( TBF_DIR . '/includes/addresses.php', true );
-locate_template( TBF_DIR . '/includes/breadcrumb.php', true );
-locate_template( TBF_DIR . '/includes/ctc.php', true );
-locate_template( TBF_DIR . '/includes/dates.php', true );
-locate_template( TBF_DIR . '/includes/email.php', true );
-locate_template( TBF_DIR . '/includes/events.php', true );
-locate_template( TBF_DIR . '/includes/head.php', true );
-locate_template( TBF_DIR . '/includes/helpers.php', true );
-locate_template( TBF_DIR . '/includes/locations.php', true );
-locate_template( TBF_DIR . '/includes/maps.php', true );
-locate_template( TBF_DIR . '/includes/meta.php', true );
-locate_template( TBF_DIR . '/includes/people.php', true );
-locate_template( TBF_DIR . '/includes/phone.php', true );
-locate_template( TBF_DIR . '/includes/scripts.php', true );
-locate_template( TBF_DIR . '/includes/sermons.php', true );
-locate_template( TBF_DIR . '/includes/shortcodes.php', true );
-locate_template( TBF_DIR . '/includes/styles.php', true );
-locate_template( TBF_DIR . '/includes/terms.php', true );
-locate_template( TBF_DIR . '/includes/urls.php', true );
-locate_template( TBF_DIR . '/includes/widgets.php', true );
+$includes = array(
+  'addresses.php',
+  'breadcrumb.php',
+  'ctc.php',
+  'dates.php',
+  'email.php',
+  'events.php',
+  'head.php',
+  'helpers.php',
+  'locations.php',
+  'maps.php',
+  'meta.php',
+  'people.php',
+  'phone.php',
+  'scripts.php',
+  'sermons.php',
+  'shortcodes.php',
+  'styles.php',
+  'terms.php',
+  'urls.php',
+  'widgets.php'
+);
+
+foreach ( $includes as $include ) {
+  require_once trailingslashit( get_template_directory() ) . TBF_DIR . "/includes/$include";
+}

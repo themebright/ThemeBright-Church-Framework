@@ -20,7 +20,7 @@
  */
 function tbf_template_url() {
 
-  $url = tbf_strip_protocol( trailingslashit( get_template_directory_uri() ) );
+  $url = tbf_strip_protocol( get_template_directory_uri() );
 
   return apply_filters( 'tbf_theme_url', $url );
 
