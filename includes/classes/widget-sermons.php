@@ -163,7 +163,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
     <?php if ( $theme_support['options']['number'] ) : ?>
       <p>
-        <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of events to show:', 'themebright-framework' ); ?></label>
+        <label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of sermons to show:', 'themebright-framework' ); ?></label>
         <input id="<?php echo $this->get_field_id( 'number' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="1" />
       </p>
     <?php endif; ?>
