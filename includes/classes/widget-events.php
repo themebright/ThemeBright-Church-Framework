@@ -101,7 +101,7 @@ class TBF_Widget_Events extends WP_Widget {
                   <p class="tbf-widget-event-venue"><?php echo tbf_event_venue(); ?></p>
                 <?php endif; ?>
 
-                <?php if ( $show_address ) echo tbf_event_address(); ?></p>
+                <?php if ( $show_address ) echo tbf_event_address(); ?>
 
                 <?php if ( $show_map ) echo tbf_event_map(); ?>
               </div>
