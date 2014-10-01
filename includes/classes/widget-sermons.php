@@ -73,13 +73,13 @@ class TBF_Widget_Sermons extends WP_Widget {
               </h4>
 
               <div class="tbf-widget-entry-content tbf-widget-sermons-entry-content">
-                <?php if ( $show_excerpt ) the_excerpt(); ?>
-
                 <?php if ( $show_date ) : ?>
                   <p class="tbf-widget-sermon-date">
                     <?php the_time( get_option( 'date_format' ) ) ?>
                   </p>
                 <?php endif; ?>
+
+                <?php if ( $show_excerpt ) the_excerpt(); ?>
 
                 <?php if ( $show_media ) : ?>
                   <div class="tbf-widget-sermon-media">
