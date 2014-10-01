@@ -77,7 +77,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
                 <?php if ( $show_date ) : ?>
                   <p class="tbf-widget-sermon-date">
-                    <?php the_time() ?>
+                    <?php the_time( get_option( 'date_format' ) ) ?>
                   </p>
                 <?php endif; ?>
 
