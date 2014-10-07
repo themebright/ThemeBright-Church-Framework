@@ -22,7 +22,6 @@ if ( ! defined( 'TBF_THEME_VERSION' ) ) define( 'TBF_THEME_VERSION', $theme_data
  */
 $includes = array(
   'addresses.php',
-  'breadcrumb.php',
   'ctc.php',
   'dates.php',
   'email.php',
