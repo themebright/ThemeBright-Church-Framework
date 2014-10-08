@@ -78,7 +78,7 @@ class TBF_Widget_Events extends WP_Widget {
 
               <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
                 <div class="tbf-widget-entry-thumbnail tbf-widget-events-entry-thumbnail">
-                  <?php the_post_thumbnail( 'medium' ); ?>
+                  <?php the_post_thumbnail( 'large' ); ?>
                 </div>
               <?php endif; ?>
 

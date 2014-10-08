@@ -64,7 +64,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
               <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
                 <div class="tbf-widget-entry-thumbnail tbf-widget-sermons-entry-thumbnail">
-                  <?php the_post_thumbnail( 'medium' ); ?>
+                  <?php the_post_thumbnail( 'large' ); ?>
                 </div>
               <?php endif; ?>
 
