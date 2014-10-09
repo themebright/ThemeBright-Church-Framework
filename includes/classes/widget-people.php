@@ -48,64 +48,64 @@ class TBF_Widget_People extends WP_Widget {
 
     $people = new WP_Query( apply_filters( 'tbf_widget_people_args', $query_args ) );
 
-    if ( $people->have_posts() ) :
+    $override = locate_template( 'widgets/widget-people.php' );
 
-      $override = locate_template( 'widgets/widget-people.php' );
+    if ( $override ) :
 
-      if ( $override ) :
+      include( $override );
 
-        include( $override );
+    else :
 
-      else :
+      echo $args['before_widget'];
 
-?>
+        if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
 
-      <?php echo $args['before_widget']; ?>
+        if ( $people->have_posts() ) : ?>
 
-        <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
+          <ul class="tbf-widget-people-list">
+            <?php while ( $people->have_posts() ) : $people->the_post(); ?>
+              <li class="tbf-widget-entry tbf-widget-people-entry">
 
-        <ul class="tbf-widget-people-list">
-          <?php while ( $people->have_posts() ) : $people->the_post(); ?>
-            <li class="tbf-widget-entry tbf-widget-people-entry">
+                <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
+                  <div class="tbf-widget-entry-thumbnail tbf-widget-people-entry-thumbnail">
+                    <?php the_post_thumbnail( 'thumbnail' ); ?>
+                  </div>
+                <?php endif; ?>
 
-              <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
-                <div class="tbf-widget-entry-thumbnail tbf-widget-people-entry-thumbnail">
-                  <?php the_post_thumbnail( 'thumbnail' ); ?>
+                <h4 class="tbf-widget-entry-title tbf-widget-people-entry-title">
+                  <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                </h4>
+
+                <div class="tbf-widget-entry-content tbf-widget-people-entry-content">
+                  <?php if ( $show_position && tbf_person_position() ) : ?>
+                    <p class="tbf-widget-person-position"><?php echo tbf_person_position(); ?></p>
+                  <?php endif; ?>
+
+                  <?php if ( $show_excerpt ) the_excerpt(); ?>
+
+                  <?php if ( $show_phone && tbf_person_phone() ) : ?>
+                    <p class="tbf-widget-person-phone"><?php echo tbf_person_phone(); ?></p>
+                  <?php endif; ?>
+
+                  <?php if ( $show_email && tbf_person_email() ) : ?>
+                    <p class="tbf-widget-person-email"><?php echo tbf_person_email(); ?></p>
+                  <?php endif; ?>
+
+                  <?php if ( $show_urls ) echo tbf_person_urls(); ?>
                 </div>
-              <?php endif; ?>
+              </li>
+            <?php endwhile; ?>
+          </ul>
 
-              <h4 class="tbf-widget-entry-title tbf-widget-people-entry-title">
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              </h4>
+        <?php else : ?>
 
-              <div class="tbf-widget-entry-content tbf-widget-people-entry-content">
-                <?php if ( $show_position && tbf_person_position() ) : ?>
-                  <p class="tbf-widget-person-position"><?php echo tbf_person_position(); ?></p>
-                <?php endif; ?>
+          <p class="tbf-widget-no-entries-found tbf-widget-people-no-entries-found"><?php _e( 'No people found.', 'themebright' ); ?></p>
 
-                <?php if ( $show_excerpt ) the_excerpt(); ?>
+        <?php endif;
 
-                <?php if ( $show_phone && tbf_person_phone() ) : ?>
-                  <p class="tbf-widget-person-phone"><?php echo tbf_person_phone(); ?></p>
-                <?php endif; ?>
+      echo $args['after_widget'];
 
-                <?php if ( $show_email && tbf_person_email() ) : ?>
-                  <p class="tbf-widget-person-email"><?php echo tbf_person_email(); ?></p>
-                <?php endif; ?>
-
-                <?php if ( $show_urls ) echo tbf_person_urls(); ?>
-              </div>
-            </li>
-          <?php endwhile; ?>
-        </ul>
-
-      <?php echo $args['after_widget']; ?>
-
-<?php
-
-        wp_reset_postdata();
-
-      endif;
+      wp_reset_postdata();
 
     endif;
 

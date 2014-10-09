@@ -42,84 +42,84 @@ class TBF_Widget_Sermons extends WP_Widget {
 
     $sermons = new WP_Query( apply_filters( 'tbf_widget_sermons_args', $query_args ) );
 
-    if ( $sermons->have_posts() ) :
+    $override = locate_template( 'widgets/widget-sermons.php' );
 
-      $override = locate_template( 'widgets/widget-sermons.php' );
+    if ( $override ) :
 
-      if ( $override ) :
+      include( $override );
 
-        include( $override );
+    else :
 
-      else :
+      echo $args['before_widget'];
 
-?>
+        if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
 
-      <?php echo $args['before_widget']; ?>
+        if ( $sermons->have_posts() ) : ?>
 
-        <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
+          <ul class="tbf-widget-sermons-list">
+            <?php while ( $sermons->have_posts() ) : $sermons->the_post(); ?>
+              <li class="tbf-widget-entry tbf-widget-sermons-entry">
 
-        <ul class="tbf-widget-sermons-list">
-          <?php while ( $sermons->have_posts() ) : $sermons->the_post(); ?>
-            <li class="tbf-widget-entry tbf-widget-sermons-entry">
-
-              <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
-                <div class="tbf-widget-entry-thumbnail tbf-widget-sermons-entry-thumbnail">
-                  <?php the_post_thumbnail( 'large' ); ?>
-                </div>
-              <?php endif; ?>
-
-              <h4 class="tbf-widget-entry-title tbf-widget-sermons-entry-title">
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              </h4>
-
-              <div class="tbf-widget-entry-content tbf-widget-sermons-entry-content">
-                <?php if ( $show_date ) : ?>
-                  <p class="tbf-widget-sermon-date">
-                    <?php the_time( get_option( 'date_format' ) ) ?>
-                  </p>
-                <?php endif; ?>
-
-                <?php if ( $show_excerpt ) the_excerpt(); ?>
-
-                <?php if ( $show_media ) : ?>
-                  <div class="tbf-widget-sermon-media">
-                    <?php if ( tbf_sermon_video() ) : ?>
-                      <p class="tbf-widget-sermon-video">
-                        <a href="<?php echo tbf_sermon_video(); ?>">
-                          <span><?php _e( 'Video', 'themebright-framework' ); ?></span>
-                        </a>
-                      </p>
-                    <?php endif; ?>
-
-                    <?php if ( tbf_sermon_audio() ) : ?>
-                      <p class="tbf-widget-sermon-audio">
-                        <a href="<?php echo tbf_sermon_audio(); ?>">
-                          <span><?php _e( 'Audio', 'themebright-framework' ); ?></span>
-                        </a>
-                      </p>
-                    <?php endif; ?>
-
-                    <?php if ( tbf_sermon_pdf() ) : ?>
-                      <p class="tbf-widget-sermon-pdf">
-                        <a href="<?php echo tbf_sermon_pdf(); ?>">
-                          <span><?php _e( 'Transcript', 'themebright-framework' ); ?></span>
-                        </a>
-                      </p>
-                    <?php endif; ?>
+                <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
+                  <div class="tbf-widget-entry-thumbnail tbf-widget-sermons-entry-thumbnail">
+                    <?php the_post_thumbnail( 'large' ); ?>
                   </div>
                 <?php endif; ?>
-              </div>
-            </li>
-          <?php endwhile; ?>
-        </ul>
 
-      <?php echo $args['after_widget']; ?>
+                <h4 class="tbf-widget-entry-title tbf-widget-sermons-entry-title">
+                  <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                </h4>
 
-<?php
+                <div class="tbf-widget-entry-content tbf-widget-sermons-entry-content">
+                  <?php if ( $show_date ) : ?>
+                    <p class="tbf-widget-sermon-date">
+                      <?php the_time( get_option( 'date_format' ) ) ?>
+                    </p>
+                  <?php endif; ?>
 
-        wp_reset_postdata();
+                  <?php if ( $show_excerpt ) the_excerpt(); ?>
 
-      endif;
+                  <?php if ( $show_media ) : ?>
+                    <div class="tbf-widget-sermon-media">
+                      <?php if ( tbf_sermon_video() ) : ?>
+                        <p class="tbf-widget-sermon-video">
+                          <a href="<?php echo tbf_sermon_video(); ?>">
+                            <span><?php _e( 'Video', 'themebright-framework' ); ?></span>
+                          </a>
+                        </p>
+                      <?php endif; ?>
+
+                      <?php if ( tbf_sermon_audio() ) : ?>
+                        <p class="tbf-widget-sermon-audio">
+                          <a href="<?php echo tbf_sermon_audio(); ?>">
+                            <span><?php _e( 'Audio', 'themebright-framework' ); ?></span>
+                          </a>
+                        </p>
+                      <?php endif; ?>
+
+                      <?php if ( tbf_sermon_pdf() ) : ?>
+                        <p class="tbf-widget-sermon-pdf">
+                          <a href="<?php echo tbf_sermon_pdf(); ?>">
+                            <span><?php _e( 'Transcript', 'themebright-framework' ); ?></span>
+                          </a>
+                        </p>
+                      <?php endif; ?>
+                    </div>
+                  <?php endif; ?>
+                </div>
+              </li>
+            <?php endwhile; ?>
+          </ul>
+
+        <?php else : ?>
+
+          <p class="tbf-widget-no-entries-found tbf-widget-sermons-no-entries-found"><?php _e( 'No sermons found.', 'themebright' ); ?></p>
+
+        <?php endif;
+
+      echo $args['after_widget'];
+
+      wp_reset_postdata();
 
     endif;
 

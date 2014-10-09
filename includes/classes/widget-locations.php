@@ -44,58 +44,58 @@ class TBF_Widget_Locations extends WP_Widget {
 
     $locations = new WP_Query( apply_filters( 'tbf_widget_locations_args', $query_args ) );
 
-    if ( $locations->have_posts() ) :
+    $override = locate_template( 'widgets/widget-locations.php' );
 
-      $override = locate_template( 'widgets/widget-locations.php' );
+    if ( $override ) :
 
-      if ( $override ) :
+      include( $override );
 
-        include( $override );
+    else :
 
-      else :
+      echo $args['before_widget'];
 
-?>
+        if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
 
-      <?php echo $args['before_widget']; ?>
+        if ( $locations->have_posts() ) : ?>
 
-        <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
+          <ul class="tbf-widget-locations-list">
+            <?php while ( $locations->have_posts() ) : $locations->the_post(); ?>
+              <li class="tbf-widget-entry tbf-widget-locations-entry">
 
-        <ul class="tbf-widget-locations-list">
-          <?php while ( $locations->have_posts() ) : $locations->the_post(); ?>
-            <li class="tbf-widget-entry tbf-widget-locations-entry">
-
-              <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
-                <div class="tbf-widget-entry-thumbnail tbf-widget-locations-entry-thumbnail">
-                  <?php the_post_thumbnail( 'large' ); ?>
-                </div>
-              <?php endif; ?>
-
-              <h4 class="tbf-widget-entry-title tbf-widget-locations-entry-title">
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              </h4>
-
-              <div class="tbf-widget-entry-content tbf-widget-locations-entry-content">
-                <?php if ( $show_excerpt ) the_excerpt(); ?>
-
-                <?php if ( $show_times ) echo tbf_location_times(); ?>
-
-                <?php if ( $show_address ) echo tbf_location_address(); ?>
-
-                <?php if ( $show_phone && tbf_location_phone() ) : ?>
-                  <p class="tbf-widget-location-phone"><?php echo tbf_location_phone(); ?></p>
+                <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
+                  <div class="tbf-widget-entry-thumbnail tbf-widget-locations-entry-thumbnail">
+                    <?php the_post_thumbnail( 'large' ); ?>
+                  </div>
                 <?php endif; ?>
-              </div>
-            </li>
-          <?php endwhile; ?>
-        </ul>
 
-      <?php echo $args['after_widget']; ?>
+                <h4 class="tbf-widget-entry-title tbf-widget-locations-entry-title">
+                  <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                </h4>
 
-<?php
+                <div class="tbf-widget-entry-content tbf-widget-locations-entry-content">
+                  <?php if ( $show_excerpt ) the_excerpt(); ?>
 
-        wp_reset_postdata();
+                  <?php if ( $show_times ) echo tbf_location_times(); ?>
 
-      endif;
+                  <?php if ( $show_address ) echo tbf_location_address(); ?>
+
+                  <?php if ( $show_phone && tbf_location_phone() ) : ?>
+                    <p class="tbf-widget-location-phone"><?php echo tbf_location_phone(); ?></p>
+                  <?php endif; ?>
+                </div>
+              </li>
+            <?php endwhile; ?>
+          </ul>
+
+        <?php else : ?>
+
+          <p class="tbf-widget-no-entries-found tbf-widget-locations-no-entries-found"><?php _e( 'No locations found.', 'themebright' ); ?></p>
+
+        <?php endif;
+
+      echo $args['after_widget'];
+
+      wp_reset_postdata();
 
     endif;
 

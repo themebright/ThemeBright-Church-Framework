@@ -56,66 +56,66 @@ class TBF_Widget_Events extends WP_Widget {
 
     $events = new WP_Query( apply_filters( 'tbf_widget_events_args', $query_args ) );
 
-    if ( $events->have_posts() ) :
+    $override = locate_template( 'widgets/widget-events.php' );
 
-      $override = locate_template( 'widgets/widget-events.php' );
+    if ( $override ) :
 
-      if ( $override ) :
+      include( $override );
 
-        include( $override );
+    else :
 
-      else :
+      echo $args['before_widget'];
 
-?>
+        if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
 
-      <?php echo $args['before_widget']; ?>
+        if ( $events->have_posts() ) : ?>
 
-        <?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
+          <ul class="tbf-widget-events-list">
+            <?php while ( $events->have_posts() ) : $events->the_post(); ?>
+              <li class="tbf-widget-entry tbf-widget-events-entry">
 
-        <ul class="tbf-widget-events-list">
-          <?php while ( $events->have_posts() ) : $events->the_post(); ?>
-            <li class="tbf-widget-entry tbf-widget-events-entry">
+                <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
+                  <div class="tbf-widget-entry-thumbnail tbf-widget-events-entry-thumbnail">
+                    <?php the_post_thumbnail( 'large' ); ?>
+                  </div>
+                <?php endif; ?>
 
-              <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
-                <div class="tbf-widget-entry-thumbnail tbf-widget-events-entry-thumbnail">
-                  <?php the_post_thumbnail( 'large' ); ?>
+                <h4 class="tbf-widget-entry-title tbf-widget-events-entry-title">
+                  <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                </h4>
+
+                <div class="tbf-widget-entry-content tbf-widget-events-entry-content">
+                  <?php if ( $show_excerpt ) the_excerpt(); ?>
+
+                  <?php if ( $show_date && tbf_event_date() ) : ?>
+                    <p class="tbf-widget-event-date"><?php echo tbf_event_date(); ?></p>
+                  <?php endif; ?>
+
+                  <?php if ( $show_time && tbf_event_time() ) : ?>
+                    <p class="tbf-widget-event-time"><?php echo tbf_event_time(); ?></p>
+                  <?php endif; ?>
+
+                  <?php if ( $show_venue && tbf_event_venue() ) : ?>
+                    <p class="tbf-widget-event-venue"><?php echo tbf_event_venue(); ?></p>
+                  <?php endif; ?>
+
+                  <?php if ( $show_address ) echo tbf_event_address(); ?>
+
+                  <?php if ( $show_map ) echo tbf_event_map(); ?>
                 </div>
-              <?php endif; ?>
+              </li>
+            <?php endwhile; ?>
+          </ul>
 
-              <h4 class="tbf-widget-entry-title tbf-widget-events-entry-title">
-                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-              </h4>
+        <?php else : ?>
 
-              <div class="tbf-widget-entry-content tbf-widget-events-entry-content">
-                <?php if ( $show_excerpt ) the_excerpt(); ?>
+          <p class="tbf-widget-no-entries-found tbf-widget-events-no-entries-found"><?php _e( 'No events found.', 'themebright' ); ?></p>
 
-                <?php if ( $show_date && tbf_event_date() ) : ?>
-                  <p class="tbf-widget-event-date"><?php echo tbf_event_date(); ?></p>
-                <?php endif; ?>
+        <?php endif;
 
-                <?php if ( $show_time && tbf_event_time() ) : ?>
-                  <p class="tbf-widget-event-time"><?php echo tbf_event_time(); ?></p>
-                <?php endif; ?>
+      echo $args['after_widget'];
 
-                <?php if ( $show_venue && tbf_event_venue() ) : ?>
-                  <p class="tbf-widget-event-venue"><?php echo tbf_event_venue(); ?></p>
-                <?php endif; ?>
-
-                <?php if ( $show_address ) echo tbf_event_address(); ?>
-
-                <?php if ( $show_map ) echo tbf_event_map(); ?>
-              </div>
-            </li>
-          <?php endwhile; ?>
-        </ul>
-
-      <?php echo $args['after_widget']; ?>
-
-<?php
-
-        wp_reset_postdata();
-
-      endif;
+      wp_reset_postdata();
 
     endif;
 
