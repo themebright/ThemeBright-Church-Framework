@@ -22,9 +22,6 @@ function tbf_scripts() {
   // maps script
   wp_enqueue_script( 'tbf-maps', trailingslashit( tbf_template_url() ) . TBF_DIR . '/assets/js/maps.js', array( 'jquery', 'tbf-google-maps' ), TBF_VERSION );
 
-  // fitvids
-  wp_enqueue_script( 'tbf-fitvids', trailingslashit( tbf_template_url() ) . TBF_DIR . '/assets/js/jquery.fitvids.js', array( 'jquery' ), TBF_VERSION );
-
   // framework
   wp_enqueue_script( 'tbf', trailingslashit( tbf_template_url() ) . TBF_DIR . '/assets/js/tbf.js', array( 'jquery', 'tbf-fitvids' ), TBF_VERSION );
 
