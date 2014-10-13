@@ -35,7 +35,6 @@ $includes = array(
   'phone.php',
   'scripts.php',
   'sermons.php',
-  'shortcodes.php',
   'styles.php',
   'terms.php',
   'urls.php',
@@ -43,5 +42,5 @@ $includes = array(
 );
 
 foreach ( $includes as $include ) {
-  require_once trailingslashit( get_template_directory() ) . TBF_DIR . "/includes/$include";
+  locate_template( TBF_DIR . "/includes/$include", true );
 }

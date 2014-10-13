@@ -1,10 +1,25 @@
 <?php
+/**
+ * Widgets
+ */
 
-locate_template( TBF_DIR . '/includes/classes/widget-events.php', true );
-locate_template( TBF_DIR . '/includes/classes/widget-locations.php', true );
-locate_template( TBF_DIR . '/includes/classes/widget-people.php', true );
-locate_template( TBF_DIR . '/includes/classes/widget-sermons.php', true );
+/**
+ * Load widgets.
+ */
+$widgets = array(
+  'widget-events.php',
+  'widget-locations.php',
+  'widget-people.php',
+  'widget-sermons.php'
+);
 
+foreach ( $widgets as $widget ) {
+  locate_template( TBF_DIR . "/includes/classes/$widget", true );
+}
+
+/**
+ * Register widgets.
+ */
 function tbf_register_widgets() {
 
   register_widget( 'TBF_Widget_Events' );
