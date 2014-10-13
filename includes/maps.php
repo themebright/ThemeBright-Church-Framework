@@ -23,7 +23,7 @@
  */
 function tbf_map( $lat = null, $lng = null ) {
 
-  if ( $lat && $lng ) {
+  if ( ! empty( $lat ) && ! empty( $lng ) ) {
     wp_enqueue_script( 'tbf-maps-api' );
     wp_enqueue_script( 'tbf-maps' );
 

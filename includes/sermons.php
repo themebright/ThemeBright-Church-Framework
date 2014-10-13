@@ -22,7 +22,7 @@
  */
 function tbf_get_sermon_meta( $key = null, $post_id = null ) {
 
-  if ( $key ) {
+  if ( ! empty( $key ) ) {
     $data = tbf_get_meta( '_ctc_sermon_' . $key, $post_id );
 
     return $data;
@@ -42,7 +42,7 @@ function tbf_sermon_video( $post_id = null ) {
 
   $video = tbf_get_sermon_meta( 'video', $post_id );
 
-  if ( $video ) {
+  if ( ! empty( $video ) ) {
     return $video;
   }
 
@@ -62,7 +62,7 @@ function tbf_sermon_audio( $post_id = null ) {
 
   $audio = tbf_get_sermon_meta( 'audio', $post_id );
 
-  if ( $audio ) {
+  if ( ! empty( $audio ) ) {
     return $audio;
   }
 
@@ -82,7 +82,7 @@ function tbf_sermon_pdf( $post_id = null ) {
 
   $pdf = tbf_get_sermon_meta( 'pdf', $post_id );
 
-  if ( $pdf ) {
+  if ( ! empty( $pdf ) ) {
     return $pdf;
   }
 
@@ -102,7 +102,7 @@ function tbf_sermon_topics( $post_id = null ) {
 
   $topics = tbf_get_terms( 'ctc_sermon_topic', $post_id );
 
-  if ( $topics ) {
+  if ( ! empty( $topics ) ) {
     $html = '';
 
     $html .= '<ul class="sermon-topics">';
@@ -132,7 +132,7 @@ function tbf_sermon_books( $post_id = null ) {
 
   $books = tbf_get_terms( 'ctc_sermon_book', $post_id );
 
-  if ( $books ) {
+  if ( ! empty( $books ) ) {
     $html = '';
 
     $html .= '<ul class="sermon-books">';
@@ -162,7 +162,7 @@ function tbf_sermon_series( $post_id = null ) {
 
   $series = tbf_get_terms( 'ctc_sermon_series', $post_id );
 
-  if ( $series ) {
+  if ( ! empty( $series ) ) {
     $html = '';
 
     $html .= '<ul class="sermon-series">';
@@ -192,7 +192,7 @@ function tbf_sermon_speakers( $post_id = null ) {
 
   $speakers = tbf_get_terms( 'ctc_sermon_speaker', $post_id );
 
-  if ( $speakers ) {
+  if ( ! empty( $speakers ) ) {
     $html = '';
 
     $html .= '<ul class="sermon-speakers">';
@@ -222,7 +222,7 @@ function tbf_sermon_tags( $post_id = null ) {
 
   $tags = tbf_get_terms( 'ctc_sermon_tag', $post_id );
 
-  if ( $tags ) {
+  if ( ! empty( $tags ) ) {
     $html = '';
 
     $html .= '<ul class="sermon-tags">';

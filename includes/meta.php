@@ -22,14 +22,14 @@
  */
 function tbf_get_meta( $key = null, $post_id = null ) {
 
-  if ( ! $post_id ) {
+  if ( empty( $post_id ) ) {
     $post_id = get_the_ID();
   }
 
-  if ( $key && $post_id ) {
-    $data = get_post_meta( $post_id, $key, true );
+  if ( ! empty( $key ) && ! empty( $post_id ) ) {
+    $data = trim( get_post_meta( $post_id, $key, true ) );
 
-    return trim( $data );
+    return $data;
   }
 
   return false;

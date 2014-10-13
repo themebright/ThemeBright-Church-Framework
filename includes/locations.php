@@ -22,7 +22,7 @@
  */
 function tbf_get_location_meta( $key = null, $post_id = null ) {
 
-  if ( $key ) {
+  if ( ! empty( $key ) ) {
     $data = tbf_get_meta( '_ctc_location_' . $key, $post_id );
 
     return $data;
@@ -42,7 +42,7 @@ function tbf_location_address( $post_id = null ) {
 
   $address = tbf_get_location_meta( 'address', $post_id );
 
-  if ( $address ) {
+  if ( ! empty( $address ) ) {
     return tbf_address( $address );
   }
 
@@ -62,7 +62,7 @@ function tbf_location_phone( $post_id = null ) {
 
   $phone = tbf_get_location_meta( 'phone', $post_id );
 
-  if ( $phone ) {
+  if ( ! empty( $phone ) ) {
     return tbf_phone_link( $phone );
   }
 
@@ -82,7 +82,7 @@ function tbf_location_times( $post_id = null ) {
 
   $times = tbf_get_location_meta( 'times', $post_id );
 
-  if ( $times ) {
+  if ( ! empty( $times ) ) {
     $html = '';
 
     $times = explode( PHP_EOL, $times );
@@ -116,7 +116,7 @@ function tbf_location_map( $post_id = null ) {
   $lat = tbf_get_location_meta( 'map_lat', $post_id );
   $lng = tbf_get_location_meta( 'map_lng', $post_id );
 
-  if ( $lat && $lng ) {
+  if ( ! empty( $lat ) && ! empty( $lng ) ) {
     return tbf_map( $lat, $lng );
   }
 

@@ -22,11 +22,11 @@
  */
 function tbf_format_date( $date = null, $format = null ) {
 
-  if ( ! $format ) {
+  if ( empty( $format ) ) {
     $format = get_option( 'date_format' );
   }
 
-  if ( $date ) {
+  if ( ! empty( $date ) ) {
     $date = date_format( date_create_from_format( 'Y-m-d', $date ), $format );
   }
 

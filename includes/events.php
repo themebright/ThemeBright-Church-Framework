@@ -22,7 +22,7 @@
  */
 function tbf_get_event_meta( $key = null, $post_id = null ) {
 
-  if ( $key ) {
+  if ( ! empty( $key ) ) {
     $data = tbf_get_meta( '_ctc_event_' . $key, $post_id );
 
     return $data;
@@ -47,12 +47,12 @@ function tbf_event_date( $format = null, $post_id = null ) {
   $end_date = tbf_get_event_meta( 'end_date', $post_id );
   $end_date_formatted = tbf_format_date( $end_date, $format );
 
-  if ( $start_date ) {
+  if ( ! empty( $start_date ) ) {
     $html = '';
 
     $html .= "<span>$start_date_formatted</span>";
 
-    if ( $end_date && $end_date != $start_date ) {
+    if ( ! empty( $end_date ) && $end_date != $start_date ) {
       $html .= '<span class="sep">&ndash;</span>';
 
       $html .= "<span>$end_date_formatted</span>";
@@ -77,7 +77,7 @@ function tbf_event_time( $post_id = null ) {
 
   $time = tbf_get_event_meta( 'time', $post_id );
 
-  if ( $time ) {
+  if ( ! empty( $time ) ) {
     $time = str_replace( array( '-', '–', '—' ), '&ndash;', $time );
 
     return $time;
@@ -99,7 +99,7 @@ function tbf_event_venue( $post_id = null ) {
 
   $venue = tbf_get_event_meta( 'venue', $post_id );
 
-  if ( $venue ) {
+  if ( ! empty( $venue ) ) {
     return $venue;
   }
 
@@ -119,7 +119,7 @@ function tbf_event_address( $post_id = null ) {
 
   $address = tbf_get_event_meta( 'address', $post_id );
 
-  if ( $address ) {
+  if ( ! empty( $address ) ) {
     return tbf_address( $address );
   }
 
@@ -140,7 +140,7 @@ function tbf_event_map( $post_id = null ) {
   $lat = tbf_get_event_meta( 'map_lat', $post_id );
   $lng = tbf_get_event_meta( 'map_lng', $post_id );
 
-  if ( $lat && $lng ) {
+  if ( ! empty( $lat ) && ! empty( $lng ) ) {
     return tbf_map( $lat, $lng );
   }
 

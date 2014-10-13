@@ -21,7 +21,7 @@
  */
 function tbf_phone_link( $number = null ) {
 
-  if ( $number ) {
+  if ( ! empty( $number ) ) {
     $html  = "<a href='tel:+" . esc_attr( tbf_clean_phone( $number ) ) . "' class='phone'><span>$number</span></a>";
 
     return $html;
@@ -39,7 +39,7 @@ function tbf_phone_link( $number = null ) {
  */
 function tbf_clean_phone( $number = null ) {
 
-  if ( $number ) {
+  if ( ! empty( $number ) ) {
     $number = preg_replace( '/\D+/', '', $number );
 
     return $number;

@@ -21,7 +21,7 @@
  */
 function tbf_strip_protocol( $url = null ) {
 
-  if ( $url ) {
+  if ( ! empty( $url ) ) {
     $url = str_replace( array( 'http:', 'https:' ), '', $url );
 
     return $url;

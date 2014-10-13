@@ -21,7 +21,7 @@
  */
 function tbf_email_link( $email = null ) {
 
-  if ( $email ) {
+  if ( ! empty( $email ) ) {
     $html = "<a href='mailto:" . esc_attr( $email ) . "' class='email'><span>$email</span></a>";
 
     return $html;
