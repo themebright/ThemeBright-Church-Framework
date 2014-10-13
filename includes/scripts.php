@@ -15,7 +15,7 @@ function tbf_scripts() {
   wp_register_script( 'tbf-maps', tbf_template_url() . TBF_DIR . '/assets/js/maps.js', array( 'jquery', 'tbf-maps-api' ), TBF_VERSION );
 
   // Immediately enqueue these scripts
-  wp_enqueue_script( 'tbf', tbf_template_url() . TBF_DIR . '/assets/js/tbf.js', array( 'jquery' ), TBF_VERSION );
+  // wp_enqueue_script( 'tbf', tbf_template_url() . TBF_DIR . '/assets/js/tbf.js', array( 'jquery' ), TBF_VERSION );
 
 }
 add_action( 'wp_enqueue_scripts', 'tbf_scripts' );
