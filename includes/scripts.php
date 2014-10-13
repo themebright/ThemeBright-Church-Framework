@@ -3,16 +3,10 @@
  * Framework Scripts
  *
  * Enqueues the various scripts required by the ThemeBright framework.
- *
- * @link https://bitbucket.org/themebright/themebright-framework
- * @since 1.0.0
- *
- * @package ThemeBright_Framework
- * @subpackage Assets
  */
 
 /**
- * Enqueue framework scripts.
+ * Registers and enqueues framework scripts.
  */
 function tbf_scripts() {
 

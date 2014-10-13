@@ -3,19 +3,10 @@
  * Church Themes Content
  *
  * Handles all neccesary Church Themes Content integrations and customizations.
- *
- * @link https://bitbucket.org/themebright/themebright-framework
- * @since 1.0.0
- *
- * @package ThemeBright_Framework
- * @subpackage Functions
  */
 
 /**
- * Church Themes Content support.
- *
- * Enables the desired Church Themes Content post types and taxonomies. Also
- * handles field overrides where needed.
+ * Enables and customizes the the desired Church Themes Content post types and taxonomies.
  */
 function tbf_ctc_support() {
 

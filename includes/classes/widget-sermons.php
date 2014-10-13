@@ -1,17 +1,8 @@
 <?php
 /**
  * Sermons Widget
- *
- * @link https://bitbucket.org/themebright/themebright-framework
- * @since 1.0.0
- *
- * @package ThemeBright_Framework
- * @subpackage Classes
  */
 
-/**
- * Sermons widget class.
- */
 class TBF_Widget_Sermons extends WP_Widget {
 
   function TBF_Widget_Sermons() {

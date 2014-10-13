@@ -3,22 +3,10 @@
  * People Functions
  *
  * Contains functions used to display people and their meta data.
- *
- * @link https://bitbucket.org/themebright/themebright-framework
- * @since 1.0.0
- *
- * @package ThemeBright_Framework
- * @subpackage Functions
  */
 
 /**
- * Get person meta.
- *
  * Gets the person meta using tbf_get_meta without need for prefix.
- *
- * @param string $key Meta key for the data to retrive.
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed The data if it exists; false if not.
  */
 function tbf_get_person_meta( $key = null, $post_id = null ) {
 
@@ -31,12 +19,7 @@ function tbf_get_person_meta( $key = null, $post_id = null ) {
 }
 
 /**
- * Person position.
- *
- * Displays the person's position.
- *
- * @param type $post_id Post ID to get data for; null for current post.
- * @return mixed Position if it exists; false if not.
+ * Displays the person's position if it exists; returns false if not.
  */
 function tbf_person_position( $post_id = null ) {
 
@@ -51,12 +34,7 @@ function tbf_person_position( $post_id = null ) {
 }
 
 /**
- * Person phone.
- *
  * Displays the person's phone if it exists; returns false if not.
- *
- * @param type $post_id Post ID to get data for; null for current post.
- * @return mixed Person's phone if it exists; false if not.
  */
 function tbf_person_phone( $post_id = null ) {
 
@@ -71,12 +49,7 @@ function tbf_person_phone( $post_id = null ) {
 }
 
 /**
- * Person email.
- *
  * Displays the person's email if it exists; returns false if not.
- *
- * @param type $post_id Post ID to get data for; null for current post.
- * @return mixed Person's email if it exists; false if not.
  */
 function tbf_person_email( $post_id = null ) {
 
@@ -91,12 +64,7 @@ function tbf_person_email( $post_id = null ) {
 }
 
 /**
- * Person URLs.
- *
- * Displays the person's URLs in an unordered list if they exist; returns false if not.
- *
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Person's URLs if they exist; false if not.
+ * Displays the person's URLs in an <ul> if they exist; returns false if not.
  */
 function tbf_person_urls( $post_id = null ) {
 
@@ -124,12 +92,7 @@ function tbf_person_urls( $post_id = null ) {
 }
 
 /**
- * Person groups.
- *
- * Display a person's groups in an unordered list if they exist; returns false if not.
- *
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Groups if they exist; false if not.
+ * Display a person's groups in an <ul> if they exist; returns false if not.
  */
 function tbf_person_groups( $post_id = null ) {
 

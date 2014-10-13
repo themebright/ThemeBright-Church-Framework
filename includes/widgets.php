@@ -1,10 +1,12 @@
 <?php
 /**
  * Widgets
+ *
+ * Loads and registers framework widgets.
  */
 
 /**
- * Load widgets.
+ * Load individual widget classes.
  */
 $widgets = array(
   'widget-events.php',
@@ -18,7 +20,7 @@ foreach ( $widgets as $widget ) {
 }
 
 /**
- * Register widgets.
+ * Register widgets classes.
  */
 function tbf_register_widgets() {
 

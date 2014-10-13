@@ -4,7 +4,7 @@
  */
 
 /**
- * Get theme data.
+ * Get and save theme data.
  */
 $theme_data = wp_get_theme();
 $theme_data = is_child_theme() ? wp_get_theme( $theme_data->template ) : $theme_data;

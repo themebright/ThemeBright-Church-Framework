@@ -3,22 +3,10 @@
  * Sermons Functions
  *
  * Contains functions used to display sermons and their meta data.
- *
- * @link https://bitbucket.org/themebright/themebright-framework
- * @since 1.0.0
- *
- * @package ThemeBright_Framework
- * @subpackage Functions
  */
 
 /**
- * Get sermon meta.
- *
  * Gets the sermon meta using tbf_get_meta without need for prefix.
- *
- * @param string $key Meta key for the data to retrive.
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed The data if it exists; false if not.
  */
 function tbf_get_sermon_meta( $key = null, $post_id = null ) {
 
@@ -31,12 +19,7 @@ function tbf_get_sermon_meta( $key = null, $post_id = null ) {
 }
 
 /**
- * Sermon video.
- *
  * Displays the sermon video if it exists; returns false if not.
- *
- * @param type $post_id Post ID to get data for; null for current post.
- * @return mixed Sermon video if it exists; false if not.
  */
 function tbf_sermon_video( $post_id = null ) {
 
@@ -51,12 +34,7 @@ function tbf_sermon_video( $post_id = null ) {
 }
 
 /**
- * Sermon audio.
- *
  * Displays the sermon audio if it exists; returns false if not.
- *
- * @param type $post_id Post ID to get data for; null for current post.
- * @return mixed Sermon audio if it exists; false if not.
  */
 function tbf_sermon_audio( $post_id = null ) {
 
@@ -71,12 +49,7 @@ function tbf_sermon_audio( $post_id = null ) {
 }
 
 /**
- * Sermon PDF.
- *
- * Displays the sermon PDF if it exists; returns false if not.
- *
- * @param type $post_id Post ID to get data for; null for current post.
- * @return mixed Sermon PDF if it exists; false if not.
+ * Displays the sermon PDF URL if it exists; returns false if not.
  */
 function tbf_sermon_pdf( $post_id = null ) {
 
@@ -91,12 +64,7 @@ function tbf_sermon_pdf( $post_id = null ) {
 }
 
 /**
- * Sermon topics.
- *
- * Display a sermons's topics in an unordered list if they exist; returns false if not.
- *
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Topics if they exist; false if not.
+ * Display a sermons's topics in an <ul> if they exist; returns false if not.
  */
 function tbf_sermon_topics( $post_id = null ) {
 
@@ -121,12 +89,7 @@ function tbf_sermon_topics( $post_id = null ) {
 }
 
 /**
- * Sermon books.
- *
- * Display a sermons's books in an unordered list if they exist; returns false if not.
- *
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Books if they exist; false if not.
+ * Display a sermons's books in an <ul> if they exist; returns false if not.
  */
 function tbf_sermon_books( $post_id = null ) {
 
@@ -151,12 +114,7 @@ function tbf_sermon_books( $post_id = null ) {
 }
 
 /**
- * Sermon series.
- *
- * Display a sermons's series in an unordered list if they exist; returns false if not.
- *
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Series if they exist; false if not.
+ * Display a sermons's series in an <ul> if they exist; returns false if not.
  */
 function tbf_sermon_series( $post_id = null ) {
 
@@ -181,12 +139,7 @@ function tbf_sermon_series( $post_id = null ) {
 }
 
 /**
- * Sermon speakers.
- *
- * Display a sermons's speakers in an unordered list if they exist; returns false if not.
- *
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Speakers if they exist; false if not.
+ * Display a sermons's speakers in an <ul> if they exist; returns false if not.
  */
 function tbf_sermon_speakers( $post_id = null ) {
 
@@ -211,12 +164,7 @@ function tbf_sermon_speakers( $post_id = null ) {
 }
 
 /**
- * Sermon tags.
- *
- * Display a sermons's tags in an unordered list if they exist; returns false if not.
- *
- * @param int $post_id Post ID to get data for; null for current post.
- * @return mixed Tags if they exist; false if not.
+ * Display a sermons's tags in an <ul> if they exist; returns false if not.
  */
 function tbf_sermon_tags( $post_id = null ) {
 

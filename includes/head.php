@@ -3,23 +3,12 @@
  * <head> Functions
  *
  * Contains functions used to modify and add to the <head>.
- *
- * @link https://bitbucket.org/themebright/themebright-framework
- * @since 1.0.0
- *
- * @package ThemeBright_Framework
- * @subpackage Functions
  */
 
 /**
- * WP title.
+ * Filters wp_title to print a neat <title> tag based on what is being viewed.
  *
- * Filters wp_title to print a neat <title> tag based on what is being viewed. Pulled
- * straight from the _s source.
- *
- * @param string $title Default title text for current view.
- * @param string $sep Optional separator.
- * @return string The filtered title.
+ * Pulled straight from the _s source.
  */
 function tbf_wp_title( $title, $sep ) {
 

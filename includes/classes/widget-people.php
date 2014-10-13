@@ -1,17 +1,8 @@
 <?php
 /**
  * People Widget
- *
- * @link https://bitbucket.org/themebright/themebright-framework
- * @since 1.0.0
- *
- * @package ThemeBright_Framework
- * @subpackage Classes
  */
 
-/**
- * People widget class.
- */
 class TBF_Widget_People extends WP_Widget {
 
   function TBF_Widget_People() {

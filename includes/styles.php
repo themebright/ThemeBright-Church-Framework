@@ -3,16 +3,10 @@
  * Framework Styles
  *
  * Enqueues the various styles required by the ThemeBright framework.
- *
- * @link https://bitbucket.org/themebright/themebright-framework
- * @since 1.0.0
- *
- * @package ThemeBright_Framework
- * @subpackage Assets
  */
 
 /**
- * Enqueue framework styles.
+ * Registers and enqueues framework styles.
  */
 function tbf_styles() {
 
