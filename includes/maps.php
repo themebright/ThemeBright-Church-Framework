@@ -24,8 +24,10 @@
 function tbf_map( $lat = null, $lng = null ) {
 
   if ( $lat && $lng ) {
-    $html  = '<div class="tbf-map">';
-    $html .= '<div class="marker" data-lat="' . $lat . '" data-lng="' . $lng . '"></div>';
+    $html = '';
+
+    $html .= '<div class="tbf-map">';
+    $html .= "<div class='marker' data-lat='$lat' data-lng='$lng'></div>";
     $html .= '</div>';
 
     return $html;

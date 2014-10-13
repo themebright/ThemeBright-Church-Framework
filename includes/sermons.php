@@ -103,10 +103,12 @@ function tbf_sermon_topics( $post_id = null ) {
   $topics = tbf_get_terms( 'ctc_sermon_topic', $post_id );
 
   if ( $topics ) {
-    $html = '<ul class="sermon-topics">';
+    $html = '';
+
+    $html .= '<ul class="sermon-topics">';
 
     foreach ( $topics as $topic ) {
-      $html .= "<li><a href='" . get_term_link( $topic ) . "'>$topic->name</a></li>";
+      $html .= "<li><a href='" . get_term_link( $topic ) . "'><span>$topic->name</span></a></li>";
     }
 
     $html .= '</ul>';
@@ -131,10 +133,12 @@ function tbf_sermon_books( $post_id = null ) {
   $books = tbf_get_terms( 'ctc_sermon_book', $post_id );
 
   if ( $books ) {
-    $html = '<ul class="sermon-books">';
+    $html = '';
+
+    $html .= '<ul class="sermon-books">';
 
     foreach ( $books as $book ) {
-      $html .= "<li><a href='" . get_term_link( $book ) . "'>$book->name</a></li>";
+      $html .= "<li><a href='" . get_term_link( $book ) . "'><span>$book->name</span></a></li>";
     }
 
     $html .= '</ul>';
@@ -159,10 +163,12 @@ function tbf_sermon_series( $post_id = null ) {
   $series = tbf_get_terms( 'ctc_sermon_series', $post_id );
 
   if ( $series ) {
-    $html = '<ul class="sermon-series">';
+    $html = '';
+
+    $html .= '<ul class="sermon-series">';
 
     foreach ( $series as $single_series ) {
-      $html .= "<li><a href='" . get_term_link( $single_series ) . "'>$single_series->name</a></li>";
+      $html .= "<li><a href='" . get_term_link( $single_series ) . "'><span>$single_series->name</span></a></li>";
     }
 
     $html .= '</ul>';
@@ -187,10 +193,12 @@ function tbf_sermon_speakers( $post_id = null ) {
   $speakers = tbf_get_terms( 'ctc_sermon_speaker', $post_id );
 
   if ( $speakers ) {
-    $html = '<ul class="sermon-speakers">';
+    $html = '';
+
+    $html .= '<ul class="sermon-speakers">';
 
     foreach ( $speakers as $speaker ) {
-      $html .= "<li><a href='" . get_term_link( $speaker ) . "'>$speaker->name</a></li>";
+      $html .= "<li><a href='" . get_term_link( $speaker ) . "'><span>$speaker->name</span></a></li>";
     }
 
     $html .= '</ul>';
@@ -215,10 +223,12 @@ function tbf_sermon_tags( $post_id = null ) {
   $tags = tbf_get_terms( 'ctc_sermon_tag', $post_id );
 
   if ( $tags ) {
-    $html = '<ul class="sermon-tags">';
+    $html = '';
+
+    $html .= '<ul class="sermon-tags">';
 
     foreach ( $tags as $tag ) {
-      $html .= "<li><a href='" . get_term_link( $tag ) . "'>$tag->name</a></li>";
+      $html .= "<li><a href='" . get_term_link( $tag ) . "'><span>$tag->name</span></a></li>";
     }
 
     $html .= '</ul>';

@@ -22,9 +22,7 @@
 function tbf_phone_link( $number = null ) {
 
   if ( $number ) {
-    $html  = '<a href="tel:+' . tbf_clean_phone( $number ) . '" class="phone">';
-    $html .= $number;
-    $html .= '</a>';
+    $html  = "<a href='tel:+" . tbf_clean_phone( $number ) . "' class='phone'><span>$number</span></a>";
 
     return $html;
   }

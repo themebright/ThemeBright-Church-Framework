@@ -24,9 +24,7 @@ function tbf_address( $address = null ) {
   if ( $address ) {
     $address = nl2br( $address );
 
-    $html  = '<address>';
-    $html .= $address;
-    $html .= '</address>';
+    $html = "<address>$address</address>";
 
     return $html;
   }

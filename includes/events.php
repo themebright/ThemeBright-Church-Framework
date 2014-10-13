@@ -48,10 +48,14 @@ function tbf_event_date( $format = null, $post_id = null ) {
   $end_date_formatted = tbf_format_date( $end_date, $format );
 
   if ( $start_date ) {
-    $html = $start_date_formatted;
+    $html = '';
+
+    $html .= "<span>$start_date_formatted</span>";
 
     if ( $end_date && $end_date != $start_date ) {
-      $html .= ' &ndash; ' . $end_date_formatted;
+      $html .= '<span class="sep">&ndash;</span>';
+
+      $html .= "<span>$end_date_formatted</span>";
     }
 
     return $html;
@@ -74,7 +78,7 @@ function tbf_event_time( $post_id = null ) {
   $time = tbf_get_event_meta( 'time', $post_id );
 
   if ( $time ) {
-    $time = str_replace( '-', '&ndash;', $time );
+    $time = str_replace( array( '-', '–', '—' ), '&ndash;', $time );
 
     return $time;
   }

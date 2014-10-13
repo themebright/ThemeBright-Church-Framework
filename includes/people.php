@@ -103,10 +103,12 @@ function tbf_person_urls( $post_id = null ) {
   $urls = tbf_get_person_meta( 'urls', $post_id );
 
   if ( $urls ) {
+    $html = '';
+
     $urls = explode( PHP_EOL, $urls );
     $urls = array_map( 'trim', $urls );
 
-    $html = '<ul class="urls person-urls">';
+    $html .= '<ul class="urls person-urls">';
 
     foreach ( $urls as $url ) {
       $html .= "<li><a href='$url'><span>$url</span></a></li>";
@@ -134,10 +136,12 @@ function tbf_person_groups( $post_id = null ) {
   $groups = tbf_get_terms( 'ctc_person_group', $post_id );
 
   if ( $groups ) {
-    $html = '<ul class="person-groups">';
+    $html = '';
+
+    $html .= '<ul class="person-groups">';
 
     foreach ( $groups as $group ) {
-      $html .= "<li><a href='" . get_term_link( $group ) . "'>$group->name</a></li>";
+      $html .= "<li><a href='" . get_term_link( $group ) . "'><span>$group->name</span></a></li>";
     }
 
     $html .= '</ul>';

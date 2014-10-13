@@ -83,13 +83,15 @@ function tbf_location_times( $post_id = null ) {
   $times = tbf_get_location_meta( 'times', $post_id );
 
   if ( $times ) {
+    $html = '';
+
     $times = explode( PHP_EOL, $times );
     $times = array_map( 'trim', $times );
 
-    $html = '<ul class="location-times times">';
+    $html .= '<ul class="location-times times">';
 
     foreach ( $times as $time ) {
-      $html .= "<li>$time</li>";
+      $html .= "<li><span>$time</span></li>";
     }
 
     $html .= '</ul>';
