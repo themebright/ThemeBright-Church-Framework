@@ -24,6 +24,9 @@
 function tbf_map( $lat = null, $lng = null ) {
 
   if ( $lat && $lng ) {
+    wp_enqueue_script( 'tbf-maps-api' );
+    wp_enqueue_script( 'tbf-maps' );
+
     $html = '';
 
     $html .= '<div class="tbf-map">';

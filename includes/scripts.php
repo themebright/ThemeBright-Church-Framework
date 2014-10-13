@@ -16,13 +16,11 @@
  */
 function tbf_scripts() {
 
-  // Google Maps API
-  wp_enqueue_script( 'tbf-google-maps', '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false', TBF_VERSION );
+  // Register scripts for use later
+  wp_register_script( 'tbf-maps-api', '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false', 'false', TBF_VERSION );
+  wp_register_script( 'tbf-maps', tbf_template_url() . TBF_DIR . '/assets/js/maps.js', array( 'jquery', 'tbf-maps-api' ), TBF_VERSION );
 
-  // maps script
-  wp_enqueue_script( 'tbf-maps', tbf_template_url() . TBF_DIR . '/assets/js/maps.js', array( 'jquery', 'tbf-google-maps' ), TBF_VERSION );
-
-  // framework
+  // Immediately enqueue these scripts
   wp_enqueue_script( 'tbf', tbf_template_url() . TBF_DIR . '/assets/js/tbf.js', array( 'jquery' ), TBF_VERSION );
 
 }
