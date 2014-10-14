@@ -6,7 +6,7 @@
  */
 
 /**
- * Cleans email address and converts it into a mailto: link.
+ * Converts email address to mailto link.
  */
 function tbf_email_link( $email = null ) {
 
