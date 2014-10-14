@@ -33,7 +33,7 @@ class TBF_Widget_Locations extends WP_Widget {
       'orderby'        => 'menu_order'
     );
 
-    $locations = new WP_Query( apply_filters( 'tbf_widget_locations_args', $query_args ) );
+    $locations = new WP_Query( $query_args );
 
     $override = locate_template( 'widgets/widget-locations.php' );
 

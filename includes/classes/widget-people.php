@@ -37,7 +37,7 @@ class TBF_Widget_People extends WP_Widget {
       'orderby'          => 'menu_order'
     );
 
-    $people = new WP_Query( apply_filters( 'tbf_widget_people_args', $query_args ) );
+    $people = new WP_Query( $query_args );
 
     $override = locate_template( 'widgets/widget-people.php' );
 

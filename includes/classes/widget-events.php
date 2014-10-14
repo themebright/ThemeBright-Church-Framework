@@ -45,7 +45,7 @@ class TBF_Widget_Events extends WP_Widget {
       )
     );
 
-    $events = new WP_Query( apply_filters( 'tbf_widget_events_args', $query_args ) );
+    $events = new WP_Query( $query_args );
 
     $override = locate_template( 'widgets/widget-events.php' );
 

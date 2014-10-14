@@ -31,7 +31,7 @@ class TBF_Widget_Sermons extends WP_Widget {
       'posts_per_page' => $number
     );
 
-    $sermons = new WP_Query( apply_filters( 'tbf_widget_sermons_args', $query_args ) );
+    $sermons = new WP_Query( $query_args );
 
     $override = locate_template( 'widgets/widget-sermons.php' );
 
