@@ -91,3 +91,19 @@ function tbf_location_map( $post_id = null ) {
   return false;
 
 }
+
+/**
+ * Displays a static location map if neccesary data exists; returns false if not.
+ */
+function tbf_location_static_map( $post_id = null ) {
+
+  $lat = tbf_get_location_meta( 'map_lat', $post_id );
+  $lng = tbf_get_location_meta( 'map_lng', $post_id );
+
+  if ( ! empty( $lat ) && ! empty( $lng ) ) {
+    return tbf_static_map( $lat, $lng );
+  }
+
+  return false;
+
+}
