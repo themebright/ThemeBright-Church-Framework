@@ -8,7 +8,7 @@
 /**
  * Creates neccessary HTML to render a map with the Google Maps API if necessary data exists; returns false not.
  */
-function tbf_map( $lat = null, $lng = null, $static = false ) {
+function tbf_map( $lat = null, $lng = null, $zoom = '14', $type = 'roadmap' ) {
 
   if ( ! empty( $lat ) && ! empty( $lng ) ) {
     wp_enqueue_script( 'tbf-maps-api' );
@@ -16,8 +16,8 @@ function tbf_map( $lat = null, $lng = null, $static = false ) {
 
     $html = '';
 
-    $html .= '<div class="tbf-map">';
-    $html .= "<div class='marker' data-lat='$lat' data-lng='$lng'></div>";
+    $html .= '<div class="tbf-map-scaler">';
+    $html .= "<div class='tbf-map' data-lat='$lat' data-lng='$lng' data-zoom='$zoom' data-type='$type'></div>";
     $html .= '</div>';
 
     return $html;
