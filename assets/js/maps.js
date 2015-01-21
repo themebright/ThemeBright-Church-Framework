@@ -20,8 +20,8 @@
 
     // Save the map position
     position = {
-      lat: parseInt( map.dataset.lat ),
-      lng: parseInt( map.dataset.lng ),
+      lat: parseFloat( map.dataset.lat ),
+      lng: parseFloat( map.dataset.lng ),
     };
 
     // Save the map zoom
@@ -30,7 +30,7 @@
     // Create the map options object
     options = {
       center: position,
-      zoom: parseInt( map.dataset.zoom ),
+      zoom: zoom,
       mapTypeId: map.dataset.type.toLowerCase(),
       panControl: false,
       mapTypeControl: false,
