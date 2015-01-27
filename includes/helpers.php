@@ -10,7 +10,7 @@
  */
 function tbf_get_template_directory_uri() {
 
-  $url = trailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
+  $url = untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
 
   return $url;
 
