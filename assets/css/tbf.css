@@ -1,17 +1,17 @@
-.tbf-map-scaler {
-  height: 0;
-  padding-bottom: 60%;
-  position: relative;
+.tbf-map img {
+  max-width: none !important;
 }
 
-.tbf-map {
+.tbf-map__scaler {
+  position: relative;
+  height: 0;
+  padding-bottom: 60%;
+}
+
+.tbf-map__canvas {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-}
-
-.tbf-map img {
-  max-width: none !important;
 }

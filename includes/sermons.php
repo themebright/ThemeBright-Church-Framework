@@ -1,12 +1,10 @@
 <?php
 /**
  * Sermons Functions
- *
- * Contains functions used to display sermons and their meta data.
  */
 
 /**
- * Gets the sermon meta using tbf_get_meta without need for prefix.
+ * Returns the sermon meta using tbf_get_meta without need for prefix.
  */
 function tbf_get_sermon_meta( $key = null, $post_id = null ) {
 
@@ -16,10 +14,21 @@ function tbf_get_sermon_meta( $key = null, $post_id = null ) {
     return $data;
   }
 
+  return false;
+
 }
 
 /**
- * Displays the sermon video if it exists; returns false if not.
+ * Returns truthy value if sermon contains full text; falsey if not.
+ */
+function tbf_sermon_has_full_text( $post_id = null ) {
+
+  return tbf_get_sermon_meta( 'has_full_text', $post_id );
+
+}
+
+/**
+ * Returns the sermon video if it exists; false if not.
  */
 function tbf_sermon_video( $post_id = null ) {
 
@@ -34,7 +43,7 @@ function tbf_sermon_video( $post_id = null ) {
 }
 
 /**
- * Displays the sermon audio if it exists; returns false if not.
+ * Returns the sermon audio if it exists; false if not.
  */
 function tbf_sermon_audio( $post_id = null ) {
 
@@ -49,7 +58,7 @@ function tbf_sermon_audio( $post_id = null ) {
 }
 
 /**
- * Displays the sermon PDF URL if it exists; returns false if not.
+ * Returns the sermon PDF if it exists; false if not.
  */
 function tbf_sermon_pdf( $post_id = null ) {
 
@@ -64,24 +73,14 @@ function tbf_sermon_pdf( $post_id = null ) {
 }
 
 /**
- * Display a sermons's topics in an <ul> if they exist; returns false if not.
+ * Returns a sermons's topics if they exist; false if not.
  */
 function tbf_sermon_topics( $post_id = null ) {
 
   $topics = tbf_get_terms( 'ctc_sermon_topic', $post_id );
 
   if ( ! empty( $topics ) ) {
-    $html = '';
-
-    $html .= '<ul class="sermon-topics">';
-
-    foreach ( $topics as $topic ) {
-      $html .= "<li><a href='" . get_term_link( $topic ) . "'><span>$topic->name</span></a></li>";
-    }
-
-    $html .= '</ul>';
-
-    return $html;
+    return $topics;
   }
 
   return false;
@@ -89,24 +88,14 @@ function tbf_sermon_topics( $post_id = null ) {
 }
 
 /**
- * Display a sermons's books in an <ul> if they exist; returns false if not.
+ * Returns a sermons's books if they exist; false if not.
  */
 function tbf_sermon_books( $post_id = null ) {
 
   $books = tbf_get_terms( 'ctc_sermon_book', $post_id );
 
   if ( ! empty( $books ) ) {
-    $html = '';
-
-    $html .= '<ul class="sermon-books">';
-
-    foreach ( $books as $book ) {
-      $html .= "<li><a href='" . get_term_link( $book ) . "'><span>$book->name</span></a></li>";
-    }
-
-    $html .= '</ul>';
-
-    return $html;
+    return $books;
   }
 
   return false;
@@ -114,24 +103,14 @@ function tbf_sermon_books( $post_id = null ) {
 }
 
 /**
- * Display a sermons's series in an <ul> if they exist; returns false if not.
+ * Returns a sermons's series if they exist; false if not.
  */
 function tbf_sermon_series( $post_id = null ) {
 
   $series = tbf_get_terms( 'ctc_sermon_series', $post_id );
 
   if ( ! empty( $series ) ) {
-    $html = '';
-
-    $html .= '<ul class="sermon-series">';
-
-    foreach ( $series as $single_series ) {
-      $html .= "<li><a href='" . get_term_link( $single_series ) . "'><span>$single_series->name</span></a></li>";
-    }
-
-    $html .= '</ul>';
-
-    return $html;
+    return $series;
   }
 
   return false;
@@ -139,24 +118,14 @@ function tbf_sermon_series( $post_id = null ) {
 }
 
 /**
- * Display a sermons's speakers in an <ul> if they exist; returns false if not.
+ * Returns a sermons's speakers if they exist; false if not.
  */
 function tbf_sermon_speakers( $post_id = null ) {
 
   $speakers = tbf_get_terms( 'ctc_sermon_speaker', $post_id );
 
   if ( ! empty( $speakers ) ) {
-    $html = '';
-
-    $html .= '<ul class="sermon-speakers">';
-
-    foreach ( $speakers as $speaker ) {
-      $html .= "<li><a href='" . get_term_link( $speaker ) . "'><span>$speaker->name</span></a></li>";
-    }
-
-    $html .= '</ul>';
-
-    return $html;
+    return $speakers;
   }
 
   return false;
@@ -164,24 +133,14 @@ function tbf_sermon_speakers( $post_id = null ) {
 }
 
 /**
- * Display a sermons's tags in an <ul> if they exist; returns false if not.
+ * Returns a sermons's tags if they exist; false if not.
  */
 function tbf_sermon_tags( $post_id = null ) {
 
   $tags = tbf_get_terms( 'ctc_sermon_tag', $post_id );
 
   if ( ! empty( $tags ) ) {
-    $html = '';
-
-    $html .= '<ul class="sermon-tags">';
-
-    foreach ( $tags as $tag ) {
-      $html .= "<li><a href='" . get_term_link( $tag ) . "'><span>$tag->name</span></a></li>";
-    }
-
-    $html .= '</ul>';
-
-    return $html;
+    return $tags;
   }
 
   return false;

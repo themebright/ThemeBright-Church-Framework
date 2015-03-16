@@ -1,61 +1,43 @@
-( function() {
+jQuery( 'document' ).ready( function( $ ) {
 
-  // Declare our variables for later use
-  var maps, map, id, lat, lng, position, zoom, options, marker;
+  $( '.tbf-map__canvas' ).each( function( i ) {
 
-  // Query all the maps
-  maps = document.querySelectorAll( '.tbf-map' );
+    var $this = $( this );
 
-  // Loop through the maps
-  for ( var i = 0; i < maps.length; i++ ) {
+    var id = 'tbf-map-' + i;
 
-    // Save out individual map
-    map = maps[i];
-
-    // Save the ID
-    id = 'map-' + i;
-
-    // Set the ID
-    map.setAttribute( 'id', id );
-
-    // Save the map position
-    position = {
-      lat: parseFloat( map.dataset.lat ),
-      lng: parseFloat( map.dataset.lng ),
+    var position = {
+      lat: parseFloat( $this.data( 'tbf-map-lat' ) ),
+      lng: parseFloat( $this.data( 'tbf-map-lng' ) )
     };
 
-    // Save the map zoom
-    zoom = parseInt( map.dataset.zoom );
+    var type = $this.data( 'tbf-map-type' );
 
-    // Create the map options object
-    options = {
-      center: position,
-      zoom: zoom,
-      mapTypeId: map.dataset.type.toLowerCase(),
-      panControl: false,
-      mapTypeControl: false,
-      scrollwheel: false
+    var zoom = parseInt( $this.data( 'tbf-map-zoom' ) );
+
+    var options = {
+      center    : position,
+      mapTypeId : type,
+      zoom      : zoom
     };
 
-    // Create the map
-    map = new google.maps.Map( document.getElementById( id ), options );
+    $this.attr( 'id', id );
 
-    // Create the marker
-    marker = new google.maps.Marker( {
-      position: position,
-      map: map
+    var map = new google.maps.Map( document.getElementById( id ), options );
+
+    var marker = new google.maps.Marker( {
+      map      : map,
+      position : position
     });
 
-    // On marker click, pan to center
     google.maps.event.addListener( marker, 'click', function() {
       map.panTo( position );
     });
 
-    // On window resize, re-center the map
     google.maps.event.addDomListener( window, 'resize', function() {
       map.setCenter( position );
     });
 
-  }
+  } );
 
-})();
+} );

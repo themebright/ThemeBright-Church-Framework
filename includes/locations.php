@@ -1,8 +1,6 @@
 <?php
 /**
  * Location Functions
- *
- * Contains functions used to display locations and their meta data.
  */
 
 /**
@@ -16,17 +14,19 @@ function tbf_get_location_meta( $key = null, $post_id = null ) {
     return $data;
   }
 
+  return false;
+
 }
 
 /**
- * Displays the location address if it exists; returns false if not.
+ * Returns the location address if it exists; false if not.
  */
 function tbf_location_address( $post_id = null ) {
 
   $address = tbf_get_location_meta( 'address', $post_id );
 
   if ( ! empty( $address ) ) {
-    return tbf_address( $address );
+    return $address;
   }
 
   return false;
@@ -34,14 +34,23 @@ function tbf_location_address( $post_id = null ) {
 }
 
 /**
- * Displays the location phone if it exists; returns false if not.
+ * Returns truthy value if show directions link; falsey if not.
+ */
+function tbf_location_show_directions_link( $post_id = null ) {
+
+  return tbf_get_location_meta( 'show_directions_link', $post_id );
+
+}
+
+/**
+ * Returns the location phone if it exists; false if not.
  */
 function tbf_location_phone( $post_id = null ) {
 
   $phone = tbf_get_location_meta( 'phone', $post_id );
 
   if ( ! empty( $phone ) ) {
-    return tbf_phone_link( $phone );
+    return $phone;
   }
 
   return false;
@@ -49,27 +58,14 @@ function tbf_location_phone( $post_id = null ) {
 }
 
 /**
- * Displays location times in <ul> if they exists; returns false if not.
+ * Returns location times if they exists; false if not.
  */
 function tbf_location_times( $post_id = null ) {
 
   $times = tbf_get_location_meta( 'times', $post_id );
 
   if ( ! empty( $times ) ) {
-    $html = '';
-
-    $times = explode( PHP_EOL, $times );
-    $times = array_map( 'trim', $times );
-
-    $html .= '<ul class="location-times times">';
-
-    foreach ( $times as $time ) {
-      $html .= "<li><span>$time</span></li>";
-    }
-
-    $html .= '</ul>';
-
-    return $html;
+    return $times;
   }
 
   return false;
@@ -77,7 +73,7 @@ function tbf_location_times( $post_id = null ) {
 }
 
 /**
- * Displays a location map if neccesary data exists; returns false if not.
+ * Returns the location map if neccesary data exists; false if not.
  */
 function tbf_location_map( $post_id = null ) {
 
@@ -85,23 +81,10 @@ function tbf_location_map( $post_id = null ) {
   $lng = tbf_get_location_meta( 'map_lng', $post_id );
 
   if ( ! empty( $lat ) && ! empty( $lng ) ) {
-    return tbf_map( $lat, $lng );
-  }
+    $type = tbf_get_location_meta( 'map_type', $post_id );
+    $zoom = tbf_get_location_meta( 'map_zoom', $post_id );
 
-  return false;
-
-}
-
-/**
- * Displays a static location map if neccesary data exists; returns false if not.
- */
-function tbf_location_static_map( $post_id = null ) {
-
-  $lat = tbf_get_location_meta( 'map_lat', $post_id );
-  $lng = tbf_get_location_meta( 'map_lng', $post_id );
-
-  if ( ! empty( $lat ) && ! empty( $lng ) ) {
-    return tbf_static_map( $lat, $lng );
+    return tbf_map( $lat, $lng, $type, $zoom );
   }
 
   return false;

@@ -4,10 +4,10 @@
  */
 
 /**
- * Get and save theme data.
+ * Saves theme data.
  */
 $theme_data = wp_get_theme();
-$theme_data = is_child_theme() ? wp_get_theme( $theme_data->template ) : $theme_data;
+$theme_data = ( is_child_theme() ? wp_get_theme( $theme_data->template ) : $theme_data );
 
 /**
  * Define constants.
@@ -18,28 +18,16 @@ if ( ! defined( 'TBF_DIR' ) )           define( 'TBF_DIR',           basename( _
 if ( ! defined( 'TBF_THEME_VERSION' ) ) define( 'TBF_THEME_VERSION', $theme_data->Version );
 
 /**
- * Load includes.
+ * Loads includes.
  */
-$includes = array(
-  'addresses.php',
-  'dates.php',
-  'email.php',
-  'events.php',
-  'head.php',
-  'helpers.php',
-  'locations.php',
-  'maps.php',
-  'meta.php',
-  'people.php',
-  'phone.php',
-  'scripts.php',
-  'sermons.php',
-  'styles.php',
-  'terms.php',
-  'urls.php',
-  'widgets.php'
-);
-
-foreach ( $includes as $include ) {
-  locate_template( TBF_DIR . "/includes/$include", true );
-}
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/events.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/helpers.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/locations.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/maps.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/meta.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/people.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/scripts.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/sermons.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/styles.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/terms.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/widgets.php' );

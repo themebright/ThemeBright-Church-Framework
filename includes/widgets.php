@@ -1,26 +1,18 @@
 <?php
 /**
  * Widgets
- *
- * Loads and registers framework widgets.
  */
 
 /**
- * Load individual widget classes.
+ * Loads widget classes.
  */
-$widgets = array(
-  'widget-events.php',
-  'widget-locations.php',
-  'widget-people.php',
-  'widget-sermons.php'
-);
-
-foreach ( $widgets as $widget ) {
-  locate_template( TBF_DIR . "/includes/classes/$widget", true );
-}
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-events.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-locations.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-people.php' );
+require_once( get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-sermons.php' );
 
 /**
- * Register widgets classes.
+ * Registers widgets classes.
  */
 function tbf_register_widgets() {
 

@@ -1,8 +1,6 @@
 <?php
 /**
  * Meta Functions
- *
- * Contains functions used to check, get, and display post meta data.
  */
 
 /**

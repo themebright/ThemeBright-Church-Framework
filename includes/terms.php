@@ -1,8 +1,6 @@
 <?php
 /**
  * Taxonomy Functions
- *
- * Contains functions used to check, get, and display post taxonomies and terms.
  */
 
 /**
