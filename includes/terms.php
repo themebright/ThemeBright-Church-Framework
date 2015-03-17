@@ -6,7 +6,7 @@
 /**
  * Gets a post's terms from a particular taxonomy.
  */
-function tbf_get_terms( $tax = null, $post_id = null ) {
+function tbf_get_terms( $post_id = null, $tax = null ) {
 
   if ( empty( $post_id ) ) {
     $post_id = get_the_ID();

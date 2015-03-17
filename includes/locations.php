@@ -6,10 +6,10 @@
 /**
  * Gets the location meta using tbf_get_meta without need for prefix.
  */
-function tbf_get_location_meta( $key = null, $post_id = null ) {
+function tbf_get_location_meta( $post_id = null, $key = null ) {
 
   if ( ! empty( $key ) ) {
-    $data = tbf_get_meta( '_ctc_location_' . $key, $post_id );
+    $data = tbf_get_meta( $post_id, '_ctc_location_' . $key );
 
     return $data;
   }
@@ -23,7 +23,7 @@ function tbf_get_location_meta( $key = null, $post_id = null ) {
  */
 function tbf_location_address( $post_id = null ) {
 
-  $address = tbf_get_location_meta( 'address', $post_id );
+  $address = tbf_get_location_meta( $post_id, 'address' );
 
   if ( ! empty( $address ) ) {
     return $address;
@@ -38,7 +38,7 @@ function tbf_location_address( $post_id = null ) {
  */
 function tbf_location_show_directions_link( $post_id = null ) {
 
-  return tbf_get_location_meta( 'show_directions_link', $post_id );
+  return tbf_get_location_meta( $post_id, 'show_directions_link' );
 
 }
 
@@ -47,7 +47,7 @@ function tbf_location_show_directions_link( $post_id = null ) {
  */
 function tbf_location_phone( $post_id = null ) {
 
-  $phone = tbf_get_location_meta( 'phone', $post_id );
+  $phone = tbf_get_location_meta( $post_id, 'phone' );
 
   if ( ! empty( $phone ) ) {
     return $phone;
@@ -62,7 +62,7 @@ function tbf_location_phone( $post_id = null ) {
  */
 function tbf_location_times( $post_id = null ) {
 
-  $times = tbf_get_location_meta( 'times', $post_id );
+  $times = tbf_get_location_meta( $post_id, 'times' );
 
   if ( ! empty( $times ) ) {
     return $times;
@@ -77,12 +77,12 @@ function tbf_location_times( $post_id = null ) {
  */
 function tbf_location_map( $post_id = null ) {
 
-  $lat = tbf_get_location_meta( 'map_lat', $post_id );
-  $lng = tbf_get_location_meta( 'map_lng', $post_id );
+  $lat = tbf_get_location_meta( $post_id, 'map_lat' );
+  $lng = tbf_get_location_meta( $post_id, 'map_lng' );
 
   if ( ! empty( $lat ) && ! empty( $lng ) ) {
-    $type = tbf_get_location_meta( 'map_type', $post_id );
-    $zoom = tbf_get_location_meta( 'map_zoom', $post_id );
+    $type = tbf_get_location_meta( $post_id, 'map_type' );
+    $zoom = tbf_get_location_meta( $post_id, 'map_zoom' );
 
     return tbf_map( $lat, $lng, $type, $zoom );
   }

@@ -6,10 +6,10 @@
 /**
  * Gets the event meta using tbf_get_meta without need for prefix.
  */
-function tbf_get_event_meta( $key = null, $post_id = null ) {
+function tbf_get_event_meta( $post_id = null, $key = null ) {
 
   if ( ! empty( $key ) ) {
-    $data = tbf_get_meta( '_ctc_event_' . $key, $post_id );
+    $data = tbf_get_meta( $post_id, '_ctc_event_' . $key );
 
     return $data;
   }
@@ -21,10 +21,10 @@ function tbf_get_event_meta( $key = null, $post_id = null ) {
 /**
  * Returns the event date if it exists; false if not.
  */
-function tbf_event_date( $format = null, $post_id = null ) {
+function tbf_event_date( $post_id = null, $format = null ) {
 
-  $start = tbf_get_event_meta( 'start_date', $post_id );
-  $end   = tbf_get_event_meta( 'end_date',   $post_id );
+  $start = tbf_get_event_meta( $post_id, 'start_date' );
+  $end   = tbf_get_event_meta( $post_id, 'end_date' );
 
   if ( ! empty( $start ) ) {
     $date['start'] = tbf_format_date( $start, $format );
@@ -43,10 +43,10 @@ function tbf_event_date( $format = null, $post_id = null ) {
 /**
  * Returns the event time if it exists; false if not.
  */
-function tbf_event_time( $format = null, $post_id = null ) {
+function tbf_event_time( $post_id = null, $format = null ) {
 
-  $start = tbf_get_event_meta( 'start_date_start_time', $post_id );
-  $end   = tbf_get_event_meta( 'start_date_end_time',   $post_id );
+  $start = tbf_get_event_meta( $post_id, 'start_date_start_time' );
+  $end   = tbf_get_event_meta( $post_id, 'start_date_end_time' );
 
   if ( ! empty( $start ) ) {
     $time['start'] = tbf_format_time( $start, $format );
@@ -67,7 +67,7 @@ function tbf_event_time( $format = null, $post_id = null ) {
  */
 function tbf_event_hide_time_range( $post_id = null ) {
 
-  return tbf_get_event_meta( 'hide_time_range', $post_id );
+  return tbf_get_event_meta( $post_id, 'hide_time_range' );
 
 }
 
@@ -76,7 +76,7 @@ function tbf_event_hide_time_range( $post_id = null ) {
  */
 function tbf_event_time_description( $post_id = null ) {
 
-  $time = tbf_get_event_meta( 'time', $post_id );
+  $time = tbf_get_event_meta( $post_id, 'time' );
 
   if ( ! empty( $time ) ) {
     return $time;
@@ -91,7 +91,7 @@ function tbf_event_time_description( $post_id = null ) {
  */
 function tbf_event_venue( $post_id = null ) {
 
-  $venue = tbf_get_event_meta( 'venue', $post_id );
+  $venue = tbf_get_event_meta( $post_id, 'venue' );
 
   if ( ! empty( $venue ) ) {
     return $venue;
@@ -106,7 +106,7 @@ function tbf_event_venue( $post_id = null ) {
  */
 function tbf_event_address( $post_id = null ) {
 
-  $address = tbf_get_event_meta( 'address', $post_id );
+  $address = tbf_get_event_meta( $post_id, 'address' );
 
   if ( ! empty( $address ) ) {
     return $address;
@@ -121,7 +121,7 @@ function tbf_event_address( $post_id = null ) {
  */
 function tbf_event_show_directions_link( $post_id = null ) {
 
-  return tbf_get_event_meta( 'show_directions_link', $post_id );
+  return tbf_get_event_meta( $post_id, 'show_directions_link' );
 
 }
 
@@ -130,12 +130,12 @@ function tbf_event_show_directions_link( $post_id = null ) {
  */
 function tbf_event_map( $post_id = null ) {
 
-  $lat = tbf_get_event_meta( 'map_lat', $post_id );
-  $lng = tbf_get_event_meta( 'map_lng', $post_id );
+  $lat = tbf_get_event_meta( $post_id, 'map_lat' );
+  $lng = tbf_get_event_meta( $post_id, 'map_lng' );
 
   if ( ! empty( $lat ) && ! empty( $lng ) ) {
-    $type = tbf_get_event_meta( 'map_type', $post_id );
-    $zoom = tbf_get_event_meta( 'map_zoom', $post_id );
+    $type = tbf_get_event_meta( $post_id, 'map_type' );
+    $zoom = tbf_get_event_meta( $post_id, 'map_zoom' );
 
     return tbf_map( $lat, $lng, $type, $zoom );
   }
@@ -149,7 +149,7 @@ function tbf_event_map( $post_id = null ) {
  */
 function tbf_event_categories( $post_id = null ) {
 
-  $categories = tbf_get_terms( 'ctc_event_category', $post_id );
+  $categories = tbf_get_terms( $post_id, 'ctc_event_category' );
 
   if ( ! empty( $categories ) ) {
     return $categories;

@@ -6,10 +6,10 @@
 /**
  * Gets the person meta using tbf_get_meta without need for prefix.
  */
-function tbf_get_person_meta( $key = null, $post_id = null ) {
+function tbf_get_person_meta( $post_id = null, $key = null ) {
 
   if ( ! empty( $key ) ) {
-    $data = tbf_get_meta( '_ctc_person_' . $key, $post_id );
+    $data = tbf_get_meta( $post_id, '_ctc_person_' . $key );
 
     return $data;
   }
@@ -23,7 +23,7 @@ function tbf_get_person_meta( $key = null, $post_id = null ) {
  */
 function tbf_person_position( $post_id = null ) {
 
-  $position = tbf_get_person_meta( 'position', $post_id );
+  $position = tbf_get_person_meta( $post_id, 'position' );
 
   if ( ! empty( $position ) ) {
     return $position;
@@ -38,7 +38,7 @@ function tbf_person_position( $post_id = null ) {
  */
 function tbf_person_phone( $post_id = null ) {
 
-  $phone = tbf_get_person_meta( 'phone', $post_id );
+  $phone = tbf_get_person_meta( $post_id, 'phone' );
 
   if ( ! empty( $phone ) ) {
     return $phone;
@@ -53,7 +53,7 @@ function tbf_person_phone( $post_id = null ) {
  */
 function tbf_person_email( $post_id = null ) {
 
-  $email = tbf_get_person_meta( 'email', $post_id );
+  $email = tbf_get_person_meta( $post_id, 'email' );
 
   if ( ! empty( $email ) ) {
     return $email;
@@ -68,7 +68,7 @@ function tbf_person_email( $post_id = null ) {
  */
 function tbf_person_urls( $post_id = null ) {
 
-  $urls = tbf_get_person_meta( 'urls', $post_id );
+  $urls = tbf_get_person_meta( $post_id, 'urls' );
 
   if ( ! empty( $urls ) ) {
     return array_map( 'trim', explode( PHP_EOL, $urls ) );
@@ -83,7 +83,7 @@ function tbf_person_urls( $post_id = null ) {
  */
 function tbf_person_groups( $post_id = null ) {
 
-  $groups = tbf_get_terms( 'ctc_person_group', $post_id );
+  $groups = tbf_get_terms( $post_id, 'ctc_person_group' );
 
   if ( ! empty( $groups ) ) {
     return $groups;
