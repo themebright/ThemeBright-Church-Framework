@@ -15,8 +15,6 @@ jQuery( 'document' ).ready( function( $ ) {
 
     var zoom = parseInt( $this.data( 'tbf-map-zoom' ) );
 
-    console.log(type);
-
     var options = {
       center             : position,
       mapTypeId          : google.maps.MapTypeId.type,
