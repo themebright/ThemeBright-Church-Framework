@@ -4,7 +4,7 @@ jQuery( 'document' ).ready( function( $ ) {
 
     var $this = $( this );
 
-    var id = 'tbf-map-' + i;
+    var id = 'tbf-map__canvas--' + ( i + 1 );
 
     var position = {
       lat: parseFloat( $this.data( 'tbf-map-lat' ) ),
@@ -15,10 +15,17 @@ jQuery( 'document' ).ready( function( $ ) {
 
     var zoom = parseInt( $this.data( 'tbf-map-zoom' ) );
 
+    console.log(type);
+
     var options = {
-      center    : position,
-      mapTypeId : type,
-      zoom      : zoom
+      center             : position,
+      mapTypeId          : google.maps.MapTypeId.type,
+      zoom               : zoom,
+      zoomControlOptions : {
+        style: google.maps.ZoomControlStyle.SMALL
+      },
+      panControl         : false,
+      mapTypeControl     : false
     };
 
     $this.attr( 'id', id );
