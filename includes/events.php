@@ -45,13 +45,16 @@ function tbf_event_date( $post_id = null, $format = null ) {
  */
 function tbf_event_time( $post_id = null, $format = null ) {
 
-  $start = tbf_get_event_meta( $post_id, 'start_date_start_time' );
-  $end   = tbf_get_event_meta( $post_id, 'start_date_end_time' );
+  $start_alias = tbf_get_event_meta( $post_id, 'start_time' );
+  $end_alias   = tbf_get_event_meta( $post_id, 'end_time' );
 
-  if ( ! empty( $start ) ) {
+  $start = tbf_get_event_meta( $post_id, 'start_date_start_time' );
+  $end   = tbf_get_event_meta( $post_id, 'end_date_end_time' );
+
+  if ( ! empty( $start_alias ) ) {
     $time['start'] = tbf_format_time( $start, $format );
 
-    if ( ! empty( $end ) && $end !== $start ) {
+    if ( ! empty( $end_alias ) && $end_alias !== $start_alias ) {
       $time['end'] = tbf_format_time( $end, $format );
     }
 
