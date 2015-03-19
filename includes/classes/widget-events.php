@@ -77,24 +77,24 @@ class TBF_Widget_Events extends WP_Widget {
                     <div class="tbf-widget__excerpt tbf-widget--events__excerpt"><?php the_excerpt(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_date && tbf_event_date() ) : $date = tbf_event_date(); ?>
+                  <?php $date = tbf_event_date(); if ( $show_date && $date ) : ?>
                     <div class="tbf-widget__date tbf-widget--events__date">
                       <span class="tbf-widget__start-date tbf-widget--events__start-date"><?php echo $date['start']; ?></span>
 
                       <?php if ( array_key_exists( 'end', $date ) ) : ?>
-                        <span class="tbf-widget__sep tbf-widget--events__sep">&ndash;</span>
+                        <span class="tbf-widget__to-sep tbf-widget--events__to-sep">&ndash;</span>
                         <span class="tbf-widget__end-date tbf-widget--events__end-date"><?php echo $date['end']; ?></span>
                       <?php endif; ?>
                     </div>
                   <?php endif; ?>
 
-                  <?php if ( $show_time && ( ( tbf_event_time() && ! tbf_event_hide_time_range() ) || tbf_event_time_description() ) ) : ?>
-                    <?php if ( tbf_event_time() && ! tbf_event_hide_time_range() ) : $time = tbf_event_time(); ?>
+                  <?php $time = tbf_event_time(); if ( $show_time && ( ( $time && ! tbf_event_hide_time_range() ) || tbf_event_time_description() ) ) : ?>
+                    <?php if ( $time && ! tbf_event_hide_time_range() ) : ?>
                       <div class="tbf-widget__time tbf-widget--events__time">
                         <span class="tbf-widget__start-time tbf-widget--events__start-time"><?php echo $time['start']; ?></span>
 
                         <?php if ( array_key_exists( 'end', $time ) ) : ?>
-                          <span class="tbf-widget__sep tbf-widget--events__sep">&ndash;</span>
+                          <span class="tbf-widget__to-sep tbf-widget--events__to-sep">&ndash;</span>
                           <span class="tbf-widget__end-time tbf-widget--events__end-time"><?php echo $time['end']; ?></span>
                         <?php endif; ?>
                       </div>
