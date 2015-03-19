@@ -13,11 +13,20 @@ jQuery( 'document' ).ready( function( $ ) {
 
     var type = $this.data( 'tbf-map-type' );
 
+    var mapType = google.maps.MapTypeId.HYBRID;
+    if ( type === 'ROADMAP' ) {
+      mapType = google.maps.MapTypeId.ROADMAP;
+    } else if ( type === 'SATELLITE' ) {
+      mapType = google.maps.MapTypeId.SATELLITE;
+    } else if ( type === 'TERRAIN' ) {
+      mapType = google.maps.MapTypeId.TERRAIN;
+    }
+
     var zoom = parseInt( $this.data( 'tbf-map-zoom' ) );
 
     var options = {
       center             : position,
-      mapTypeId          : google.maps.MapTypeId.type,
+      mapTypeId          : mapType,
       zoom               : zoom,
       zoomControlOptions : {
         style: google.maps.ZoomControlStyle.SMALL
