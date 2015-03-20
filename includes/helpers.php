@@ -65,7 +65,7 @@ function tbf_get_template_directory_uri() {
 
 function tbf_is_url( $str ) {
 
-  return preg_match( '/^(http(s*)):\/\//i', $str )
+  return preg_match( '/^(http(s*)):\/\//i', $str );
 
 }
 
