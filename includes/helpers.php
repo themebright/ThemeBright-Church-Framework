@@ -17,6 +17,25 @@ function tbf_clean_phone( $number = null ) {
 }
 
 /**
+ * Returns embed code based on audio/video URL or provided embed code.
+ */
+function tbf_embed_code( $content ) {
+
+  global $wp_embed;
+
+  if ( tbf_is_url( $content ) ) {
+    $embed_code = $wp_embed->shortcode( array(), $content );
+  } else {
+    $embed_code = $content;
+  }
+
+  $embed_code = do_shortcode( $embed_code );
+
+  return $embed_code;
+
+}
+
+/**
  * Formats a date from the Y-m-d format into any format specificed.
  */
 function tbf_format_date( $date = null, $format = null ) {
