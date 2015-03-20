@@ -60,6 +60,16 @@ function tbf_get_template_directory_uri() {
 }
 
 /**
+ * Returns true if a string is a URL; false if not.
+ */
+
+function tbf_is_url( $str ) {
+
+  return preg_match( '/^(http(s*)):\/\//i', $str )
+
+}
+
+/**
  * Strips http: and https: protocols from URLs.
  */
 function tbf_strip_protocol( $url = null ) {
