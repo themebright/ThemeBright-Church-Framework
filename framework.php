@@ -15,6 +15,8 @@ $theme_data = ( is_child_theme() ? wp_get_theme( $theme_data->template ) : $them
 if ( ! defined( 'TBF_VERSION' ) )       define( 'TBF_VERSION',       '1.0.0' );
 if ( ! defined( 'TBF_DIR' ) )           define( 'TBF_DIR',           basename( __DIR__ ) );
 
+if ( ! defined( 'TBF_THEME_NAME' ) )    define( 'TBF_THEME_NAME',    $theme_data->Name );
+if ( ! defined( 'TBF_THEME_AUTHOR' ) )  define( 'TBF_THEME_AUTHOR',  $theme_data->Author );
 if ( ! defined( 'TBF_THEME_VERSION' ) ) define( 'TBF_THEME_VERSION', $theme_data->Version );
 
 /**
