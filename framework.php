@@ -7,17 +7,19 @@
  * Saves theme data.
  */
 $theme_data = wp_get_theme();
-$theme_data = ( is_child_theme() ? wp_get_theme( $theme_data->template ) : $theme_data );
+$theme_data = ( is_child_theme() ? wp_get_theme( $theme_data->get( 'Template' ) ) : $theme_data );
 
 /**
  * Define constants.
  */
-if ( ! defined( 'TBF_VERSION' ) )       define( 'TBF_VERSION',       '1.0.0' );
-if ( ! defined( 'TBF_DIR' ) )           define( 'TBF_DIR',           basename( __DIR__ ) );
+if ( ! defined( 'TBF_DIR' ) )              define( 'TBF_DIR',              basename( __DIR__ ) );
+if ( ! defined( 'TBF_VERSION' ) )          define( 'TBF_VERSION',          '1.0.0' );
 
-if ( ! defined( 'TBF_THEME_NAME' ) )    define( 'TBF_THEME_NAME',    $theme_data->Name );
-if ( ! defined( 'TBF_THEME_AUTHOR' ) )  define( 'TBF_THEME_AUTHOR',  $theme_data->Author );
-if ( ! defined( 'TBF_THEME_VERSION' ) ) define( 'TBF_THEME_VERSION', $theme_data->Version );
+if ( ! defined( 'TBF_THEME_AUTHOR' ) )     define( 'TBF_THEME_AUTHOR',     $theme_data->get( 'Author' ) );
+if ( ! defined( 'TBF_THEME_AUTHOR_URI' ) ) define( 'TBF_THEME_AUTHOR_URI', $theme_data->get( 'AuthorURI' ) );
+if ( ! defined( 'TBF_THEME_NAME' ) )       define( 'TBF_THEME_NAME',       $theme_data->get( 'Name' ) );
+if ( ! defined( 'TBF_THEME_URI' ) )        define( 'TBF_THEME_URI',        $theme_data->get( 'ThemeURI' ) );
+if ( ! defined( 'TBF_THEME_VERSION' ) )    define( 'TBF_THEME_VERSION',    $theme_data->get( 'Version' ) );
 
 /**
  * Loads includes.
