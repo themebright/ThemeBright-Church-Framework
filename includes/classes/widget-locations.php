@@ -66,10 +66,6 @@ class TBF_Widget_Locations extends WP_Widget {
                     <div class="tbf-widget__excerpt tbf-widget--locations__excerpt"><?php the_excerpt(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_times && tbf_location_times() ) : ?>
-                    <div class="tbf-widget__times tbf-widget--locations__times"><?php echo tbf_location_times(); ?></div>
-                  <?php endif; ?>
-
                   <?php if ( $show_address && tbf_location_address() ) : ?>
                     <div class="tbf-widget__address tbf-widget--locations__address"><?php echo tbf_location_address(); ?></div>
                   <?php endif; ?>
