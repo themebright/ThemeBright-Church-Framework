@@ -1,9 +1,5 @@
 # ThemeBright Framework
 
-This framework is designed to streamline and standardize the development of WordPress church themes created by ThemeBright.
+The ThemeBright Framework is our attempt to streamline and standardize the development of WordPress church themes.
 
-It makes use of [churchthemes.com](http://churchthemes.com/)'s excellent [Church Theme Content](https://wordpress.org/plugins/church-theme-content/) plugin. Their [Church Theme Framework](https://github.com/churchthemes/church-theme-framework) also served as much of the inspiration for this framework.
-
-An integration guide is coming soon to the [ThemeBright Knowledge Base](https://themebright.com/kb/) and this README will updated once that is available.
-
-If you have any questions or comments, we're [all ears](https://themebright.com/contact/).
+**[Quick Start Guide](https://themebright.com/kb/themebright-framework-quick-start-guide/)**
