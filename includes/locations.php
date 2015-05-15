@@ -26,7 +26,7 @@ function tbf_location_address( $post_id = null ) {
   $address = tbf_get_location_meta( $post_id, 'address' );
 
   if ( ! empty( $address ) ) {
-    return $address;
+    return nl2br( $address );
   }
 
   return false;
@@ -65,7 +65,7 @@ function tbf_location_times( $post_id = null ) {
   $times = tbf_get_location_meta( $post_id, 'times' );
 
   if ( ! empty( $times ) ) {
-    return $times;
+    return nl2br( $times );
   }
 
   return false;

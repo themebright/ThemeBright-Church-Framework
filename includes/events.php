@@ -112,7 +112,7 @@ function tbf_event_address( $post_id = null ) {
   $address = tbf_get_event_meta( $post_id, 'address' );
 
   if ( ! empty( $address ) ) {
-    return $address;
+    return nl2br( $address );
   }
 
   return false;
