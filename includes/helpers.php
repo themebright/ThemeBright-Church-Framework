@@ -81,7 +81,6 @@ function tbf_get_template_directory_uri() {
 /**
  * Returns true if a string is a URL; false if not.
  */
-
 function tbf_is_url( $str ) {
 
   return preg_match( '/^(http(s*)):\/\//i', $str );

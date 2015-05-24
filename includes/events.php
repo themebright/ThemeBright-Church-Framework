@@ -129,6 +129,21 @@ function tbf_event_show_directions_link( $post_id = null ) {
 }
 
 /**
+ * Returns Google Maps URL for an event address if one exists; false if not.
+ */
+function tbf_event_directions_url( $post_id = null ) {
+
+  $address = tbf_get_event_meta( $post_id, 'address' );
+
+  if ( ! empty( $address ) ) {
+    return tbf_directions_url( $address );
+  }
+
+  return false;
+
+}
+
+/**
  * Returns the event map if neccesary data exists; false if not.
  */
 function tbf_event_map( $post_id = null ) {

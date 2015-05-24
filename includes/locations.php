@@ -43,6 +43,21 @@ function tbf_location_show_directions_link( $post_id = null ) {
 }
 
 /**
+ * Returns Google Maps URL for a location address if one exists; false if not.
+ */
+function tbf_location_directions_url( $post_id = null ) {
+
+  $address = tbf_get_location_meta( $post_id, 'address' );
+
+  if ( ! empty( $address ) ) {
+    return tbf_directions_url( $address );
+  }
+
+  return false;
+
+}
+
+/**
  * Returns the location phone if it exists; false if not.
  */
 function tbf_location_phone( $post_id = null ) {

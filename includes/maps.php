@@ -26,3 +26,16 @@ function tbf_map( $lat = null, $lng = null, $type = 'HYBRID', $zoom = '14' ) {
   return false;
 
 }
+
+/**
+ * Returns Google Maps Directions URL for an address if one is provided; false if not.
+ */
+function tbf_directions_url( $address = null ) {
+
+  if ( ! empty( $address ) ) {
+    return 'https://www.google.com/maps/dir/' . trim( strip_tags( urlencode( $address ) ) ) . '/';
+  }
+
+  return false;
+
+}
