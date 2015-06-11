@@ -28,6 +28,9 @@ class TBF_Widget_Events extends WP_Widget {
     $show_address   = isset( $instance['show_address'] )   ? $instance['show_address']     : false;
     $show_map       = isset( $instance['show_map'] )       ? $instance['show_map']         : false;
 
+    $theme_support = get_theme_support( 'tbf' );
+    $theme_support = $theme_support[0]['widgets']['events']['fields'];
+
     $query_args = array(
       'post_type'      => 'ctc_event',
       'post_status'    => 'publish',
@@ -57,27 +60,31 @@ class TBF_Widget_Events extends WP_Widget {
 
       echo $args['before_widget'];
 
-        if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
+        if ( $title ) {
+          echo $args['before_title'] . $title . $args['after_title'];
+        }
 
         if ( $events->have_posts() ) : ?>
 
           <ul class="tbf-widget__entries tbf-widget--events__entries">
             <?php while ( $events->have_posts() ) : $events->the_post(); ?>
               <li class="tbf-widget__entry">
-                <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
+                <?php if ( in_array( 'thumbnail', $theme_support ) && $show_thumbnail && has_post_thumbnail() ) : ?>
                   <div class="tbf-widget__entry-thumbnail tbf-widget--events__entry-thumbnail">
                     <?php the_post_thumbnail( 'large' ); ?>
                   </div>
                 <?php endif; ?>
 
-                <?php the_title( sprintf( '<h4 class="tbf-widget__entry-title tbf-widget--events__entry-title"><a href="%s">', esc_url( get_permalink() ) ), '</a></h4>' ); ?>
+                <?php if ( in_array( 'title', $theme_support ) ) : ?>
+                  <?php the_title( sprintf( '<h4 class="tbf-widget__entry-title tbf-widget--events__entry-title"><a href="%s">', esc_url( get_permalink() ) ), '</a></h4>' ); ?>
+                <?php endif; ?>
 
                 <div class="tbf-widget__entry-body tbf-widget--events__entry-body">
-                  <?php if ( $show_excerpt && get_the_excerpt() ) : ?>
+                  <?php if ( in_array( 'excerpt', $theme_support ) && $show_excerpt && get_the_excerpt() ) : ?>
                     <div class="tbf-widget__excerpt tbf-widget--events__excerpt"><?php the_excerpt(); ?></div>
                   <?php endif; ?>
 
-                  <?php $date = tbf_event_date(); if ( $show_date && $date ) : ?>
+                  <?php $date = tbf_event_date(); if ( in_array( 'date', $theme_support ) && $show_date && $date ) : ?>
                     <div class="tbf-widget__date tbf-widget--events__date">
                       <span class="tbf-widget__start-date tbf-widget--events__start-date"><?php echo $date['start']; ?></span>
 
@@ -88,7 +95,7 @@ class TBF_Widget_Events extends WP_Widget {
                     </div>
                   <?php endif; ?>
 
-                  <?php $time = tbf_event_time(); if ( $show_time && ( ( $time && ! tbf_event_hide_time_range() ) || tbf_event_time_description() ) ) : ?>
+                  <?php $time = tbf_event_time(); if ( in_array( 'time', $theme_support ) && $show_time && ( ( $time && ! tbf_event_hide_time_range() ) || tbf_event_time_description() ) ) : ?>
                     <?php if ( $time && ! tbf_event_hide_time_range() ) : ?>
                       <div class="tbf-widget__time tbf-widget--events__time">
                         <span class="tbf-widget__start-time tbf-widget--events__start-time"><?php echo $time['start']; ?></span>
@@ -105,15 +112,15 @@ class TBF_Widget_Events extends WP_Widget {
                     <?php endif; ?>
                   <?php endif; ?>
 
-                  <?php if ( $show_venue && tbf_event_venue() ) : ?>
+                  <?php if ( in_array( 'venue', $theme_support ) && $show_venue && tbf_event_venue() ) : ?>
                     <div class="tbf-widget__venue tbf-widget--events__venue"><?php echo tbf_event_venue(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_address && tbf_event_address() ) : ?>
+                  <?php if ( in_array( 'address', $theme_support ) && $show_address && tbf_event_address() ) : ?>
                     <div class="tbf-widget__address tbf-widget--events__address"><?php echo tbf_event_address(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_address && tbf_event_map() ) : ?>
+                  <?php if ( in_array( 'map', $theme_support ) && $show_map && tbf_event_map() ) : ?>
                     <div class="tbf-widget__map tbf-widget--events__map"><?php echo tbf_event_map(); ?></div>
                   <?php endif; ?>
                 </div>
@@ -168,7 +175,7 @@ class TBF_Widget_Events extends WP_Widget {
     $theme_support = get_theme_support( 'tbf' );
     $theme_support = $theme_support[0]['widgets']['events']['fields'];
 
-?>
+  ?>
 
     <?php if ( in_array( 'title', $theme_support ) ) : ?>
       <p>
@@ -233,7 +240,7 @@ class TBF_Widget_Events extends WP_Widget {
       </p>
     <?php endif; ?>
 
-<?php
+  <?php
 
   }
 }

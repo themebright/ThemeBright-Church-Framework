@@ -26,6 +26,9 @@ class TBF_Widget_Locations extends WP_Widget {
     $show_times     = isset( $instance['show_times'] )     ? $instance['show_times']      : false;
     $show_map       = isset( $instance['show_map'] )       ? (bool) $instance['show_map'] : false;
 
+    $theme_support = get_theme_support( 'tbf' );
+    $theme_support = $theme_support[0]['widgets']['locations']['fields'];
+
     $query_args = array(
       'post_type'      => 'ctc_location',
       'post_status'    => 'publish',
@@ -46,39 +49,43 @@ class TBF_Widget_Locations extends WP_Widget {
 
       echo $args['before_widget'];
 
-        if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
+        if ( $title ) {
+          echo $args['before_title'] . $title . $args['after_title'];
+        }
 
         if ( $locations->have_posts() ) : ?>
 
           <ul class="tbf-widget__entries tbf-widget--locations__entries">
             <?php while ( $locations->have_posts() ) : $locations->the_post(); ?>
               <li class="tbf-widget__entry tbf-widget--locations__entry">
-                <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
+                <?php if ( in_array( 'thumbnail', $theme_support ) && $show_thumbnail && has_post_thumbnail() ) : ?>
                   <div class="tbf-widget__entry-thumbnail tbf-widget--locations__entry-thumbnail">
                     <?php the_post_thumbnail( 'large' ); ?>
                   </div>
                 <?php endif; ?>
 
-                <?php the_title( sprintf( '<h4 class="tbf-widget__entry-title tbf-widget--locations__entry-title"><a href="%s">', esc_url( get_permalink() ) ), '</a></h4>' ); ?>
+                <?php if ( in_array( 'title', $theme_support ) ) : ?>
+                  <?php the_title( sprintf( '<h4 class="tbf-widget__entry-title tbf-widget--locations__entry-title"><a href="%s">', esc_url( get_permalink() ) ), '</a></h4>' ); ?>
+                <?php endif; ?>
 
                 <div class="tbf-widget__entry-body tbf-widget--locations__entry-body">
-                  <?php if ( $show_excerpt && get_the_excerpt() ) : ?>
+                  <?php if ( in_array( 'excerpt', $theme_support ) && $show_excerpt && get_the_excerpt() ) : ?>
                     <div class="tbf-widget__excerpt tbf-widget--locations__excerpt"><?php the_excerpt(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_address && tbf_location_address() ) : ?>
+                  <?php if ( in_array( 'address', $theme_support ) && $show_address && tbf_location_address() ) : ?>
                     <div class="tbf-widget__address tbf-widget--locations__address"><?php echo tbf_location_address(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_phone && tbf_location_phone() ) : ?>
+                  <?php if ( in_array( 'phone', $theme_support ) && $show_phone && tbf_location_phone() ) : ?>
                     <div class="tbf-widget__phone tbf-widget--locations__phone"><?php echo tbf_location_phone(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_times && tbf_location_times() ) : ?>
+                  <?php if ( in_array( 'times', $theme_support ) && $show_times && tbf_location_times() ) : ?>
                     <div class="tbf-widget__times tbf-widget--locations__times"><?php echo tbf_location_times(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_map && tbf_location_map() ) : ?>
+                  <?php if ( in_array( 'map', $theme_support ) && $show_map && tbf_location_map() ) : ?>
                     <div class="tbf-widget__map tbf-widget--locations__map"><?php echo tbf_location_map(); ?></div>
                   <?php endif; ?>
                 </div>
@@ -129,7 +136,7 @@ class TBF_Widget_Locations extends WP_Widget {
     $theme_support = get_theme_support( 'tbf' );
     $theme_support = $theme_support[0]['widgets']['locations']['fields'];
 
-?>
+  ?>
 
     <?php if ( in_array( 'title', $theme_support ) ) : ?>
       <p>
@@ -180,7 +187,7 @@ class TBF_Widget_Locations extends WP_Widget {
       </p>
     <?php endif; ?>
 
-<?php
+  <?php
 
   }
 }

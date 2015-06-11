@@ -28,6 +28,9 @@ class TBF_Widget_People extends WP_Widget {
     $show_email     = isset( $instance['show_email'] )     ? $instance['show_email']       : false;
     $show_urls      = isset( $instance['show_urls'] )      ? $instance['show_urls']        : false;
 
+    $theme_support = get_theme_support( 'tbf' );
+    $theme_support = $theme_support[0]['widgets']['people']['fields'];
+
     $query_args = array(
       'post_type'        => 'ctc_person',
       'ctc_person_group' => ( $group == 'all' ? '' : $group ),
@@ -49,41 +52,45 @@ class TBF_Widget_People extends WP_Widget {
 
       echo $args['before_widget'];
 
-        if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
+        if ( $title ) {
+          echo $args['before_title'] . $title . $args['after_title'];
+        }
 
         if ( $people->have_posts() ) : ?>
 
           <ul class="tbf-widget__entries tbf-widget--people__entries">
             <?php while ( $people->have_posts() ) : $people->the_post(); ?>
               <li class="tbf-widget__entry tbf-widget--people__entry">
-                <?php if ( $show_thumbnail && has_post_thumbnail() ) : ?>
+                <?php if ( in_array( 'thumbnail', $theme_support ) && $show_thumbnail && has_post_thumbnail() ) : ?>
                   <div class="tbf-widget__entry-thumbnail tbf-widget--people__entry-thumbnail">
                     <?php the_post_thumbnail( 'thumbnail' ); ?>
                   </div>
                 <?php endif; ?>
 
-                <?php the_title( sprintf( '<h4 class="tbf-widget__entry-title tbf-widget--people__entry-title"><a href="%s">', esc_url( get_permalink() ) ), '</a></h4>' ); ?>
+                <?php if ( in_array( 'title', $theme_support ) ) : ?>
+                  <?php the_title( sprintf( '<h4 class="tbf-widget__entry-title tbf-widget--people__entry-title"><a href="%s">', esc_url( get_permalink() ) ), '</a></h4>' ); ?>
+                <?php endif; ?>
 
                 <div class="tbf-widget__entry-body tbf-widget--people__entry-body">
-                  <?php if ( $show_position && tbf_person_position() ) : ?>
+                  <?php if ( in_array( 'position', $theme_support ) && $show_position && tbf_person_position() ) : ?>
                     <div class="tbf-widget__position tbf-widget--people__position"><?php echo tbf_person_position(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_excerpt && get_the_excerpt() ) : ?>
+                  <?php if ( in_array( 'excerpt', $theme_support ) && $show_excerpt && get_the_excerpt() ) : ?>
                     <div class="tbf-widget__excerpt tbf-widget--people__excerpt"><?php the_excerpt(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_phone && tbf_person_phone() ) : ?>
+                  <?php if ( in_array( 'phone', $theme_support ) && $show_phone && tbf_person_phone() ) : ?>
                     <div class="tbf-widget__phone tbf-widget--people__phone"><?php echo tbf_person_phone(); ?></div>
                   <?php endif; ?>
 
-                  <?php if ( $show_email && tbf_person_email() ) : ?>
+                  <?php if ( in_array( 'email', $theme_support ) && $show_email && tbf_person_email() ) : ?>
                     <div class="tbf-widget__email tbf-widget--people__email">
                       <a href="mailto:<?php echo tbf_person_email(); ?>"><?php echo tbf_person_email(); ?></a>
                     </div>
                   <?php endif; ?>
 
-                  <?php if ( $show_urls && tbf_person_urls() ) : ?>
+                  <?php if ( in_array( 'urls', $theme_support ) && $show_urls && tbf_person_urls() ) : ?>
                     <div class="tbf-widget__urls tbf-widget--people__urls">
                       <?php foreach ( tbf_person_urls() as $url ) : ?>
                         <a href="<?php echo $url; ?>"><?php echo $url; ?></a>
@@ -142,7 +149,7 @@ class TBF_Widget_People extends WP_Widget {
     $theme_support = get_theme_support( 'tbf' );
     $theme_support = $theme_support[0]['widgets']['people']['fields'];
 
-?>
+  ?>
 
     <?php if ( in_array( 'title', $theme_support ) ) : ?>
       <p>
@@ -222,7 +229,7 @@ class TBF_Widget_People extends WP_Widget {
       </p>
     <?php endif; ?>
 
-<?php
+  <?php
 
   }
 }
