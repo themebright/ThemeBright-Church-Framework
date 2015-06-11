@@ -6,7 +6,7 @@
 /**
  * Creates neccessary HTML to render a map with the Google Maps API if necessary data exists; returns false not.
  */
-function tbf_map( $lat = null, $lng = null, $type = 'HYBRID', $zoom = '14' ) {
+function tbf_map( $lat = null, $lng = null, $type = 'ROAD', $zoom = '14' ) {
 
 	if ( ! empty( $lat ) && ! empty( $lng ) ) {
 		wp_enqueue_script( 'tbf-maps-api' );
