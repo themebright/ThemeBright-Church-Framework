@@ -12,7 +12,6 @@ jQuery( 'document' ).ready( function( $ ) {
     };
 
     var type = $this.data( 'tbf-map-type' );
-
     var mapType = google.maps.MapTypeId.ROADMAP;
     if ( type === 'HYBRID' ) {
       mapType = google.maps.MapTypeId.HYBRID;
@@ -23,6 +22,9 @@ jQuery( 'document' ).ready( function( $ ) {
     }
 
     var zoom = parseInt( $this.data( 'tbf-map-zoom' ) );
+    if ( ! zoom ) {
+      zoom = 14;
+    }
 
     var options = {
       center             : position,
