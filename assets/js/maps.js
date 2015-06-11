@@ -13,9 +13,9 @@ jQuery( 'document' ).ready( function( $ ) {
 
     var type = $this.data( 'tbf-map-type' );
 
-    var mapType = google.maps.MapTypeId.HYBRID;
-    if ( type === 'ROADMAP' ) {
-      mapType = google.maps.MapTypeId.ROADMAP;
+    var mapType = google.maps.MapTypeId.ROADMAP;
+    if ( type === 'HYBRID' ) {
+      mapType = google.maps.MapTypeId.HYBRID;
     } else if ( type === 'SATELLITE' ) {
       mapType = google.maps.MapTypeId.SATELLITE;
     } else if ( type === 'TERRAIN' ) {
