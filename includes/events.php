@@ -8,13 +8,13 @@
  */
 function tbf_get_event_meta( $post_id = null, $key = null ) {
 
-  if ( ! empty( $key ) ) {
-    $data = tbf_get_meta( $post_id, '_ctc_event_' . $key );
+	if ( ! empty( $key ) ) {
+		$data = tbf_get_meta( $post_id, '_ctc_event_' . $key );
 
-    return $data;
-  }
+		return $data;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -23,20 +23,20 @@ function tbf_get_event_meta( $post_id = null, $key = null ) {
  */
 function tbf_event_date( $post_id = null, $format = null ) {
 
-  $start = tbf_get_event_meta( $post_id, 'start_date' );
-  $end   = tbf_get_event_meta( $post_id, 'end_date' );
+	$start = tbf_get_event_meta( $post_id, 'start_date' );
+	$end   = tbf_get_event_meta( $post_id, 'end_date' );
 
-  if ( ! empty( $start ) ) {
-    $date['start'] = tbf_format_date( $start, $format );
+	if ( ! empty( $start ) ) {
+		$date['start'] = tbf_format_date( $start, $format );
 
-    if ( ! empty( $end ) && $end !== $start ) {
-      $date['end'] = tbf_format_date( $end, $format );
-    }
+		if ( ! empty( $end ) && $end !== $start ) {
+			$date['end'] = tbf_format_date( $end, $format );
+		}
 
-    return $date;
-  }
+		return $date;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -45,23 +45,23 @@ function tbf_event_date( $post_id = null, $format = null ) {
  */
 function tbf_event_time( $post_id = null, $format = null ) {
 
-  $start_alias = tbf_get_event_meta( $post_id, 'start_time' );
-  $end_alias   = tbf_get_event_meta( $post_id, 'end_time' );
+	$start_alias = tbf_get_event_meta( $post_id, 'start_time' );
+	$end_alias   = tbf_get_event_meta( $post_id, 'end_time' );
 
-  $start = tbf_get_event_meta( $post_id, 'start_date_start_time' );
-  $end   = tbf_get_event_meta( $post_id, 'end_date_end_time' );
+	$start = tbf_get_event_meta( $post_id, 'start_date_start_time' );
+	$end   = tbf_get_event_meta( $post_id, 'end_date_end_time' );
 
-  if ( ! empty( $start_alias ) ) {
-    $time['start'] = tbf_format_time( $start, $format );
+	if ( ! empty( $start_alias ) ) {
+		$time['start'] = tbf_format_time( $start, $format );
 
-    if ( ! empty( $end_alias ) && $end_alias !== $start_alias ) {
-      $time['end'] = tbf_format_time( $end, $format );
-    }
+		if ( ! empty( $end_alias ) && $end_alias !== $start_alias ) {
+			$time['end'] = tbf_format_time( $end, $format );
+		}
 
-    return $time;
-  }
+		return $time;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -70,7 +70,7 @@ function tbf_event_time( $post_id = null, $format = null ) {
  */
 function tbf_event_hide_time_range( $post_id = null ) {
 
-  return tbf_get_event_meta( $post_id, 'hide_time_range' );
+	return tbf_get_event_meta( $post_id, 'hide_time_range' );
 
 }
 
@@ -79,13 +79,13 @@ function tbf_event_hide_time_range( $post_id = null ) {
  */
 function tbf_event_time_description( $post_id = null ) {
 
-  $time = tbf_get_event_meta( $post_id, 'time' );
+	$time = tbf_get_event_meta( $post_id, 'time' );
 
-  if ( ! empty( $time ) ) {
-    return $time;
-  }
+	if ( ! empty( $time ) ) {
+		return $time;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -94,13 +94,13 @@ function tbf_event_time_description( $post_id = null ) {
  */
 function tbf_event_venue( $post_id = null ) {
 
-  $venue = tbf_get_event_meta( $post_id, 'venue' );
+	$venue = tbf_get_event_meta( $post_id, 'venue' );
 
-  if ( ! empty( $venue ) ) {
-    return $venue;
-  }
+	if ( ! empty( $venue ) ) {
+		return $venue;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -109,13 +109,13 @@ function tbf_event_venue( $post_id = null ) {
  */
 function tbf_event_address( $post_id = null ) {
 
-  $address = tbf_get_event_meta( $post_id, 'address' );
+	$address = tbf_get_event_meta( $post_id, 'address' );
 
-  if ( ! empty( $address ) ) {
-    return nl2br( $address );
-  }
+	if ( ! empty( $address ) ) {
+		return nl2br( $address );
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -124,7 +124,7 @@ function tbf_event_address( $post_id = null ) {
  */
 function tbf_event_show_directions_link( $post_id = null ) {
 
-  return tbf_get_event_meta( $post_id, 'show_directions_link' );
+	return tbf_get_event_meta( $post_id, 'show_directions_link' );
 
 }
 
@@ -133,13 +133,13 @@ function tbf_event_show_directions_link( $post_id = null ) {
  */
 function tbf_event_directions_url( $post_id = null ) {
 
-  $address = tbf_get_event_meta( $post_id, 'address' );
+	$address = tbf_get_event_meta( $post_id, 'address' );
 
-  if ( ! empty( $address ) ) {
-    return tbf_directions_url( $address );
-  }
+	if ( ! empty( $address ) ) {
+		return tbf_directions_url( $address );
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -148,17 +148,17 @@ function tbf_event_directions_url( $post_id = null ) {
  */
 function tbf_event_map( $post_id = null ) {
 
-  $lat = tbf_get_event_meta( $post_id, 'map_lat' );
-  $lng = tbf_get_event_meta( $post_id, 'map_lng' );
+	$lat = tbf_get_event_meta( $post_id, 'map_lat' );
+	$lng = tbf_get_event_meta( $post_id, 'map_lng' );
 
-  if ( ! empty( $lat ) && ! empty( $lng ) ) {
-    $type = tbf_get_event_meta( $post_id, 'map_type' );
-    $zoom = tbf_get_event_meta( $post_id, 'map_zoom' );
+	if ( ! empty( $lat ) && ! empty( $lng ) ) {
+		$type = tbf_get_event_meta( $post_id, 'map_type' );
+		$zoom = tbf_get_event_meta( $post_id, 'map_zoom' );
 
-    return tbf_map( $lat, $lng, $type, $zoom );
-  }
+		return tbf_map( $lat, $lng, $type, $zoom );
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -167,12 +167,12 @@ function tbf_event_map( $post_id = null ) {
  */
 function tbf_event_categories( $post_id = null ) {
 
-  $categories = tbf_get_terms( $post_id, 'ctc_event_category' );
+	$categories = tbf_get_terms( $post_id, 'ctc_event_category' );
 
-  if ( ! empty( $categories ) ) {
-    return $categories;
-  }
+	if ( ! empty( $categories ) ) {
+		return $categories;
+	}
 
-  return false;
+	return false;
 
 }

@@ -8,13 +8,13 @@
  */
 function tbf_get_person_meta( $post_id = null, $key = null ) {
 
-  if ( ! empty( $key ) ) {
-    $data = tbf_get_meta( $post_id, '_ctc_person_' . $key );
+	if ( ! empty( $key ) ) {
+		$data = tbf_get_meta( $post_id, '_ctc_person_' . $key );
 
-    return $data;
-  }
+		return $data;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -23,13 +23,13 @@ function tbf_get_person_meta( $post_id = null, $key = null ) {
  */
 function tbf_person_position( $post_id = null ) {
 
-  $position = tbf_get_person_meta( $post_id, 'position' );
+	$position = tbf_get_person_meta( $post_id, 'position' );
 
-  if ( ! empty( $position ) ) {
-    return $position;
-  }
+	if ( ! empty( $position ) ) {
+		return $position;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -38,13 +38,13 @@ function tbf_person_position( $post_id = null ) {
  */
 function tbf_person_phone( $post_id = null ) {
 
-  $phone = tbf_get_person_meta( $post_id, 'phone' );
+	$phone = tbf_get_person_meta( $post_id, 'phone' );
 
-  if ( ! empty( $phone ) ) {
-    return $phone;
-  }
+	if ( ! empty( $phone ) ) {
+		return $phone;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -53,13 +53,13 @@ function tbf_person_phone( $post_id = null ) {
  */
 function tbf_person_email( $post_id = null ) {
 
-  $email = tbf_get_person_meta( $post_id, 'email' );
+	$email = tbf_get_person_meta( $post_id, 'email' );
 
-  if ( ! empty( $email ) ) {
-    return $email;
-  }
+	if ( ! empty( $email ) ) {
+		return $email;
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -68,13 +68,13 @@ function tbf_person_email( $post_id = null ) {
  */
 function tbf_person_urls( $post_id = null ) {
 
-  $urls = tbf_get_person_meta( $post_id, 'urls' );
+	$urls = tbf_get_person_meta( $post_id, 'urls' );
 
-  if ( ! empty( $urls ) ) {
-    return array_map( 'trim', explode( PHP_EOL, $urls ) );
-  }
+	if ( ! empty( $urls ) ) {
+		return array_map( 'trim', explode( PHP_EOL, $urls ) );
+	}
 
-  return false;
+	return false;
 
 }
 
@@ -83,12 +83,12 @@ function tbf_person_urls( $post_id = null ) {
  */
 function tbf_person_groups( $post_id = null ) {
 
-  $groups = tbf_get_terms( $post_id, 'ctc_person_group' );
+	$groups = tbf_get_terms( $post_id, 'ctc_person_group' );
 
-  if ( ! empty( $groups ) ) {
-    return $groups;
-  }
+	if ( ! empty( $groups ) ) {
+		return $groups;
+	}
 
-  return false;
+	return false;
 
 }

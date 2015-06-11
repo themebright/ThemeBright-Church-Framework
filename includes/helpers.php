@@ -8,11 +8,11 @@
  */
 function tbf_clean_phone( $number = null ) {
 
-  if ( ! empty( $number ) ) {
-    $number = preg_replace( '/\D+/', '', $number );
-  }
+	if ( ! empty( $number ) ) {
+		$number = preg_replace( '/\D+/', '', $number );
+	}
 
-  return $number;
+	return $number;
 
 }
 
@@ -21,17 +21,17 @@ function tbf_clean_phone( $number = null ) {
  */
 function tbf_embed_code( $content ) {
 
-  global $wp_embed;
+	global $wp_embed;
 
-  if ( tbf_is_url( $content ) ) {
-    $embed_code = $wp_embed->shortcode( array(), $content );
-  } else {
-    $embed_code = $content;
-  }
+	if ( tbf_is_url( $content ) ) {
+		$embed_code = $wp_embed->shortcode( array(), $content );
+	} else {
+		$embed_code = $content;
+	}
 
-  $embed_code = do_shortcode( $embed_code );
+	$embed_code = do_shortcode( $embed_code );
 
-  return $embed_code;
+	return $embed_code;
 
 }
 
@@ -40,15 +40,15 @@ function tbf_embed_code( $content ) {
  */
 function tbf_format_date( $date = null, $format = null ) {
 
-  if ( empty( $format ) ) {
-    $format = get_option( 'date_format' );
-  }
+	if ( empty( $format ) ) {
+		$format = get_option( 'date_format' );
+	}
 
-  if ( ! empty( $date ) ) {
-    $date = date_format( date_create_from_format( 'Y-m-d', $date ), $format );
-  }
+	if ( ! empty( $date ) ) {
+		$date = date_format( date_create_from_format( 'Y-m-d', $date ), $format );
+	}
 
-  return $date;
+	return $date;
 
 }
 
@@ -57,15 +57,15 @@ function tbf_format_date( $date = null, $format = null ) {
  */
 function tbf_format_time( $time = null, $format = null ) {
 
-  if ( empty( $format ) ) {
-    $format = get_option( 'time_format' );
-  }
+	if ( empty( $format ) ) {
+		$format = get_option( 'time_format' );
+	}
 
-  if ( ! empty( $time ) ) {
-    $time = date_format( date_create_from_format( 'Y-m-d H:i:s', $time ), $format );
-  }
+	if ( ! empty( $time ) ) {
+		$time = date_format( date_create_from_format( 'Y-m-d H:i:s', $time ), $format );
+	}
 
-  return $time;
+	return $time;
 
 }
 
@@ -74,7 +74,7 @@ function tbf_format_time( $time = null, $format = null ) {
  */
 function tbf_get_template_directory_uri() {
 
-  return untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
+	return untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
 
 }
 
@@ -83,7 +83,7 @@ function tbf_get_template_directory_uri() {
  */
 function tbf_is_url( $str ) {
 
-  return preg_match( '/^(http(s*)):\/\//i', $str );
+	return preg_match( '/^(http(s*)):\/\//i', $str );
 
 }
 
@@ -92,10 +92,10 @@ function tbf_is_url( $str ) {
  */
 function tbf_strip_protocol( $url = null ) {
 
-  if ( ! empty( $url ) ) {
-    $url = str_replace( array( 'http:', 'https:' ), '', $url );
-  }
+	if ( ! empty( $url ) ) {
+		$url = str_replace( array( 'http:', 'https:' ), '', $url );
+	}
 
-  return $url;
+	return $url;
 
 }
