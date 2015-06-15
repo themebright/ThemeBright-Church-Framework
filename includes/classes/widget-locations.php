@@ -19,11 +19,11 @@ class TBF_Widget_Locations extends WP_Widget {
 	function widget( $args, $instance ) {
 
 		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Locations', 'themebright-framework' ) : $instance['title'] );
-		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']  : false;
+		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']  : true;
 		$show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']    : false;
-		$show_address   = isset( $instance['show_address'] )   ? $instance['show_address']    : false;
-		$show_phone     = isset( $instance['show_phone'] )     ? $instance['show_phone']      : false;
-		$show_times     = isset( $instance['show_times'] )     ? $instance['show_times']      : false;
+		$show_address   = isset( $instance['show_address'] )   ? $instance['show_address']    : true;
+		$show_phone     = isset( $instance['show_phone'] )     ? $instance['show_phone']      : true;
+		$show_times     = isset( $instance['show_times'] )     ? $instance['show_times']      : true;
 		$show_map       = isset( $instance['show_map'] )       ? (bool) $instance['show_map'] : false;
 
 		$theme_support = get_theme_support( 'tbf' );
@@ -112,11 +112,11 @@ class TBF_Widget_Locations extends WP_Widget {
 		$instance = $old_instance;
 
 		$instance['title']          = strip_tags( $new_instance['title'] );
-		$instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
+		$instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : true;
 		$instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
-		$instance['show_address']   = isset( $new_instance['show_address'] )   ? (bool) $new_instance['show_address']   : false;
-		$instance['show_phone']     = isset( $new_instance['show_phone'] )     ? (bool) $new_instance['show_phone']     : false;
-		$instance['show_times']     = isset( $new_instance['show_times'] )     ? (bool) $new_instance['show_times']     : false;
+		$instance['show_address']   = isset( $new_instance['show_address'] )   ? (bool) $new_instance['show_address']   : true;
+		$instance['show_phone']     = isset( $new_instance['show_phone'] )     ? (bool) $new_instance['show_phone']     : true;
+		$instance['show_times']     = isset( $new_instance['show_times'] )     ? (bool) $new_instance['show_times']     : true;
 		$instance['show_map']       = isset( $new_instance['show_map'] )       ? (bool) $new_instance['show_map']       : false;
 
 		return $instance;

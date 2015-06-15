@@ -21,9 +21,9 @@ class TBF_Widget_Sermons extends WP_Widget {
 		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Sermons', 'themebright-framework' ) : $instance['title'] );
 		$number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
 		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : false;
-		$show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']     : false;
+		$show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']     : true;
 		$show_date      = isset( $instance['show_date'] )      ? $instance['show_date']        : false;
-		$show_media     = isset( $instance['show_media'] )     ? $instance['show_media']       : false;
+		$show_media     = isset( $instance['show_media'] )     ? $instance['show_media']       : true;
 
 		$theme_support = get_theme_support( 'tbf' );
 		$theme_support = $theme_support[0]['widgets']['sermons']['fields'];
@@ -115,9 +115,9 @@ class TBF_Widget_Sermons extends WP_Widget {
 		$instance['title']          = strip_tags( $new_instance['title'] );
 		$instance['number']         = (int) $new_instance['number'];
 		$instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
-		$instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
+		$instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : true;
 		$instance['show_date']      = isset( $new_instance['show_date'] )      ? (bool) $new_instance['show_date']      : false;
-		$instance['show_media']     = isset( $new_instance['show_media'] )     ? (bool) $new_instance['show_media']     : false;
+		$instance['show_media']     = isset( $new_instance['show_media'] )     ? (bool) $new_instance['show_media']     : true;
 
 		return $instance;
 

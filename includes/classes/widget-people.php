@@ -21,11 +21,11 @@ class TBF_Widget_People extends WP_Widget {
 		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'People', 'themebright-framework' ) : $instance['title'] );
 		$group          = isset( $instance['group'] )          ? $instance['group']            : 'all';
 		$number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
-		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : false;
+		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : true;
 		$show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']     : false;
-		$show_position  = isset( $instance['show_position'] )  ? $instance['show_position']    : false;
+		$show_position  = isset( $instance['show_position'] )  ? $instance['show_position']    : true;
 		$show_phone     = isset( $instance['show_phone'] )     ? $instance['show_phone']       : false;
-		$show_email     = isset( $instance['show_email'] )     ? $instance['show_email']       : false;
+		$show_email     = isset( $instance['show_email'] )     ? $instance['show_email']       : true;
 		$show_urls      = isset( $instance['show_urls'] )      ? $instance['show_urls']        : false;
 
 		$theme_support = get_theme_support( 'tbf' );
@@ -123,11 +123,11 @@ class TBF_Widget_People extends WP_Widget {
 		$instance['title']          = strip_tags( $new_instance['title'] );
 		$instance['group']          = esc_attr( $new_instance['group'] );
 		$instance['number']         = (int) $new_instance['number'];
-		$instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
+		$instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : true;
 		$instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
-		$instance['show_position']  = isset( $new_instance['show_position'] )  ? (bool) $new_instance['show_position']  : false;
+		$instance['show_position']  = isset( $new_instance['show_position'] )  ? (bool) $new_instance['show_position']  : true;
 		$instance['show_phone']     = isset( $new_instance['show_phone'] )     ? (bool) $new_instance['show_phone']     : false;
-		$instance['show_email']     = isset( $new_instance['show_email'] )     ? (bool) $new_instance['show_email']     : false;
+		$instance['show_email']     = isset( $new_instance['show_email'] )     ? (bool) $new_instance['show_email']     : true;
 		$instance['show_urls']      = isset( $new_instance['show_urls'] )      ? (bool) $new_instance['show_urls']      : false;
 
 		return $instance;
