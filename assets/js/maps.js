@@ -26,15 +26,21 @@ jQuery( 'document' ).ready( function( $ ) {
 			zoom = 14;
 		}
 
+    var styles = [];
+    if ( typeof tbfMapStyles !== 'undefined' ) {
+      styles = tbfMapStyles;
+    }
+
 		var options = {
-			center             : position,
-			mapTypeId          : mapType,
-			zoom               : zoom,
-			zoomControlOptions : {
+			center:             position,
+			mapTypeId:          mapType,
+			zoom:               zoom,
+			zoomControlOptions: {
 				style: google.maps.ZoomControlStyle.SMALL
 			},
-			panControl         : false,
-			mapTypeControl     : false
+			panControl:         false,
+			mapTypeControl:     false,
+      styles:             styles
 		};
 
 		$this.attr( 'id', id );
