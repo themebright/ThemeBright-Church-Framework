@@ -70,6 +70,28 @@ function tbf_format_time( $time = null, $format = null ) {
 }
 
 /**
+ * Gets the attachment ID for the image URL provided.
+ */
+function tbf_get_attachment_id_by_url( $url ) {
+
+	$parsed_url = explode( parse_url( WP_CONTENT_URL, PHP_URL_PATH ), $url );
+
+	$this_host = str_ireplace( 'www.', '', parse_url( home_url(), PHP_URL_HOST ) );
+	$file_host = str_ireplace( 'www.', '', parse_url( $url,       PHP_URL_HOST ) );
+
+	if ( ! isset( $parsed_url[1] ) || empty( $parsed_url[1] ) || ( $this_host != $file_host ) ) {
+		return;
+	}
+
+	global $wpdb;
+
+	$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->prefix}posts WHERE guid RLIKE %s;", $parsed_url[1] ) );
+
+	return $attachment[0];
+
+}
+
+/**
  * Returns the URL of the current template with a trailing slash and no protocol.
  */
 function tbf_get_template_directory_uri() {
