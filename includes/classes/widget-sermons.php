@@ -5,18 +5,18 @@
 
 class TBF_Widget_Sermons extends WP_Widget {
 
-	function TBF_Widget_Sermons() {
+	public function __construct() {
 
 		$widget_options = array(
 			'description' => __( 'A customizable list of sermons.', 'themebright-framework' ),
 			'classname'   => 'tbf-widget tbf-widget--people'
 		);
 
-		parent::WP_Widget( 'tbf-sermons', __( 'Sermons', 'themebright-framework' ), $widget_options );
+		parent::__construct( 'tbf-sermons', __( 'Sermons', 'themebright-framework' ), $widget_options );
 
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 
 		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Sermons', 'themebright-framework' ) : $instance['title'] );
 		$number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
@@ -108,7 +108,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
 	}
 
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 
 		$instance = $old_instance;
 
@@ -123,7 +123,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
 	}
 
-	function form( $instance ) {
+	public function form( $instance ) {
 
 		$title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
 		$number         = isset( $instance['number'] )         ? absint( $instance['number'] )      : 5;

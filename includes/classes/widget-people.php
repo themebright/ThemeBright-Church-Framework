@@ -5,18 +5,18 @@
 
 class TBF_Widget_People extends WP_Widget {
 
-	function TBF_Widget_People() {
+	public function __construct() {
 
 		$widget_options = array(
 			'description' => __( 'A customizable list of people.', 'themebright-framework' ),
 			'classname'   => 'tbf-widget tbf-widget--people'
 		);
 
-		parent::WP_Widget( 'tbf-people', __( 'People', 'themebright-framework' ), $widget_options );
+		parent::__construct( 'tbf-people', __( 'People', 'themebright-framework' ), $widget_options );
 
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 
 		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'People', 'themebright-framework' ) : $instance['title'] );
 		$group          = isset( $instance['group'] )          ? $instance['group']            : 'all';
@@ -116,7 +116,7 @@ class TBF_Widget_People extends WP_Widget {
 
 	}
 
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 
 		$instance = $old_instance;
 
@@ -134,7 +134,7 @@ class TBF_Widget_People extends WP_Widget {
 
 	}
 
-	function form( $instance ) {
+	public function form( $instance ) {
 
 		$title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
 		$group          = isset( $instance['group'] )          ? $instance['group']                 : 'all';

@@ -5,18 +5,18 @@
 
 class TBF_Widget_Locations extends WP_Widget {
 
-	function TBF_Widget_Locations() {
+	public function __construct() {
 
 		$widget_options = array(
 			'description' => __( 'A customizable list of locations.', 'themebright-framework' ),
 			'classname'   => 'tbf-widget tbf-widget--locations'
 		);
 
-		parent::WP_Widget( 'tbf-locations', __( 'Locations', 'themebright-framework' ), $widget_options );
+		parent::__construct( 'tbf-locations', __( 'Locations', 'themebright-framework' ), $widget_options );
 
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 
 		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Locations', 'themebright-framework' ) : $instance['title'] );
 		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']  : true;
@@ -107,7 +107,7 @@ class TBF_Widget_Locations extends WP_Widget {
 
 	}
 
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 
 		$instance = $old_instance;
 
@@ -123,7 +123,7 @@ class TBF_Widget_Locations extends WP_Widget {
 
 	}
 
-	function form( $instance ) {
+	public function form( $instance ) {
 
 		$title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
 		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? (bool) $instance['show_thumbnail'] : true;

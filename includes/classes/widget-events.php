@@ -5,18 +5,18 @@
 
 class TBF_Widget_Events extends WP_Widget {
 
-	function TBF_Widget_Events() {
+	public function __construct() {
 
 		$widget_options = array(
 			'description' => __( 'A customizable list of events.', 'themebright-framework' ),
 			'classname'   => 'tbf-widget tbf-widget--events'
 		);
 
-		parent::WP_Widget( 'tbf-events', __( 'Events', 'themebright-framework' ), $widget_options );
+		parent::__construct( 'tbf-events', __( 'Events', 'themebright-framework' ), $widget_options );
 
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 
 		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Events', 'themebright-framework' ) : $instance['title'] );
 		$number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
@@ -142,7 +142,7 @@ class TBF_Widget_Events extends WP_Widget {
 
 	}
 
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 
 		$instance = $old_instance;
 
@@ -160,7 +160,7 @@ class TBF_Widget_Events extends WP_Widget {
 
 	}
 
-	function form( $instance ) {
+	public function form( $instance ) {
 
 		$title          = isset( $instance['title'] )          ? esc_attr( $instance['title'] )     : '';
 		$number         = isset( $instance['number'] )         ? absint( $instance['number'] )      : 5;
