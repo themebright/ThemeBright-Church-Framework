@@ -123,11 +123,11 @@ class TBF_Widget_People extends WP_Widget {
 		$instance['title']          = strip_tags( $new_instance['title'] );
 		$instance['group']          = esc_attr( $new_instance['group'] );
 		$instance['number']         = (int) $new_instance['number'];
-		$instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : true;
+		$instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
 		$instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
-		$instance['show_position']  = isset( $new_instance['show_position'] )  ? (bool) $new_instance['show_position']  : true;
+		$instance['show_position']  = isset( $new_instance['show_position'] )  ? (bool) $new_instance['show_position']  : false;
 		$instance['show_phone']     = isset( $new_instance['show_phone'] )     ? (bool) $new_instance['show_phone']     : false;
-		$instance['show_email']     = isset( $new_instance['show_email'] )     ? (bool) $new_instance['show_email']     : true;
+		$instance['show_email']     = isset( $new_instance['show_email'] )     ? (bool) $new_instance['show_email']     : false;
 		$instance['show_urls']      = isset( $new_instance['show_urls'] )      ? (bool) $new_instance['show_urls']      : false;
 
 		return $instance;

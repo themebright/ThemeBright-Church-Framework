@@ -115,9 +115,9 @@ class TBF_Widget_Sermons extends WP_Widget {
 		$instance['title']          = strip_tags( $new_instance['title'] );
 		$instance['number']         = (int) $new_instance['number'];
 		$instance['show_thumbnail'] = isset( $new_instance['show_thumbnail'] ) ? (bool) $new_instance['show_thumbnail'] : false;
-		$instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : true;
+		$instance['show_excerpt']   = isset( $new_instance['show_excerpt'] )   ? (bool) $new_instance['show_excerpt']   : false;
 		$instance['show_date']      = isset( $new_instance['show_date'] )      ? (bool) $new_instance['show_date']      : false;
-		$instance['show_media']     = isset( $new_instance['show_media'] )     ? (bool) $new_instance['show_media']     : true;
+		$instance['show_media']     = isset( $new_instance['show_media'] )     ? (bool) $new_instance['show_media']     : false;
 
 		return $instance;
 
