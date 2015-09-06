@@ -6,10 +6,10 @@
 /**
  * Loads widget classes.
  */
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-events.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-locations.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-people.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-sermons.php' );
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-events.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-locations.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-people.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/classes/widget-sermons.php';
 
 /**
  * Registers widgets classes.

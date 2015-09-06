@@ -24,14 +24,14 @@ if ( ! defined( 'TBF_THEME_VERSION' ) )    define( 'TBF_THEME_VERSION',    $them
 /**
  * Loads includes.
  */
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/events.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/helpers.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/locations.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/maps.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/meta.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/people.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/scripts.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/sermons.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/styles.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/terms.php' );
-require_once( get_template_directory() . '/' . TBF_DIR . '/includes/widgets.php' );
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/events.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/helpers.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/locations.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/maps.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/meta.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/people.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/scripts.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/sermons.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/styles.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/terms.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/widgets.php';
