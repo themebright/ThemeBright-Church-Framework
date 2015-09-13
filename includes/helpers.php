@@ -92,11 +92,20 @@ function tbf_get_attachment_id_by_url( $url ) {
 }
 
 /**
- * Returns the URL of the current template with a trailing slash and no protocol.
+ * Returns the URL of the current theme with a trailing slash and no protocol.
+ */
+function tbf_get_stylesheet_directory_uri() {
+
+    return untrailingslashit( tbf_strip_protocol( get_stylesheet_directory_uri() ) );
+
+}
+
+/**
+ * Returns the URL of the current parent theme with a trailing slash and no protocol.
  */
 function tbf_get_template_directory_uri() {
 
-	return untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
+    return untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
 
 }
 
