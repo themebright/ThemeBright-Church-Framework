@@ -26,10 +26,10 @@ jQuery( 'document' ).ready( function( $ ) {
 			zoom = 14;
 		}
 
-    var styles = [];
-    if ( typeof tbfMapStyles !== 'undefined' ) {
-      styles = tbfMapStyles;
-    }
+		var styles = [];
+		if ( typeof tbfMapStyles !== 'undefined' ) {
+			styles = tbfMapStyles;
+		}
 
 		var options = {
 			center:             position,
@@ -40,7 +40,7 @@ jQuery( 'document' ).ready( function( $ ) {
 			},
 			panControl:         false,
 			mapTypeControl:     false,
-      styles:             styles
+			styles:             styles
 		};
 
 		$this.attr( 'id', id );
@@ -48,17 +48,17 @@ jQuery( 'document' ).ready( function( $ ) {
 		var map = new google.maps.Map( document.getElementById( id ), options );
 
 		var marker = new google.maps.Marker( {
-			map      : map,
-			position : position
-		});
+			map:      map,
+			position: position
+		} );
 
 		google.maps.event.addListener( marker, 'click', function() {
 			map.panTo( position );
-		});
+		} );
 
 		google.maps.event.addDomListener( window, 'resize', function() {
 			map.setCenter( position );
-		});
+		} );
 
 	} );
 

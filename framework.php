@@ -7,7 +7,7 @@
  * Saves theme data.
  */
 $theme_data = wp_get_theme();
-$theme_data = ( is_child_theme() ? wp_get_theme( $theme_data->get( 'Template' ) ) : $theme_data );
+$theme_data = is_child_theme() ? wp_get_theme( $theme_data->get( 'Template' ) ) : $theme_data;
 
 /**
  * Define constants.

@@ -96,7 +96,7 @@ function tbf_get_attachment_id_by_url( $url ) {
  */
 function tbf_get_stylesheet_directory_uri() {
 
-    return untrailingslashit( tbf_strip_protocol( get_stylesheet_directory_uri() ) );
+		return untrailingslashit( tbf_strip_protocol( get_stylesheet_directory_uri() ) );
 
 }
 
@@ -105,7 +105,27 @@ function tbf_get_stylesheet_directory_uri() {
  */
 function tbf_get_template_directory_uri() {
 
-    return untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
+		return untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
+
+}
+
+/**
+ * Returns the first chacter from each word in a string; false if null.
+ */
+function tbf_initials( $name = null ) {
+
+  if ( ! $name ) {
+    return false;
+  }
+
+  $names    = explode( ' ', $name );
+  $initials = '';
+
+  foreach ( $names as $name ) {
+    $initials .= trim( strtoupper( $name[0] ) );
+  }
+
+  return $initials;
 
 }
 
