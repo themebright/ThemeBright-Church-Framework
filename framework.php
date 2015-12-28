@@ -24,6 +24,7 @@ if ( ! defined( 'TBF_THEME_VERSION' ) )    define( 'TBF_THEME_VERSION',    $them
 /**
  * Loads includes.
  */
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/archives.php';
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/events.php';
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/helpers.php';
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/locations.php';

@@ -17,6 +17,25 @@ function tbf_clean_phone( $number = null ) {
 }
 
 /**
+ * Converts classes from wp_page_nav() to class names from wp_nav_menu() for easier styling.
+ */
+function tbf_convert_page_nav_to_nav_menu_classes( $html = null ) {
+
+	if ( ! empty( $html ) ) {
+		$html = str_replace( ' page_item_has_children', ' menu-item-has-children', $html );
+		$html = str_replace( ' current_page_item',      ' current-menu-item',      $html );
+		$html = str_replace( ' page-item-',             ' menu-item-',             $html );
+		$html = str_replace( 'class="page_item',        'class="menu-item',        $html );
+		$html = str_replace( "class='children'",        'class="sub-menu"',        $html );
+
+		return $html;
+	}
+
+	return false;
+
+}
+
+/**
  * Returns embed code based on audio/video URL or provided embed code.
  */
 function tbf_embed_code( $content ) {
@@ -87,7 +106,7 @@ function tbf_get_attachment_id_by_url( $url ) {
 
 	$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->prefix}posts WHERE guid RLIKE %s;", $parsed_url[1] ) );
 
-	return $attachment[0];
+	return esc_url( $attachment[0] );
 
 }
 
@@ -96,7 +115,7 @@ function tbf_get_attachment_id_by_url( $url ) {
  */
 function tbf_get_stylesheet_directory_uri() {
 
-		return untrailingslashit( tbf_strip_protocol( get_stylesheet_directory_uri() ) );
+		return esc_url( untrailingslashit( tbf_strip_protocol( get_stylesheet_directory_uri() ) ) );
 
 }
 
@@ -105,7 +124,7 @@ function tbf_get_stylesheet_directory_uri() {
  */
 function tbf_get_template_directory_uri() {
 
-		return untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) );
+		return esc_url( untrailingslashit( tbf_strip_protocol( get_template_directory_uri() ) ) );
 
 }
 
@@ -114,18 +133,18 @@ function tbf_get_template_directory_uri() {
  */
 function tbf_initials( $name = null ) {
 
-  if ( ! $name ) {
-    return false;
-  }
+	if ( ! $name ) {
+		return false;
+	}
 
-  $names    = explode( ' ', $name );
-  $initials = '';
+	$names    = explode( ' ', $name );
+	$initials = '';
 
-  foreach ( $names as $name ) {
-    $initials .= trim( strtoupper( $name[0] ) );
-  }
+	foreach ( $names as $name ) {
+		$initials .= trim( strtoupper( $name[0] ) );
+	}
 
-  return $initials;
+	return $initials;
 
 }
 
@@ -147,6 +166,6 @@ function tbf_strip_protocol( $url = null ) {
 		$url = str_replace( array( 'http:', 'https:' ), '', $url );
 	}
 
-	return $url;
+	return esc_url( $url );
 
 }
