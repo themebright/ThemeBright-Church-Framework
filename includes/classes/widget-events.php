@@ -130,7 +130,7 @@ class TBF_Widget_Events extends WP_Widget {
 
 				<?php else : ?>
 
-					<p class="tbf-widget__no-entries-found tbf-widget--events__no-entries-found"><?php _e( 'No events found.', 'themebright' ); ?></p>
+					<p class="tbf-widget__no-entries-found tbf-widget--events__no-entries-found"><?php _e( 'No events found.', 'themebright-framework' ); ?></p>
 
 				<?php endif;
 

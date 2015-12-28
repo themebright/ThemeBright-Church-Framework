@@ -104,7 +104,7 @@ class TBF_Widget_People extends WP_Widget {
 
 				<?php else : ?>
 
-					<p class="tbf-widget__no-entries-found tbf-widget--people__no-entries-found"><?php _e( 'No people found.', 'themebright' ); ?></p>
+					<p class="tbf-widget__no-entries-found tbf-widget--people__no-entries-found"><?php _e( 'No people found.', 'themebright-framework' ); ?></p>
 
 				<?php endif;
 

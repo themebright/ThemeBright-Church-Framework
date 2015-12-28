@@ -66,7 +66,7 @@ function tbf_event_time( $post_id = null, $format = null ) {
 }
 
 /**
- * Returns truthy value if hide time range; falsey if not.
+ * Returns true if hide time range; false if not.
  */
 function tbf_event_hide_time_range( $post_id = null ) {
 
