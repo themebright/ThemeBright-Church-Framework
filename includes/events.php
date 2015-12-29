@@ -19,6 +19,79 @@ function tbf_get_event_meta( $post_id = null, $key = null ) {
 }
 
 /**
+ * Gets an array of years (each containing an array of months) that upcoming events exists in and saves in a transient.
+ */
+function tbf_get_event_months() {
+
+	if ( get_transient( 'tbf_event_months' ) === false ) {
+
+		$args = array(
+			'posts_per_page' => 2000,
+			'post_type'      => 'ctc_event',
+			'no_found_rows'  => true,
+			'meta_query'     => array(
+				array(
+					'key'     => '_ctc_event_start_date',
+					'value'   => date_i18n( 'Y-m-d' ),
+					'compare' => '>='
+				)
+			)
+		);
+
+		$events = new WP_Query( $args );
+		$events = $events->posts;
+
+		if ( count( $events ) < 1 ) {
+			return false;
+		}
+
+		foreach ( $events as $event ) {
+			$future_dates_with_events[] = substr( get_post_meta( $event->ID, '_ctc_event_start_date', true ), 0, 7 );
+		}
+
+		$future_dates_with_events = array_unique( $future_dates_with_events );
+		sort( $future_dates_with_events );
+
+		foreach ( $future_dates_with_events as $date ) {
+			$future_years_with_events[] = substr( $date, 0, 4 );
+		}
+
+		$future_years_with_events = array_unique( $future_years_with_events );
+
+		foreach ( $future_years_with_events as $year ) {
+			foreach ( $future_dates_with_events as $date ) {
+				if ( substr( $date, 0, 4 ) == $year ) {
+					$event_months[substr( $date, 0, 4 )][] = substr( $date, 5, 7 );
+				}
+			}
+		}
+
+		set_transient( 'tbf_event_months', $event_months, DAY_IN_SECONDS );
+
+	} else {
+
+		$event_months = get_transient( 'tbf_event_months' );
+
+	}
+
+	wp_reset_postdata();
+
+	return $event_months;
+
+}
+
+/**
+ * Deletes tbf_event_months transient when events are updated.
+ */
+function tbf_get_event_months_delete() {
+
+	delete_transient( 'tbf_event_months' );
+
+}
+add_action( 'edit_post', 'tbf_get_event_months_delete' );
+
+
+/**
  * Returns the event date if it exists; false if not.
  */
 function tbf_event_date( $post_id = null, $format = null ) {
