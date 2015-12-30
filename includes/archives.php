@@ -34,7 +34,7 @@ function tbf_update_archive_slugs() {
 	} );
 
 }
-add_action( 'after_setup_theme', 'tbf_update_archive_slugs' );
+add_action( 'after_setup_theme', 'tbf_update_archive_slugs', 999 );
 
 /**
  * Redirect archives to oldest page with appropriate template if theme support allows.
