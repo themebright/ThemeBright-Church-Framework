@@ -73,6 +73,21 @@ function tbf_location_phone( $post_id = null ) {
 }
 
 /**
+ * Returns the location email if it exists; false if not.
+ */
+function tbf_location_email( $post_id = null ) {
+
+	$email = tbf_get_location_meta( $post_id, 'email' );
+
+	if ( ! empty( $email ) ) {
+		return $email;
+	}
+
+	return false;
+
+}
+
+/**
  * Returns location times if they exists; false if not.
  */
 function tbf_location_times( $post_id = null ) {
