@@ -33,7 +33,7 @@ function tbf_map( $lat = null, $lng = null, $type = 'ROAD', $zoom = '14' ) {
 function tbf_directions_url( $address = null ) {
 
 	if ( ! empty( $address ) ) {
-		return esc_url( 'https://www.google.com/maps/dir/' . trim( strip_tags( urlencode( $address ) ) ) . '/' );
+		return esc_url( 'https://www.google.com/maps/dir//' . trim( strip_tags( urlencode( $address ) ) ) . '/' );
 	}
 
 	return false;
