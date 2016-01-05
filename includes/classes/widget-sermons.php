@@ -96,7 +96,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
 				<?php else : ?>
 
-					<p class="tbf-widget__no-entries-found tbf-widget--sermons__no-entries-found"><?php _e( 'No sermons found.', 'themebright' ); ?></p>
+					<p class="tbf-widget__no-entries-found tbf-widget--sermons__no-entries-found"><?php _e( 'No sermons found.', 'themebright-framework' ); ?></p>
 
 				<?php endif;
 

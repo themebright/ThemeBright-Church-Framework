@@ -95,7 +95,7 @@ class TBF_Widget_Locations extends WP_Widget {
 
 				<?php else : ?>
 
-					<p class="tbf-widget__no-entries-found tbf-widget--locations__no-entries-found"><?php _e( 'No locations found.', 'themebright' ); ?></p>
+					<p class="tbf-widget__no-entries-found tbf-widget--locations__no-entries-found"><?php _e( 'No locations found.', 'themebright-framework' ); ?></p>
 
 				<?php endif;
 
