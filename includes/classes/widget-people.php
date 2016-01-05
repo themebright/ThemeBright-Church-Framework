@@ -162,7 +162,7 @@ class TBF_Widget_People extends WP_Widget {
 			<p>
 				<label for="<?php echo $this->get_field_id( 'group' ); ?>"><?php _e( 'Group to show:', 'themebright-framework' ); ?></label>
 				<select id="<?php echo $this->get_field_id( 'group' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'group' ); ?>">
-					<option value="all" <?php if ( $group ) echo 'selected="selected"'; ?>><?php _e( 'All Groups', 'journey' ); ?></option>
+					<option value="all" <?php if ( $group ) echo 'selected="selected"'; ?>><?php _e( 'All Groups', 'themebright-framework' ); ?></option>
 					<?php
 
 					$args = array(
