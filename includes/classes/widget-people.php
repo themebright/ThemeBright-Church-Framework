@@ -46,7 +46,7 @@ class TBF_Widget_People extends WP_Widget {
 
 		if ( $override ) :
 
-			include( $override );
+			include $override;
 
 		else :
 

@@ -40,7 +40,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
 		if ( $override ) :
 
-			include( $override );
+			include $override;
 
 		else :
 
