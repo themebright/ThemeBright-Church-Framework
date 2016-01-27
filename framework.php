@@ -12,8 +12,8 @@ $theme_data = is_child_theme() ? wp_get_theme( $theme_data->get( 'Template' ) ) 
 /**
  * Define constants.
  */
-if ( ! defined( 'TBF_DIR' ) )              define( 'TBF_DIR',              basename( __DIR__ ) );
-if ( ! defined( 'TBF_VERSION' ) )          define( 'TBF_VERSION',          '1.1.0' );
+if ( ! defined( 'TBF_DIR' ) )              define( 'TBF_DIR',              basename( dirname( __FILE__ ) ) );
+if ( ! defined( 'TBF_VERSION' ) )          define( 'TBF_VERSION',          '1.1.1' );
 
 if ( ! defined( 'TBF_THEME_AUTHOR' ) )     define( 'TBF_THEME_AUTHOR',     $theme_data->get( 'Author' ) );
 if ( ! defined( 'TBF_THEME_AUTHOR_URI' ) ) define( 'TBF_THEME_AUTHOR_URI', $theme_data->get( 'AuthorURI' ) );
