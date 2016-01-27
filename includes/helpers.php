@@ -158,6 +158,17 @@ function tbf_is_url( $str ) {
 }
 
 /**
+ * Returns page number for query and pagination on static templates.
+ */
+function tbf_page_num() {
+
+	global $paged;
+
+	return get_query_var( 'paged' ) ? get_query_var( 'paged' ) : ( get_query_var( 'page' ) ? get_query_var( 'page' ) : 1 );
+
+}
+
+/**
  * Strips http: and https: protocols from URLs.
  */
 function tbf_strip_protocol( $url = null ) {

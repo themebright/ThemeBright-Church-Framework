@@ -31,7 +31,7 @@ function tbf_get_event_months() {
 			'no_found_rows'  => true,
 			'meta_query'     => array(
 				array(
-					'key'     => '_ctc_event_start_date',
+					'key'     => '_ctc_event_start_date_start_time',
 					'value'   => date_i18n( 'Y-m-d' ),
 					'compare' => '>='
 				)

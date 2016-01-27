@@ -48,24 +48,33 @@ function tbf_disable_archives() {
 	if ( ! empty( $theme_support ) && in_array( 'archive_redirection', $theme_support[0] ) ) {
 
 		add_filter( 'ctc_post_type_event_args', function( $args ) {
-			$args['has_archive'] = false;
+			$args['has_archive']     = false;
+			$args['rewrite']['slug'] = 'event';
 			return $args;
 		} );
 
 		add_filter( 'ctc_post_type_location_args', function( $args ) {
-			$args['has_archive'] = false;
+			$args['has_archive']     = false;
+			$args['rewrite']['slug'] = 'location';
 			return $args;
 		} );
 
 		add_filter( 'ctc_post_type_person_args', function( $args ) {
-			$args['has_archive'] = false;
+			$args['has_archive']     = false;
+			$args['rewrite']['slug'] = 'person';
 			return $args;
 		} );
 
 		add_filter( 'ctc_post_type_sermon_args', function( $args ) {
-			$args['has_archive'] = false;
+			$args['has_archive']     = false;
+			$args['rewrite']['slug'] = 'sermon';
 			return $args;
 		} );
+
+		add_filter( 'wp_unique_post_slug_is_bad_hierarchical_slug', function( $bool, $slug ) {
+			$forbidden = array( 'event', 'location', 'person', 'sermon' );
+			return in_array( $slug, $forbidden );
+		}, 10, 2 );
 
 	}
 
