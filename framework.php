@@ -31,6 +31,7 @@ require_once get_template_directory() . '/' . TBF_DIR . '/includes/locations.php
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/maps.php';
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/meta.php';
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/people.php';
+require_once get_template_directory() . '/' . TBF_DIR . '/includes/queries.php';
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/scripts.php';
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/sermons.php';
 require_once get_template_directory() . '/' . TBF_DIR . '/includes/styles.php';

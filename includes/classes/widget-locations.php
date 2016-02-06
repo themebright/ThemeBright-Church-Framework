@@ -29,15 +29,7 @@ class TBF_Widget_Locations extends WP_Widget {
 		$theme_support = get_theme_support( 'tbf' );
 		$theme_support = $theme_support[0]['widgets']['locations']['fields'];
 
-		$query_args = array(
-			'post_type'      => 'ctc_location',
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'order'          => 'ASC',
-			'orderby'        => 'menu_order'
-		);
-
-		$locations = new WP_Query( $query_args );
+		$locations = tbf_query_locations();
 
 		$override = locate_template( 'widgets/widget-locations.php' );
 

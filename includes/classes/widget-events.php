@@ -31,24 +31,10 @@ class TBF_Widget_Events extends WP_Widget {
 		$theme_support = get_theme_support( 'tbf' );
 		$theme_support = $theme_support[0]['widgets']['events']['fields'];
 
-		$query_args = array(
-			'post_type'      => 'ctc_event',
-			'post_status'    => 'publish',
+		$events = tbf_query_events( array(
 			'posts_per_page' => $number,
-			'order'          => 'ASC',
-			'orderby'        => 'meta_value',
-			'meta_key'       => '_ctc_event_start_date',
-			'meta_query'     => array(
-				array(
-					'key'     => '_ctc_event_end_date',
-					'value'   => date_i18n( 'Y-m-d' ),
-					'compare' => '>=',
-					'type'    => 'DATE'
-				)
-			)
-		);
-
-		$events = new WP_Query( $query_args );
+			'no_found_rows'  => true
+		) );
 
 		$override = locate_template( 'widgets/widget-events.php' );
 

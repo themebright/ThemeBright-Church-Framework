@@ -28,13 +28,10 @@ class TBF_Widget_Sermons extends WP_Widget {
 		$theme_support = get_theme_support( 'tbf' );
 		$theme_support = $theme_support[0]['widgets']['sermons']['fields'];
 
-		$query_args = array(
-			'post_type'      => 'ctc_sermon',
-			'post_status'    => 'publish',
-			'posts_per_page' => $number
-		);
-
-		$sermons = new WP_Query( $query_args );
+		$sermons = tbf_query_sermons( array(
+			'posts_per_page' => $number,
+			'no_found_rows'  => true
+		) );
 
 		$override = locate_template( 'widgets/widget-sermons.php' );
 

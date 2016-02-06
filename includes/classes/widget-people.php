@@ -31,16 +31,11 @@ class TBF_Widget_People extends WP_Widget {
 		$theme_support = get_theme_support( 'tbf' );
 		$theme_support = $theme_support[0]['widgets']['people']['fields'];
 
-		$query_args = array(
-			'post_type'        => 'ctc_person',
-			'ctc_person_group' => ( $group == 'all' ? '' : $group ),
-			'post_status'      => 'publish',
+		$people = tbf_query_people( array(
 			'posts_per_page'   => $number,
-			'order'            => 'ASC',
-			'orderby'          => 'menu_order'
-		);
-
-		$people = new WP_Query( $query_args );
+			'ctc_person_group' => ( $group === 'all' ? '' : $group ),
+			'no_found_rows'    => true
+		) );
 
 		$override = locate_template( 'widgets/widget-people.php' );
 
