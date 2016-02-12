@@ -25,13 +25,24 @@ function tbf_get_terms( $post_id = null, $tax = null ) {
 /**
  * Returns a select with all the terms from a taxonomy if it exists and has terms, false if not.
  */
-function tbf_tax_select( $tax = null, $class = 'select-url', $id = null ) {
+function tbf_tax_select( $args = null ) {
 
-	if ( empty( $tax ) ) {
+	$defaults = array(
+		'tax'              => null,
+		'class'            => 'select-url',
+		'id'               => null,
+		'select_current'   => true,
+		'title_option'     => true,
+		'title_option_val' => ''
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	if ( empty( $args['tax'] ) ) {
 		return false;
 	}
 
-	$terms = get_terms( $tax );
+	$terms = get_terms( $args['tax'] );
 
 	if ( is_wp_error( $terms ) || count( $terms ) < 1 ) {
 		return false;
@@ -39,18 +50,20 @@ function tbf_tax_select( $tax = null, $class = 'select-url', $id = null ) {
 
 	global $wp_query;
 
-	$tax        = get_taxonomy( $tax );
+	$tax        = get_taxonomy( $args['tax'] );
 	$is_archive = isset( $wp_query->query[ $tax->name ] );
 
 	ob_start();
 
 	?>
 
-	<select <?php if ( ! empty( $id ) ) echo "id='$id'"; ?> class="<?php echo $class; ?>">
-		<option><?php echo $tax->labels->menu_name; ?> &hellip;</option>
+	<select <?php if ( ! empty( $args['id'] ) ) echo 'id="' . $args['id'] . '"'; ?> class="<?php echo $args['class']; ?>">
+		<?php if ( $args['title_option' ] ) : ?>
+			<option value="<?php echo esc_attr( $args['title_option_val' ] ); ?>"><?php echo $tax->labels->menu_name; ?> &hellip;</option>
+		<?php endif; ?>
 
 		<?php foreach ( $terms as $term ) : ?>
-			<option value="<?php echo esc_url( get_term_link( $term ) ); ?>" <?php if ( $is_archive && $wp_query->query[ $tax->name ] === $term->slug ) echo 'selected'; ?>><?php echo $term->name; ?></option>
+			<option value="<?php echo esc_url( get_term_link( $term ) ); ?>" <?php if ( $args['select_current'] && $is_archive && $wp_query->query[ $tax->name ] === $term->slug ) echo 'selected'; ?>><?php echo $term->name; ?></option>
 		<?php endforeach; ?>
 	</select>
 

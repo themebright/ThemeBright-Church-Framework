@@ -225,10 +225,18 @@ function tbf_event_map( $post_id = null ) {
 	$lng = tbf_get_event_meta( $post_id, 'map_lng' );
 
 	if ( ! empty( $lat ) && ! empty( $lng ) ) {
-		$type = tbf_get_event_meta( $post_id, 'map_type' );
-		$zoom = tbf_get_event_meta( $post_id, 'map_zoom' );
+		$args = array(
+			'lat' => $lat,
+			'lng' => $lng
+		);
 
-		return tbf_map( $lat, $lng, $type, $zoom );
+		$type = tbf_get_event_meta( $post_id, 'map_type' );
+		if ( $type ) $args['type'] = $type;
+
+		$zoom = tbf_get_event_meta( $post_id, 'map_zoom' );
+		if ( $zoom ) $args['zoom'] = $zoom;
+
+		return tbf_map( $args );
 	}
 
 	return false;
