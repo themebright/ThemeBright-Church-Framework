@@ -8,17 +8,17 @@ class TBF_Widget_Sermons extends WP_Widget {
 	public function __construct() {
 
 		$widget_options = array(
-			'description' => __( 'A customizable list of sermons.', 'themebright-framework' ),
+			'description' => esc_html__( 'A customizable list of sermons.', 'themebright-framework' ),
 			'classname'   => 'tbf-widget tbf-widget--people'
 		);
 
-		parent::__construct( 'tbf-sermons', __( 'Sermons', 'themebright-framework' ), $widget_options );
+		parent::__construct( 'tbf-sermons', esc_html__( 'Sermons', 'themebright-framework' ), $widget_options );
 
 	}
 
 	public function widget( $args, $instance ) {
 
-		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Sermons', 'themebright-framework' ) : $instance['title'] );
+		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? esc_html__( 'Sermons', 'themebright-framework' ) : $instance['title'] );
 		$number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
 		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : false;
 		$show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']     : true;
@@ -74,15 +74,15 @@ class TBF_Widget_Sermons extends WP_Widget {
 									<?php if ( in_array( 'media', $theme_support ) && $show_media && ( tbf_sermon_video() || tbf_sermon_audio() || tbf_sermon_pdf() ) ) : ?>
 										<div class="tbf-widget__media tbf-widget--sermons__media">
 											<?php if ( tbf_sermon_video() ) : ?>
-												<a href="<?php echo tbf_sermon_video(); ?>" class="tbf-widget__media-link--video tbf-widget--sermons__media-link--video"><span><?php _e( 'Video', 'themebright-framework' ); ?></span></a>
+												<a href="<?php echo tbf_sermon_video(); ?>" class="tbf-widget__media-link--video tbf-widget--sermons__media-link--video"><span><?php esc_html_e( 'Video', 'themebright-framework' ); ?></span></a>
 											<?php endif; ?>
 
 											<?php if ( tbf_sermon_audio() ) : ?>
-												<a href="<?php echo tbf_sermon_audio(); ?>" class="tbf-widget__media-link--audio tbf-widget--sermons__media-link--audio"><span><?php _e( 'Audio', 'themebright-framework' ); ?></span></a>
+												<a href="<?php echo tbf_sermon_audio(); ?>" class="tbf-widget__media-link--audio tbf-widget--sermons__media-link--audio"><span><?php esc_html_e( 'Audio', 'themebright-framework' ); ?></span></a>
 											<?php endif; ?>
 
 											<?php if ( tbf_sermon_pdf() ) : ?>
-												<a href="<?php echo tbf_sermon_pdf(); ?>" class="tbf-widget__media-link--pdf tbf-widget--sermons__media-link--pdf"><span><?php _e( 'Transcript', 'themebright-framework' ); ?></span></a>
+												<a href="<?php echo tbf_sermon_pdf(); ?>" class="tbf-widget__media-link--pdf tbf-widget--sermons__media-link--pdf"><span><?php esc_html_e( 'Transcript', 'themebright-framework' ); ?></span></a>
 											<?php endif; ?>
 										</div>
 									<?php endif; ?>
@@ -93,7 +93,7 @@ class TBF_Widget_Sermons extends WP_Widget {
 
 				<?php else : ?>
 
-					<p class="tbf-widget__no-entries-found tbf-widget--sermons__no-entries-found"><?php _e( 'No sermons found.', 'themebright-framework' ); ?></p>
+					<p class="tbf-widget__no-entries-found tbf-widget--sermons__no-entries-found"><?php esc_html_e( 'No sermons found.', 'themebright-framework' ); ?></p>
 
 				<?php endif;
 
@@ -136,14 +136,14 @@ class TBF_Widget_Sermons extends WP_Widget {
 
 		<?php if ( in_array( 'title', $theme_support ) ) : ?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'themebright-framework' ); ?></label>
 				<input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'number', $theme_support ) ) : ?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of sermons to show:', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php esc_html_e( 'Number of sermons to show:', 'themebright-framework' ); ?></label>
 				<input id="<?php echo $this->get_field_id( 'number' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="1" />
 			</p>
 		<?php endif; ?>
@@ -151,28 +151,28 @@ class TBF_Widget_Sermons extends WP_Widget {
 		<?php if ( in_array( 'thumbnail', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_thumbnail ); ?> id="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>" name="<?php echo $this->get_field_name( 'show_thumbnail' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php _e( 'Show thumbnail', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php esc_html_e( 'Show thumbnail', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'excerpt', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_excerpt ); ?> id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php _e( 'Show excerpt', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php esc_html_e( 'Show excerpt', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'date', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Show date', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php esc_html_e( 'Show date', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'media', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_media ); ?> id="<?php echo $this->get_field_id( 'show_media' ); ?>" name="<?php echo $this->get_field_name( 'show_media' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_media' ); ?>"><?php _e( 'Show media links', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_media' ); ?>"><?php esc_html_e( 'Show media links', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 

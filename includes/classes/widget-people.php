@@ -8,17 +8,17 @@ class TBF_Widget_People extends WP_Widget {
 	public function __construct() {
 
 		$widget_options = array(
-			'description' => __( 'A customizable list of people.', 'themebright-framework' ),
+			'description' => esc_html__( 'A customizable list of people.', 'themebright-framework' ),
 			'classname'   => 'tbf-widget tbf-widget--people'
 		);
 
-		parent::__construct( 'tbf-people', __( 'People', 'themebright-framework' ), $widget_options );
+		parent::__construct( 'tbf-people', esc_html__( 'People', 'themebright-framework' ), $widget_options );
 
 	}
 
 	public function widget( $args, $instance ) {
 
-		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'People', 'themebright-framework' ) : $instance['title'] );
+		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? esc_html__( 'People', 'themebright-framework' ) : $instance['title'] );
 		$group          = isset( $instance['group'] )          ? $instance['group']            : 'all';
 		$number         = isset( $instance['number'] )         ? absint( $instance['number'] ) : 5;
 		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']   : true;
@@ -99,7 +99,7 @@ class TBF_Widget_People extends WP_Widget {
 
 				<?php else : ?>
 
-					<p class="tbf-widget__no-entries-found tbf-widget--people__no-entries-found"><?php _e( 'No people found.', 'themebright-framework' ); ?></p>
+					<p class="tbf-widget__no-entries-found tbf-widget--people__no-entries-found"><?php esc_html_e( 'No people found.', 'themebright-framework' ); ?></p>
 
 				<?php endif;
 
@@ -148,16 +148,16 @@ class TBF_Widget_People extends WP_Widget {
 
 		<?php if ( in_array( 'title', $theme_support ) ) : ?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'themebright-framework' ); ?></label>
 				<input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'group', $theme_support ) ) : ?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'group' ); ?>"><?php _e( 'Group to show:', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'group' ); ?>"><?php esc_html_e( 'Group to show:', 'themebright-framework' ); ?></label>
 				<select id="<?php echo $this->get_field_id( 'group' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'group' ); ?>">
-					<option value="all" <?php if ( $group ) echo 'selected="selected"'; ?>><?php _e( 'All Groups', 'themebright-framework' ); ?></option>
+					<option value="all" <?php if ( $group ) echo 'selected="selected"'; ?>><?php esc_html_e( 'All Groups', 'themebright-framework' ); ?></option>
 					<?php
 
 					$args = array(
@@ -177,7 +177,7 @@ class TBF_Widget_People extends WP_Widget {
 
 		<?php if ( in_array( 'number', $theme_support ) ) : ?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of people to show:', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php esc_html_e( 'Number of people to show:', 'themebright-framework' ); ?></label>
 				<input id="<?php echo $this->get_field_id( 'number' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="1" />
 			</p>
 		<?php endif; ?>
@@ -185,42 +185,42 @@ class TBF_Widget_People extends WP_Widget {
 		<?php if ( in_array( 'thumbnail', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_thumbnail ); ?> id="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>" name="<?php echo $this->get_field_name( 'show_thumbnail' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php _e( 'Show thumbnail', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php esc_html_e( 'Show thumbnail', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'excerpt', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_excerpt ); ?> id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php _e( 'Show excerpt', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php esc_html_e( 'Show excerpt', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'position', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_position ); ?> id="<?php echo $this->get_field_id( 'show_position' ); ?>" name="<?php echo $this->get_field_name( 'show_position' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_position' ); ?>"><?php _e( 'Show position', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_position' ); ?>"><?php esc_html_e( 'Show position', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'phone', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_phone ); ?> id="<?php echo $this->get_field_id( 'show_phone' ); ?>" name="<?php echo $this->get_field_name( 'show_phone' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_phone' ); ?>"><?php _e( 'Show phone', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_phone' ); ?>"><?php esc_html_e( 'Show phone', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'email', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_email ); ?> id="<?php echo $this->get_field_id( 'show_email' ); ?>" name="<?php echo $this->get_field_name( 'show_email' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_email' ); ?>"><?php _e( 'Show email', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_email' ); ?>"><?php esc_html_e( 'Show email', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'urls', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_urls ); ?> id="<?php echo $this->get_field_id( 'show_urls' ); ?>" name="<?php echo $this->get_field_name( 'show_urls' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_urls' ); ?>"><?php _e( 'Show URLs', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_urls' ); ?>"><?php esc_html_e( 'Show URLs', 'themebright-framework' ); ?></label>
 			</p>
 		<?php endif; ?>
 
