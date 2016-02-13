@@ -39,46 +39,22 @@ function tbf_get_archive_replacement_pages( $post_type = null ) {
 }
 
 /**
- * Update archive slugs to new URLs.
+ * Redirects default archive pages to published pages with the appropriate page template (if they exist).
  */
-function tbf_disable_archives() {
+function tbf_redirect_archives() {
 
 	$theme_support = get_theme_support( 'tbf' );
 
 	if ( ! empty( $theme_support ) && in_array( 'archive_redirection', $theme_support[0] ) ) {
+		if ( is_post_type_archive( array( 'ctc_event', 'ctc_location', 'ctc_person', 'ctc_sermon' ) ) ) {
+			$page = tbf_get_archive_replacement_pages( get_post_type() );
 
-		add_filter( 'ctc_post_type_event_args', function( $args ) {
-			$args['has_archive']     = false;
-			$args['rewrite']['slug'] = 'event';
-			return $args;
-		} );
-
-		add_filter( 'ctc_post_type_location_args', function( $args ) {
-			$args['has_archive']     = false;
-			$args['rewrite']['slug'] = 'location';
-			return $args;
-		} );
-
-		add_filter( 'ctc_post_type_person_args', function( $args ) {
-			$args['has_archive']     = false;
-			$args['rewrite']['slug'] = 'person';
-			return $args;
-		} );
-
-		add_filter( 'ctc_post_type_sermon_args', function( $args ) {
-			$args['has_archive']     = false;
-			$args['rewrite']['slug'] = 'sermon';
-			return $args;
-		} );
-
-		add_filter( 'wp_unique_post_slug_is_bad_hierarchical_slug', function( $bool, $slug ) {
-			$forbidden = array( 'event', 'location', 'person', 'sermon' );
-			return in_array( $slug, $forbidden );
-		}, 10, 2 );
-
+			if ( isset( $page[0] ) ) {
+				wp_redirect( esc_url( get_permalink( $page[0]->ID ) ) );
+				exit;
+			}
+		}
 	}
 
-	return false;
-
 }
-add_action( 'after_setup_theme', 'tbf_disable_archives', 999 );
+add_action( 'template_redirect', 'tbf_redirect_archives' );

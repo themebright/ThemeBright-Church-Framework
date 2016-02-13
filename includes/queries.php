@@ -8,7 +8,7 @@
  */
 function tbf_query_events( $args = array() ) {
 
-	return new WP_Query( apply_filters( 'tbf_query_events', array_merge( array(
+	return apply_filters( 'tbf_query_events', new WP_Query( array_merge( array(
 		'post_type'  => 'ctc_event',
 		'paged'      => tbf_page_num(),
 		'order'      => 'ASC',
@@ -32,9 +32,8 @@ function tbf_query_events( $args = array() ) {
  */
 function tbf_query_locations( $args = array() ) {
 
-	return new WP_Query( apply_filters( 'tbf_query_locations', array_merge( array(
+	return apply_filters( 'tbf_query_locations', new WP_Query( array_merge( array(
 		'post_type'      => 'ctc_location',
-		'paged'          => tbf_page_num(),
 		'posts_per_page' => 500,
 		'order'          => 'ASC',
 		'orderby'        => 'menu_order',
@@ -48,7 +47,7 @@ function tbf_query_locations( $args = array() ) {
  */
 function tbf_query_people( $args = array() ) {
 
-	return new WP_Query( apply_filters( 'tbf_query_people', array_merge( array(
+	return apply_filters( 'tbf_query_people', new WP_Query( array_merge( array(
 		'post_type' => 'ctc_person',
 		'paged'     => tbf_page_num(),
 		'order'     => 'ASC',
@@ -62,9 +61,51 @@ function tbf_query_people( $args = array() ) {
  */
 function tbf_query_sermons( $args = array() ) {
 
-	return new WP_Query( apply_filters( 'tbf_query_sermons', array_merge( array(
+	return apply_filters( 'tbf_query_sermons', new WP_Query( array_merge( array(
 		'post_type' => 'ctc_sermon',
 		'paged'     => tbf_page_num()
 	), $args ) ) );
 
 }
+
+/**
+ * Modify default CTC post type archive queries to match the parameters of the above functions.
+ */
+function tbf_modify_ctc_post_type_archives_query( $query ) {
+
+	if ( is_admin() || ! $query->is_main_query() || ! is_post_type_archive() ) {
+		return false;
+	}
+
+	if ( is_post_type_archive( 'ctc_event' ) ) {
+		$query->set( 'order',      'ASC' );
+		$query->set( 'orderby',    'meta_value' );
+		$query->set( 'meta_key',   '_ctc_event_start_date_start_time' );
+		$query->set( 'meta_type',  'DATETIME' );
+		$query->set( 'meta_query', array(
+			array(
+				'key'     => '_ctc_event_end_date',
+				'value'   => date_i18n( 'Y-m-d' ),
+				'compare' => '>=',
+				'type'    => 'DATE'
+			)
+		) );
+		return;
+	}
+
+	if ( is_post_type_archive( 'ctc_location' ) ) {
+    $query->set( 'posts_per_page', 500 );
+		$query->set( 'order',          'ASC' );
+		$query->set( 'orderby',        'menu_order' );
+		$query->set( 'no_found_rows',  true );
+		return;
+	}
+
+	if ( is_post_type_archive( 'ctc_person' ) ) {
+		$query->set( 'order',   'ASC' );
+		$query->set( 'orderby', 'meta_value' );
+		return;
+	}
+
+}
+add_action( 'pre_get_posts', 'tbf_modify_ctc_post_type_archives_query' );
