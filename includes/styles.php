@@ -6,9 +6,9 @@
 /**
  * Registers framework styles.
  */
-function tbf_register_styles() {
+function tbcf_register_styles() {
 
-	wp_register_style( 'tbf', tbf_get_template_directory_uri() . '/' . TBF_DIR . '/assets/css/tbf.css', false, TBF_VERSION );
+	wp_register_style( 'tbcf', tbcf_get_template_directory_uri() . '/' . TBCF_DIR . '/assets/css/tbcf.css', false, TBCF_VERSION );
 
 }
-add_action( 'wp_enqueue_scripts', 'tbf_register_styles' );
+add_action( 'wp_enqueue_scripts', 'tbcf_register_styles' );

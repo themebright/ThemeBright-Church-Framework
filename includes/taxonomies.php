@@ -6,7 +6,7 @@
 /**
  * Gets a post's terms from a particular taxonomy.
  */
-function tbf_get_terms( $post_id = null, $tax = null ) {
+function tbcf_get_terms( $post_id = null, $tax = null ) {
 
 	if ( empty( $post_id ) ) {
 		$post_id = get_the_ID();
@@ -25,7 +25,7 @@ function tbf_get_terms( $post_id = null, $tax = null ) {
 /**
  * Returns a select with all the terms from a taxonomy if it exists and has terms, false if not.
  */
-function tbf_tax_select( $args = null ) {
+function tbcf_tax_select( $args = null ) {
 
 	$defaults = array(
 		'tax'              => null,

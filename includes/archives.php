@@ -6,7 +6,7 @@
 /**
  * Get the pages that take the place of the CTC post type archives.
  */
-function tbf_get_archive_replacement_pages( $post_type = null ) {
+function tbcf_get_archive_replacement_pages( $post_type = null ) {
 
 	if ( ! empty( $post_type ) ) {
 		switch ( $post_type ) {
@@ -41,13 +41,13 @@ function tbf_get_archive_replacement_pages( $post_type = null ) {
 /**
  * Redirects default archive pages to published pages with the appropriate page template (if they exist).
  */
-function tbf_redirect_archives() {
+function tbcf_redirect_archives() {
 
-	$theme_support = get_theme_support( 'tbf' );
+	$theme_support = get_theme_support( 'tbcf' );
 
 	if ( ! empty( $theme_support ) && in_array( 'archive_redirection', $theme_support[0] ) ) {
 		if ( is_post_type_archive( array( 'ctc_event', 'ctc_location', 'ctc_person', 'ctc_sermon' ) ) ) {
-			$page = tbf_get_archive_replacement_pages( get_post_type() );
+			$page = tbcf_get_archive_replacement_pages( get_post_type() );
 
 			if ( isset( $page[0] ) ) {
 				wp_redirect( esc_url( get_permalink( $page[0]->ID ) ) );
@@ -57,4 +57,4 @@ function tbf_redirect_archives() {
 	}
 
 }
-add_action( 'template_redirect', 'tbf_redirect_archives' );
+add_action( 'template_redirect', 'tbcf_redirect_archives' );

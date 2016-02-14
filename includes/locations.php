@@ -4,12 +4,12 @@
  */
 
 /**
- * Gets the location meta using tbf_get_meta without need for prefix.
+ * Gets the location meta using tbcf_get_meta without need for prefix.
  */
-function tbf_get_location_meta( $post_id = null, $key = null ) {
+function tbcf_get_location_meta( $post_id = null, $key = null ) {
 
 	if ( ! empty( $key ) ) {
-		$data = tbf_get_meta( $post_id, '_ctc_location_' . $key );
+		$data = tbcf_get_meta( $post_id, '_ctc_location_' . $key );
 
 		return $data;
 	}
@@ -21,9 +21,9 @@ function tbf_get_location_meta( $post_id = null, $key = null ) {
 /**
  * Returns the location address if it exists; false if not.
  */
-function tbf_location_address( $post_id = null ) {
+function tbcf_location_address( $post_id = null ) {
 
-	$address = tbf_get_location_meta( $post_id, 'address' );
+	$address = tbcf_get_location_meta( $post_id, 'address' );
 
 	if ( ! empty( $address ) ) {
 		return nl2br( $address );
@@ -36,21 +36,21 @@ function tbf_location_address( $post_id = null ) {
 /**
  * Returns truthy value if show directions link; falsey if not.
  */
-function tbf_location_show_directions_link( $post_id = null ) {
+function tbcf_location_show_directions_link( $post_id = null ) {
 
-	return tbf_get_location_meta( $post_id, 'show_directions_link' );
+	return tbcf_get_location_meta( $post_id, 'show_directions_link' );
 
 }
 
 /**
  * Returns Google Maps URL for a location address if one exists; false if not.
  */
-function tbf_location_directions_url( $post_id = null ) {
+function tbcf_location_directions_url( $post_id = null ) {
 
-	$address = tbf_get_location_meta( $post_id, 'address' );
+	$address = tbcf_get_location_meta( $post_id, 'address' );
 
 	if ( ! empty( $address ) ) {
-		return tbf_directions_url( $address );
+		return tbcf_directions_url( $address );
 	}
 
 	return false;
@@ -60,9 +60,9 @@ function tbf_location_directions_url( $post_id = null ) {
 /**
  * Returns the location phone if it exists; false if not.
  */
-function tbf_location_phone( $post_id = null ) {
+function tbcf_location_phone( $post_id = null ) {
 
-	$phone = tbf_get_location_meta( $post_id, 'phone' );
+	$phone = tbcf_get_location_meta( $post_id, 'phone' );
 
 	if ( ! empty( $phone ) ) {
 		return $phone;
@@ -75,9 +75,9 @@ function tbf_location_phone( $post_id = null ) {
 /**
  * Returns the location email if it exists; false if not.
  */
-function tbf_location_email( $post_id = null ) {
+function tbcf_location_email( $post_id = null ) {
 
-	$email = tbf_get_location_meta( $post_id, 'email' );
+	$email = tbcf_get_location_meta( $post_id, 'email' );
 
 	if ( ! empty( $email ) ) {
 		return $email;
@@ -90,9 +90,9 @@ function tbf_location_email( $post_id = null ) {
 /**
  * Returns location times if they exists; false if not.
  */
-function tbf_location_times( $post_id = null ) {
+function tbcf_location_times( $post_id = null ) {
 
-	$times = tbf_get_location_meta( $post_id, 'times' );
+	$times = tbcf_get_location_meta( $post_id, 'times' );
 
 	if ( ! empty( $times ) ) {
 		return nl2br( $times );
@@ -105,10 +105,10 @@ function tbf_location_times( $post_id = null ) {
 /**
  * Returns the location map if neccesary data exists; false if not.
  */
-function tbf_location_map( $post_id = null ) {
+function tbcf_location_map( $post_id = null ) {
 
-	$lat = tbf_get_location_meta( $post_id, 'map_lat' );
-	$lng = tbf_get_location_meta( $post_id, 'map_lng' );
+	$lat = tbcf_get_location_meta( $post_id, 'map_lat' );
+	$lng = tbcf_get_location_meta( $post_id, 'map_lng' );
 
 	if ( ! empty( $lat ) && ! empty( $lng ) ) {
 		$args = array(
@@ -116,13 +116,13 @@ function tbf_location_map( $post_id = null ) {
 			'lng' => $lng
 		);
 
-		$type = tbf_get_location_meta( $post_id, 'map_type' );
+		$type = tbcf_get_location_meta( $post_id, 'map_type' );
 		if ( $type ) $args['type'] = $type;
 
-		$zoom = tbf_get_location_meta( $post_id, 'map_zoom' );
+		$zoom = tbcf_get_location_meta( $post_id, 'map_zoom' );
 		if ( $zoom ) $args['zoom'] = $zoom;
 
-		return tbf_map( $args );
+		return tbcf_map( $args );
 	}
 
 	return false;

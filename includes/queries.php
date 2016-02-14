@@ -6,11 +6,11 @@
 /**
  * Returns a WP_Query object with events.
  */
-function tbf_query_events( $args = array() ) {
+function tbcf_query_events( $args = array() ) {
 
-	return apply_filters( 'tbf_query_events', new WP_Query( array_merge( array(
+	return apply_filters( 'tbcf_query_events', new WP_Query( array_merge( array(
 		'post_type'  => 'ctc_event',
-		'paged'      => tbf_page_num(),
+		'paged'      => tbcf_page_num(),
 		'order'      => 'ASC',
 		'orderby'    => 'meta_value',
 		'meta_key'   => '_ctc_event_start_date_start_time',
@@ -30,9 +30,9 @@ function tbf_query_events( $args = array() ) {
 /**
  * Returns a WP_Query object with locations.
  */
-function tbf_query_locations( $args = array() ) {
+function tbcf_query_locations( $args = array() ) {
 
-	return apply_filters( 'tbf_query_locations', new WP_Query( array_merge( array(
+	return apply_filters( 'tbcf_query_locations', new WP_Query( array_merge( array(
 		'post_type'      => 'ctc_location',
 		'posts_per_page' => 500,
 		'order'          => 'ASC',
@@ -45,11 +45,11 @@ function tbf_query_locations( $args = array() ) {
 /**
  * Returns a WP_Query object with people.
  */
-function tbf_query_people( $args = array() ) {
+function tbcf_query_people( $args = array() ) {
 
-	return apply_filters( 'tbf_query_people', new WP_Query( array_merge( array(
+	return apply_filters( 'tbcf_query_people', new WP_Query( array_merge( array(
 		'post_type' => 'ctc_person',
-		'paged'     => tbf_page_num(),
+		'paged'     => tbcf_page_num(),
 		'order'     => 'ASC',
 		'orderby'   => 'menu_order'
 	), $args ) ) );
@@ -59,11 +59,11 @@ function tbf_query_people( $args = array() ) {
 /**
  * Returns a WP_Query object with sermons.
  */
-function tbf_query_sermons( $args = array() ) {
+function tbcf_query_sermons( $args = array() ) {
 
-	return apply_filters( 'tbf_query_sermons', new WP_Query( array_merge( array(
+	return apply_filters( 'tbcf_query_sermons', new WP_Query( array_merge( array(
 		'post_type' => 'ctc_sermon',
-		'paged'     => tbf_page_num()
+		'paged'     => tbcf_page_num()
 	), $args ) ) );
 
 }
@@ -71,7 +71,7 @@ function tbf_query_sermons( $args = array() ) {
 /**
  * Modify default CTC post type archive queries to match the parameters of the above functions.
  */
-function tbf_modify_ctc_post_type_archives_query( $query ) {
+function tbcf_modify_ctc_post_type_archives_query( $query ) {
 
 	if ( is_admin() || ! $query->is_main_query() || ! is_post_type_archive() ) {
 		return false;
@@ -94,7 +94,7 @@ function tbf_modify_ctc_post_type_archives_query( $query ) {
 	}
 
 	if ( is_post_type_archive( 'ctc_location' ) ) {
-    $query->set( 'posts_per_page', 500 );
+		$query->set( 'posts_per_page', 500 );
 		$query->set( 'order',          'ASC' );
 		$query->set( 'orderby',        'menu_order' );
 		$query->set( 'no_found_rows',  true );
@@ -108,4 +108,4 @@ function tbf_modify_ctc_post_type_archives_query( $query ) {
 	}
 
 }
-add_action( 'pre_get_posts', 'tbf_modify_ctc_post_type_archives_query' );
+add_action( 'pre_get_posts', 'tbcf_modify_ctc_post_type_archives_query' );
