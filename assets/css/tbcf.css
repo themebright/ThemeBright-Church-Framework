@@ -1,14 +1,14 @@
-.tbf-map img {
+.tbcf-map img {
 	max-width: none !important;
 }
 
-.tbf-map__scaler {
+.tbcf-map__scaler {
 	position: relative;
 	height: 0;
 	padding-bottom: 60%;
 }
 
-.tbf-map__canvas {
+.tbcf-map__canvas {
 	position: absolute;
 	top: 0;
 	right: 0;

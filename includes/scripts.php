@@ -6,12 +6,12 @@
 /**
  * Registers framework scripts.
  */
-function tbf_register_scripts() {
+function tbcf_register_scripts() {
 
-	wp_register_script( 'tbf-maps-api', '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false', 'false', TBF_VERSION );
-	wp_register_script( 'tbf-maps', tbf_get_template_directory_uri() . '/' . TBF_DIR . '/assets/js/maps.js', array( 'jquery', 'tbf-maps-api' ), TBF_VERSION );
+	wp_register_script( 'tbcf-maps-api', '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false', 'false', TBCF_VERSION );
+	wp_register_script( 'tbcf-maps', tbcf_get_template_directory_uri() . '/' . TBCF_DIR . '/assets/js/maps.js', array( 'jquery', 'tbcf-maps-api' ), TBCF_VERSION );
 
-	wp_register_script( 'tbf', tbf_get_template_directory_uri() . '/' . TBF_DIR . '/assets/js/tbf.js', array( 'jquery' ), TBF_VERSION );
+	wp_register_script( 'tbcf', tbcf_get_template_directory_uri() . '/' . TBCF_DIR . '/assets/js/tbcf.js', array( 'jquery' ), TBCF_VERSION );
 
 }
-add_action( 'wp_enqueue_scripts', 'tbf_register_scripts' );
+add_action( 'wp_enqueue_scripts', 'tbcf_register_scripts' );

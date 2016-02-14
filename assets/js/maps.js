@@ -1,17 +1,17 @@
 jQuery( 'document' ).ready( function( $ ) {
 
-	$( '.tbf-map__canvas' ).each( function( i ) {
+	$( '.tbcf-map__canvas' ).each( function( i ) {
 
 		var $this = $( this );
 
-		var id = 'tbf-map__canvas--' + ( i + 1 );
+		var id = 'tbcf-map__canvas--' + ( i + 1 );
 
 		var position = {
-			lat: parseFloat( $this.data( 'tbf-map-lat' ) ),
-			lng: parseFloat( $this.data( 'tbf-map-lng' ) )
+			lat: parseFloat( $this.data( 'tbcf-map-lat' ) ),
+			lng: parseFloat( $this.data( 'tbcf-map-lng' ) )
 		};
 
-		var type = $this.data( 'tbf-map-type' );
+		var type = $this.data( 'tbcf-map-type' );
 		var mapType = google.maps.MapTypeId.ROADMAP;
 		if ( type === 'HYBRID' ) {
 			mapType = google.maps.MapTypeId.HYBRID;
@@ -21,14 +21,14 @@ jQuery( 'document' ).ready( function( $ ) {
 			mapType = google.maps.MapTypeId.TERRAIN;
 		}
 
-		var zoom = parseInt( $this.data( 'tbf-map-zoom' ) );
+		var zoom = parseInt( $this.data( 'tbcf-map-zoom' ) );
 		if ( ! zoom ) {
 			zoom = 14;
 		}
 
 		var styles = [];
-		if ( typeof tbfMapStyles !== 'undefined' ) {
-			styles = tbfMapStyles;
+		if ( typeof tbcfMapStyles !== 'undefined' ) {
+			styles = tbcfMapStyles;
 		}
 
 		var options = {

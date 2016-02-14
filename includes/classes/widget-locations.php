@@ -3,22 +3,22 @@
  * Locations Widget
 */
 
-class TBF_Widget_Locations extends WP_Widget {
+class TBCF_Widget_Locations extends WP_Widget {
 
 	public function __construct() {
 
 		$widget_options = array(
-			'description' => __( 'A customizable list of locations.', 'themebright-framework' ),
-			'classname'   => 'tbf-widget tbf-widget--locations'
+			'description' => esc_html__( 'A customizable list of locations.', 'tbcf' ),
+			'classname'   => 'tbcf-widget tbcf-widget--locations'
 		);
 
-		parent::__construct( 'tbf-locations', __( 'Locations', 'themebright-framework' ), $widget_options );
+		parent::__construct( 'tbcf-locations', esc_html__( 'Locations', 'tbcf' ), $widget_options );
 
 	}
 
 	public function widget( $args, $instance ) {
 
-		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Locations', 'themebright-framework' ) : $instance['title'] );
+		$title          = apply_filters( 'widget_title', empty( $instance['title'] ) ? esc_html__( 'Locations', 'tbcf' ) : $instance['title'] );
 		$show_thumbnail = isset( $instance['show_thumbnail'] ) ? $instance['show_thumbnail']  : true;
 		$show_excerpt   = isset( $instance['show_excerpt'] )   ? $instance['show_excerpt']    : false;
 		$show_address   = isset( $instance['show_address'] )   ? $instance['show_address']    : true;
@@ -26,18 +26,10 @@ class TBF_Widget_Locations extends WP_Widget {
 		$show_times     = isset( $instance['show_times'] )     ? $instance['show_times']      : true;
 		$show_map       = isset( $instance['show_map'] )       ? (bool) $instance['show_map'] : false;
 
-		$theme_support = get_theme_support( 'tbf' );
+		$theme_support = get_theme_support( 'tbcf' );
 		$theme_support = $theme_support[0]['widgets']['locations']['fields'];
 
-		$query_args = array(
-			'post_type'      => 'ctc_location',
-			'post_status'    => 'publish',
-			'posts_per_page' => -1,
-			'order'          => 'ASC',
-			'orderby'        => 'menu_order'
-		);
-
-		$locations = new WP_Query( $query_args );
+		$locations = tbcf_query_locations();
 
 		$override = locate_template( 'widgets/widget-locations.php' );
 
@@ -55,38 +47,38 @@ class TBF_Widget_Locations extends WP_Widget {
 
 				if ( $locations->have_posts() ) : ?>
 
-					<ul class="tbf-widget__entries tbf-widget--locations__entries">
+					<ul class="tbcf-widget__entries tbcf-widget--locations__entries">
 						<?php while ( $locations->have_posts() ) : $locations->the_post(); ?>
-							<li class="tbf-widget__entry tbf-widget--locations__entry">
+							<li class="tbcf-widget__entry tbcf-widget--locations__entry">
 								<?php if ( in_array( 'thumbnail', $theme_support ) && $show_thumbnail && has_post_thumbnail() ) : ?>
-									<div class="tbf-widget__entry-thumbnail tbf-widget--locations__entry-thumbnail">
+									<div class="tbcf-widget__entry-thumbnail tbcf-widget--locations__entry-thumbnail">
 										<?php the_post_thumbnail( 'large' ); ?>
 									</div>
 								<?php endif; ?>
 
 								<?php if ( in_array( 'title', $theme_support ) ) : ?>
-									<?php the_title( sprintf( '<h4 class="tbf-widget__entry-title tbf-widget--locations__entry-title"><a href="%s">', esc_url( get_permalink() ) ), '</a></h4>' ); ?>
+									<?php the_title( sprintf( '<h4 class="tbcf-widget__entry-title tbcf-widget--locations__entry-title"><a href="%s">', esc_url( get_permalink() ) ), '</a></h4>' ); ?>
 								<?php endif; ?>
 
-								<div class="tbf-widget__entry-body tbf-widget--locations__entry-body">
+								<div class="tbcf-widget__entry-body tbcf-widget--locations__entry-body">
 									<?php if ( in_array( 'excerpt', $theme_support ) && $show_excerpt && get_the_excerpt() ) : ?>
-										<div class="tbf-widget__excerpt tbf-widget--locations__excerpt"><?php the_excerpt(); ?></div>
+										<div class="tbcf-widget__excerpt tbcf-widget--locations__excerpt"><?php the_excerpt(); ?></div>
 									<?php endif; ?>
 
-									<?php if ( in_array( 'address', $theme_support ) && $show_address && tbf_location_address() ) : ?>
-										<div class="tbf-widget__address tbf-widget--locations__address"><?php echo tbf_location_address(); ?></div>
+									<?php if ( in_array( 'address', $theme_support ) && $show_address && tbcf_location_address() ) : ?>
+										<div class="tbcf-widget__address tbcf-widget--locations__address"><?php echo tbcf_location_address(); ?></div>
 									<?php endif; ?>
 
-									<?php if ( in_array( 'phone', $theme_support ) && $show_phone && tbf_location_phone() ) : ?>
-										<div class="tbf-widget__phone tbf-widget--locations__phone"><?php echo tbf_location_phone(); ?></div>
+									<?php if ( in_array( 'phone', $theme_support ) && $show_phone && tbcf_location_phone() ) : ?>
+										<div class="tbcf-widget__phone tbcf-widget--locations__phone"><?php echo tbcf_location_phone(); ?></div>
 									<?php endif; ?>
 
-									<?php if ( in_array( 'times', $theme_support ) && $show_times && tbf_location_times() ) : ?>
-										<div class="tbf-widget__times tbf-widget--locations__times"><?php echo tbf_location_times(); ?></div>
+									<?php if ( in_array( 'times', $theme_support ) && $show_times && tbcf_location_times() ) : ?>
+										<div class="tbcf-widget__times tbcf-widget--locations__times"><?php echo tbcf_location_times(); ?></div>
 									<?php endif; ?>
 
-									<?php if ( in_array( 'map', $theme_support ) && $show_map && tbf_location_map() ) : ?>
-										<div class="tbf-widget__map tbf-widget--locations__map"><?php echo tbf_location_map(); ?></div>
+									<?php if ( in_array( 'map', $theme_support ) && $show_map && tbcf_location_map() ) : ?>
+										<div class="tbcf-widget__map tbcf-widget--locations__map"><?php echo tbcf_location_map(); ?></div>
 									<?php endif; ?>
 								</div>
 							</li>
@@ -95,7 +87,7 @@ class TBF_Widget_Locations extends WP_Widget {
 
 				<?php else : ?>
 
-					<p class="tbf-widget__no-entries-found tbf-widget--locations__no-entries-found"><?php _e( 'No locations found.', 'themebright-framework' ); ?></p>
+					<p class="tbcf-widget__no-entries-found tbcf-widget--locations__no-entries-found"><?php esc_html_e( 'No locations found.', 'tbcf' ); ?></p>
 
 				<?php endif;
 
@@ -133,14 +125,14 @@ class TBF_Widget_Locations extends WP_Widget {
 		$show_times     = isset( $instance['show_times'] )     ? (bool) $instance['show_times']     : true;
 		$show_map       = isset( $instance['show_map'] )       ? (bool) $instance['show_map']       : false;
 
-		$theme_support = get_theme_support( 'tbf' );
+		$theme_support = get_theme_support( 'tbcf' );
 		$theme_support = $theme_support[0]['widgets']['locations']['fields'];
 
 	?>
 
 		<?php if ( in_array( 'title', $theme_support ) ) : ?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'tbcf' ); ?></label>
 				<input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
 			</p>
 		<?php endif; ?>
@@ -148,42 +140,42 @@ class TBF_Widget_Locations extends WP_Widget {
 		<?php if ( in_array( 'thumbnail', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_thumbnail ); ?> id="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>" name="<?php echo $this->get_field_name( 'show_thumbnail' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php _e( 'Show thumbnail', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php esc_html_e( 'Show thumbnail', 'tbcf' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'excerpt', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_excerpt ); ?> id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php _e( 'Show excerpt', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php esc_html_e( 'Show excerpt', 'tbcf' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'address', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_address ); ?> id="<?php echo $this->get_field_id( 'show_address' ); ?>" name="<?php echo $this->get_field_name( 'show_address' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_address' ); ?>"><?php _e( 'Show address', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_address' ); ?>"><?php esc_html_e( 'Show address', 'tbcf' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'phone', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_phone ); ?> id="<?php echo $this->get_field_id( 'show_phone' ); ?>" name="<?php echo $this->get_field_name( 'show_phone' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_phone' ); ?>"><?php _e( 'Show phone', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_phone' ); ?>"><?php esc_html_e( 'Show phone', 'tbcf' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'times', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_times ); ?> id="<?php echo $this->get_field_id( 'show_times' ); ?>" name="<?php echo $this->get_field_name( 'show_times' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_times' ); ?>"><?php _e( 'Show times', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_times' ); ?>"><?php esc_html_e( 'Show times', 'tbcf' ); ?></label>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( in_array( 'map', $theme_support ) ) : ?>
 			<p>
 				<input class="checkbox" type="checkbox" <?php checked( $show_map ); ?> id="<?php echo $this->get_field_id( 'show_map' ); ?>" name="<?php echo $this->get_field_name( 'show_map' ); ?>" />
-				<label for="<?php echo $this->get_field_id( 'show_map' ); ?>"><?php _e( 'Show map', 'themebright-framework' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'show_map' ); ?>"><?php esc_html_e( 'Show map', 'tbcf' ); ?></label>
 			</p>
 		<?php endif; ?>
 
