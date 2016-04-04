@@ -106,7 +106,7 @@ function tbcf_get_attachment_id_by_url( $url ) {
 
 	$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->prefix}posts WHERE guid RLIKE %s;", $parsed_url[1] ) );
 
-	return esc_url( $attachment[0] );
+	return $attachment[0];
 
 }
 
