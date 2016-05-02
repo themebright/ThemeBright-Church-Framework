@@ -12,7 +12,7 @@ $theme_data = is_child_theme() ? wp_get_theme( $theme_data->get( 'Template' ) ) 
 /**
  * Define constants.
  */
-if ( ! defined( 'TBCF_VERSION' ) )          define( 'TBCF_VERSION',          '1.2.1' );
+if ( ! defined( 'TBCF_VERSION' ) )          define( 'TBCF_VERSION',          '1.2.2' );
 if ( ! defined( 'TBCF_THEME_AUTHOR' ) )     define( 'TBCF_THEME_AUTHOR',     $theme_data->get( 'Author' ) );
 if ( ! defined( 'TBCF_THEME_AUTHOR_URI' ) ) define( 'TBCF_THEME_AUTHOR_URI', $theme_data->get( 'AuthorURI' ) );
 if ( ! defined( 'TBCF_THEME_NAME' ) )       define( 'TBCF_THEME_NAME',       $theme_data->get( 'Name' ) );
