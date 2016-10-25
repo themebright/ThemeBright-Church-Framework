@@ -58,3 +58,21 @@ function tbcf_directions_url( $address = null ) {
 	return false;
 
 }
+
+/**
+ * Outputs the CTC Google Maps API key in the footer if available.
+ */
+function tbcf_gmaps_api_key() {
+
+	if ( function_exists( 'ctc_setting' ) ) {
+		$key = ctc_setting( 'google_maps_api_key' );
+	}
+
+	if ( ! empty( $key ) ) {
+		return $key;
+	}
+
+	return false;
+
+}
+add_action( 'wp_footer', 'tbcf_gmaps_api_key' );
